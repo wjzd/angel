@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+
+<generatorConfiguration >
+
+  <!-- 本地mysql驱动包 D:\XXX\XXX\mysql.jar -->
+  <classPathEntry location="D:\maven\repository\mysql\mysql-connector-java\5.1.26\mysql-connector-java-5.1.26.jar" />
+
+  <context id="context1" >
+  	<!-- 数据库连接 -->
+	  <!--driverClass="com.mysql.jdbc.Driver"
+    	connectionURL="jdbc:mysql://localhost:3306/angel"-->
+    <jdbcConnection
+	  driverClass="com.mysql.jdbc.Driver"
+      connectionURL="jdbc:mysql://localhost:3306/angel"
+    	userId="root"
+    	password="root" />
+    	
+    <!-- 模型 -->	
+    <javaModelGenerator 
+    	targetPackage="com.yy.pojo"
+    	targetProject="src/main/java" />
+    	
+    <!-- Mapper -->
+    <sqlMapGenerator 
+    	targetPackage="com.yy.mapping"
+    	targetProject="src/main/java" />
+    	
+    <!-- Dao接口 -->
+    <javaClientGenerator 
+    	targetPackage="com.yy.dao"
+    	targetProject="src/main/java" 
+    	type="XMLMAPPER" />
+
+
+	  <table domainObjectName="SysUser" tableName="sys_user" ></table>
+	  <table domainObjectName="SysRole" tableName="sys_role" ></table>
+	  <table domainObjectName="SysPermission" tableName="sys_permission" ></table>
+	  <table domainObjectName="SysRoleUser" tableName="sys_role_user" ></table>
+	  <table domainObjectName="SysPermissionRole" tableName="sys_permission_role" ></table>
+
+
+
+  </context>
+</generatorConfiguration>
