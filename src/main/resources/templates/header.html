@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<nav>
+			<input type="hidden" id="lanage" value="zh">
+			<div class="logo"><a href="#" z-st="nav_logo"><img th:src="@{/static/index_files/logo.svg}" width="160" alt=""></a>
+						
+			</div>
+			<div class="header-menu-bar">
+				<div class="search-input-hull layui-hide" style="display: block;">
+					<span class="search-ipt"></span>
+					<input type="text" placeholder="" value="" id="nav-search-ipt">
+					<span class="search-cancel"></span>
+					<div id="search-content" class="search-content">
+						<div class="search-content-list">
+						</div>
+					</div>
+				</div>
+				<div class="menu-box">
+					<ul class="menu-list-content">
+						<li class="current"><a class="menu-list-box" href="/" z-st="nav_tab_home">首页</a></li>
+						
+						<li class="discover header-menu-withmore "><a class="menu-list-box" href="yuanma.html" target="_blank" z-st="nav_tab_discover">彩票<i
+								 class="drop-down-arrow"></i></a>
+							<div class="menu-list discover-box hide"></div>
+						</li>
+						<li class="">
+							<a class="menu-list-box" href="#" z-st="nav_tab_designer">棋牌</a>
+						</li>
+						<li class="header-menu-withmore ">
+							<a class="menu-list-box" href="#" z-st="nav_tab_job">直播<i class="drop-down-arrow"></i></a>
+						
+						</li>
+						<li class="special header-menu-withmore ">
+							<a class="menu-list-box" href="#" z-st="nav_tab_event">H5<i class="drop-down-arrow"></i></a>
+						
+						</li>
+						<li class="zhengban header-menu-withmore ">
+							<a href="#" target="_blank" class="menu-list-box">教程</a>
+						
+						</li>
+						<li class="header-menu-withmore gogoup-course">
+							<a href="#" target="_blank" class="menu-list-box">开通会员</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+						
+			<div class="search search-unlogin" z-st="nav_searchbox">
+				<i class="icon-arrow-sou">&nbsp;</i>
+			</div>
+			<div class="user-center user-center-unlogin">
+				<ul class="unlogin">
+					<li><a href="/login.html" data-href="" class="nav-unlogin">登录<i></i></a><a href="/register.html">注册</a></li>
+					<!--/cart.html-->
+				</ul>
+			</div>
+		</nav>
+	</body>
+</html>

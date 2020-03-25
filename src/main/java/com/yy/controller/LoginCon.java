@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class LoginCon {
 
-    @RequestMapping(value="/")
-    public String index(){
-        System.out.println("999999");
-        return "login";
-    }
+//    @RequestMapping(value="/")
+//    public String index(){
+//        System.out.println("999999");
+//        return "login";
+//    }
     @RequestMapping(value="/login")
     public  String login(){
         System.out.println("8888");
