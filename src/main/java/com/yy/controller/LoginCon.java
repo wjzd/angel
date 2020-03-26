@@ -19,7 +19,6 @@ public class LoginCon {
     private UserService userService;
     @RequestMapping(value="/")
     public String index(){
-
         System.out.println("999999");
         return "login";
     }
