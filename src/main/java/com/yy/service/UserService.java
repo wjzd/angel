@@ -1,7 +1,7 @@
 package com.yy.service;
 
 
-import com.yy.pojo.SysUser;
+import com.yy.pojo.UserInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,5 +9,6 @@ import java.util.List;
 @Service("userService")
 public interface UserService {
 
-    public List<SysUser> userList(SysUser sysUser);
+    public List<UserInfo> selectByarb(UserInfo userInfo);
+    public void insertSelective(UserInfo userInfo);
 }

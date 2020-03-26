@@ -13,9 +13,9 @@
     	connectionURL="jdbc:mysql://localhost:3306/angel"-->
     <jdbcConnection
 	  driverClass="com.mysql.jdbc.Driver"
-      connectionURL="jdbc:mysql://localhost:3306/angel"
+      connectionURL="jdbc:mysql://47.111.190.67:3306/angel"
     	userId="root"
-    	password="root" />
+    	password="kylhtx666" />
     	
     <!-- 模型 -->	
     <javaModelGenerator 
@@ -34,11 +34,12 @@
     	type="XMLMAPPER" />
 
 
-	  <table domainObjectName="SysUser" tableName="sys_user" ></table>
-	  <table domainObjectName="SysRole" tableName="sys_role" ></table>
-	  <table domainObjectName="SysPermission" tableName="sys_permission" ></table>
-	  <table domainObjectName="SysRoleUser" tableName="sys_role_user" ></table>
-	  <table domainObjectName="SysPermissionRole" tableName="sys_permission_role" ></table>
+	  <table domainObjectName="AdminUserInfo" tableName="adminUserInfo" ></table>
+	  <table domainObjectName="Collect" tableName="collect" ></table>
+	  <table domainObjectName="Commodity" tableName="commodity" ></table>
+	  <table domainObjectName="DownloanInfo" tableName="downloanInfo" ></table>
+	  <table domainObjectName="OrderInfo" tableName="orderInfo" ></table>
+	  <table domainObjectName="UserInfo" tableName="userInfo" ></table>
 
 
 

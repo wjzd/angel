@@ -1,8 +1,10 @@
 package com.yy.serviceImpl;
 
 
-import com.yy.dao.SysUserMapper;
-import com.yy.pojo.SysUser;
+
+import com.yy.dao.UserInfoMapper;
+
+import com.yy.pojo.UserInfo;
 import com.yy.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,15 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
     @Resource
-    private SysUserMapper sysUserMapper;
+    private UserInfoMapper userInfoMapper;
+
     @Override
-    public List<SysUser> userList(SysUser sysUser) {
-        return sysUserMapper.userList(sysUser);
+    public List<UserInfo> selectByarb(UserInfo userInfo) {
+        return userInfoMapper.selectByarb(userInfo);
+    }
+
+    @Override
+    public void insertSelective(UserInfo userInfo) {
+        userInfoMapper.insertSelective(userInfo);
     }
 }
