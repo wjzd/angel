@@ -12,6 +12,7 @@ public class IndexController {
     public String header(){
         return "header";
     }
+
     @RequestMapping("/getFooter")
     public String footer(){
         return "footer";
