@@ -17,11 +17,11 @@ public class LoginCon {
 
     @Reference
     private UserService userService;
-    @RequestMapping(value="/")
-    public String index(){
-        System.out.println("999999");
-        return "login";
-    }
+//    @RequestMapping(value="/")
+//    public String index(){
+//        System.out.println("999999");
+//        return "login";
+//    }
     @RequestMapping(value="/login")
     public  String login(){
         System.out.println("8888");
