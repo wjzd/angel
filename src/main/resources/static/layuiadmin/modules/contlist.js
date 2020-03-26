@@ -45,7 +45,7 @@ layui.define(['table', 'form'], function(exports){
       layer.open({
         type: 2
         ,title: '编辑文章'
-        ,content: '/static/views/app/content/listform.html?id='+ data.id
+        ,content: '../../../views/app/content/listform.html?id='+ data.id
         ,maxmin: true
         ,area: ['550px', '550px']
         ,btn: ['确定', '取消']
@@ -102,7 +102,7 @@ layui.define(['table', 'form'], function(exports){
       layer.open({
         type: 2
         ,title: '编辑分类'
-        ,content: '/static/views/app/content/tagsform.html?id='+ data.id
+        ,content: '../../../views/app/content/tagsform.html?id='+ data.id
         ,area: ['450px', '200px']
         ,btn: ['确定', '取消']
         ,yes: function(index, layero){
@@ -156,7 +156,7 @@ layui.define(['table', 'form'], function(exports){
       layer.open({
         type: 2
         ,title: '编辑评论'
-        ,content: '/static/views/app/content/contform.html'
+        ,content: '../../../views/app/content/contform.html'
         ,area: ['450px', '300px']
         ,btn: ['确定', '取消']
         ,yes: function(index, layero){

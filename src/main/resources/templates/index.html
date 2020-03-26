@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>量子科技 (QCOOL) - 新手互动平台 - 打开量子科技，发现更好的源码！</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" th:href="@{/static/css/main.min.css}">
+		<link rel="stylesheet" th:href="@{/static/css/homePage.css}">
+		<link rel="stylesheet" th:href="@{/static/css/slider.css}">
+		<link th:href="@{/static/css/style.css}" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/css/index.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/static/layuiadmin/layui/css/layui.css}" />
+		<script th:src="@{/static/js/jquery-1.10.2.min.js}"></script>
+		<script th:src="@{/static/js/jquery-migrate-1.2.1.min.js}"></script>
+		<script th:src="@{/static/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" async="" th:src="@{/static/js/vds.js}"></script>
+		<script th:src="@{/static/layuiadmin/layui/layui.all.js}"></script>
+		<!-- 这个js是公共的 -->
+		<script th:src="@{/static/js/common.js}" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.work-list-box.hide > .card-box {
+      display: none;
+    }
+  </style>
+	<style>
+		.album-card-box .card-info, .card-box .card-info{
+			height: auto;
+			padding-bottom:30px;
+		}
+	
+		.album-card-box .card-info .card-info-item span.statistics-view:before, .card-box .card-info .card-info-item span.statistics-view:before{
+			background: url("/static/img/card-liulan.svg") no-repeat 0 1px   !important;
+			background-size: 16px auto !important;    display: inline-block;
+			width: 16px;
+			height: 16px;
+			vertical-align: top;
+			margin-right: 5px;
+		}
+	
+	
+		.album-card-box .card-info .card-info-item span.statistics-comment:before, .card-box .card-info .card-info-item span.statistics-comment:before{
+			background: url("/static/img/card-pinglun.svg")  no-repeat 0 1px  !important;
+			background-size: 16px auto !important;    display: inline-block;
+			width: 16px;
+			height: 16px;
+			vertical-align: top;
+			margin-right: 5px;
+		}
+	
+	
+		.statistics-tuijian:before{
+			/*background: url("img/card-zan.svg") no-repeat  !important;*/
+			background-size: 16px auto !important;    display: inline-block;
+			width: 16px;
+			height: 16px;
+			vertical-align: top;
+			margin-right: 5px;
+		}
+		.jtpang{
+			margin:0;
+			padding-left:5px;
+			padding-right:5px;
+			padding-top:17px;
+			line-height:20px;}
+		.jtpang span{
+			display: inline-block;
+			padding-left:5px;}
+		.card-info-type{
+			padding-top:6px;}
+	</style>
+	</head>
+	<body>
+		<div id="body">
+				<header id="zHeader">
+<!--					<nav>-->
+<!--						<input type="hidden" id="lanage" value="zh">-->
+<!--						<div class="logo"><a href="#" z-st="nav_logo"><img th:src="@{/static/index_files/logo.svg}" width="160" alt=""></a>-->
+
+<!--						</div>-->
+<!--						<div class="header-menu-bar">-->
+<!--							<div class="search-input-hull layui-hide" style="display: block;">-->
+<!--								<span class="search-ipt"></span>-->
+<!--								<input type="text" placeholder="" value="" id="nav-search-ipt">-->
+<!--								<span class="search-cancel"></span>-->
+<!--								<div id="search-content" class="search-content">-->
+<!--									<div class="search-content-list">-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--							<div class="menu-box">-->
+<!--								<ul class="menu-list-content">-->
+<!--									<li class="current"><a class="menu-list-box" href="/" z-st="nav_tab_home">首页</a></li>-->
+
+<!--									<li class="discover header-menu-withmore "><a class="menu-list-box" href="page/commodity.html" target="_blank" z-st="nav_tab_discover">彩票源码<i-->
+<!--											 class="drop-down-arrow"></i></a>-->
+<!--										<div class="menu-list discover-box hide"></div>-->
+<!--									</li>-->
+<!--									<li class="">-->
+<!--										<a class="menu-list-box" href="#" z-st="nav_tab_designer">棋牌</a>-->
+<!--									</li>-->
+<!--									<li class="header-menu-withmore ">-->
+<!--										<a class="menu-list-box" href="#" z-st="nav_tab_job">直播<i class="drop-down-arrow"></i></a>-->
+
+<!--									</li>-->
+<!--									<li class="special header-menu-withmore ">-->
+<!--										<a class="menu-list-box" href="#" z-st="nav_tab_event">H5<i class="drop-down-arrow"></i></a>-->
+
+<!--									</li>-->
+<!--									<li class="zhengban header-menu-withmore ">-->
+<!--										<a href="#" target="_blank" class="menu-list-box">教程</a>-->
+
+<!--									</li>-->
+<!--									<li class="header-menu-withmore gogoup-course">-->
+<!--										<a href="#" target="_blank" class="menu-list-box">开通会员</a>-->
+<!--									</li>-->
+<!--								</ul>-->
+<!--							</div>-->
+<!--						</div>-->
+
+<!--						<div class="search search-unlogin" z-st="nav_searchbox">-->
+<!--							<i class="icon-arrow-sou">&nbsp;</i>-->
+<!--						</div>-->
+<!--						<div class="user-center user-center-unlogin">-->
+<!--							<ul class="unlogin">-->
+<!--								<li><a href="/login.html" data-href="" class="nav-unlogin">登录<i></i></a><a href="/register.html">注册</a></li>-->
+<!--								&lt;!&ndash;/cart.html&ndash;&gt;-->
+<!--							</ul>-->
+<!--						</div>-->
+<!--					</nav>-->
+				</header>
+			<main class="main-wrapper">
+				<div class="slider-adv-box">
+					<div class="slider-adv">
+						<div class="slider layui-carousel" id="test1">
+							<!-- 轮播图 -->
+							<div carousel-item>
+								<div><img src="http://placehold.it/1380x350/09f768/ffffff" width="100%" height="100%"></div>
+								<div><img src="http://placehold.it/1380x350/3333cc/ffffff" width="100%" height="100%"></div>
+								<div><img src="http://placehold.it/1380x350/b822dd/ffffff" width="100%" height="100%"></div>
+								<div><img src="http://placehold.it/1380x350/f709f7/ffffff" width="100%" height="100%"></div>
+								<div><img src="http://placehold.it/1380x350/aa55aa/ffffff" width="100%" height="100%"></div>
+							</div>
+						</div>
+						<div class="clear" style="height: 20px"></div>
+						<!-- 广告位 -->
+						<div class="advtop">
+							<ul class="">
+								<li id="testac1" z-st="home_ad_01">
+									<!-- Revive Adserver Asynchronous JS Tag - Generated with Revive Adserver v5.0.2 -->
+									<img src="http://placehold.it/420x336/ff3333/ffffff" style="width: 260px;height: 208px;">
+								</li>
+								<li id="testac2" z-st="home_ad_02">
+									<!-- Revive Adserver Asynchronous JS Tag - Generated with Revive Adserver v5.0.2 -->
+									<img src="http://placehold.it/420x336/ff3333/ffffff" style="width: 260px;height: 208px;">
+								</li>
+								<li id="testac3" z-st="home_ad_03">
+									<!-- Revive Adserver Asynchronous JS Tag - Generated with Revive Adserver v5.0.2 -->
+									<img src="http://placehold.it/420x336/ff3333/ffffff" style="width: 260px;height: 208px;">
+								</li>
+								<li id="testac4" z-st="home_ad_05">
+									<img src="http://placehold.it/420x336/ff3333/ffffff" style="width: 260px;height: 208px;">
+								</li>
+								<li id="testac5" z-st="home_ad_05">
+									<img src="http://placehold.it/420x336/ff3333/ffffff" style="width: 260px;height: 208px;">
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="subnav-content-wrap" id="tab_anchor" style="height: 56px;">
+					<div class="subnav-wrap" style="left: 0px;">
+						<div class="top-hull">
+							<div class="subnav-contentbox">
+								<div class="tab-nav-container">
+									<ul class="subnav-content text-center" id="IndexNav">
+										<li class="current"><a href="javascript:;" class="title" z-st="home_tab_home" id="tuijianNav">首页推荐</a></li>
+										<li><a href="javascript:;" class="title" target="_blank" z-st="home_tab_lastest" id="newNav">最新发布</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 首页推荐 -->
+				<div class="all-work-list" id="tuijianNavBox">
+					<div class="work-list-box">
+						<section class="container">
+							<div class="card-box">
+								<div class="card-img">
+									<a href="" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
+										<img src="http://placehold.it/260x195/999966/ffffff" title="xxxx" alt="">
+									</a>
+								</div>
+								<div class="card-info">
+									<p class="card-info-title">
+										<a href="#" title="年前年后-小米路由器Ax3600-WiFi6和一些C4D渲染" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;">年前年后-小米路由器Ax3600-WiFi6和一些C4D渲染</a>
+									</p>
+									<p class="card-info-type" title="#">网页-电商
+									</p>
+									<p class="card-info-item">
+										<span class="statistics-view" title="共4451浏览">1142</span>
+									</p>
+								</div>
+								<div class="card-item">
+									<span class="user-avatar showMemberCard">
+										<a href="#" title="次世xx文化" target="_blank" z-st="home_main_card_user">
+											<img src="" srcset="http://placehold.it/420x336/ff3333/ffffff"
+											 width="30" height="30" alt="">次世文化</a>
+									</span>
+									<span class="time" title="#">5天前</span>
+								</div>
+							</div>
+							<div class="card-box">
+								<div class="card-img">
+									<a href="" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
+										<img src="http://placehold.it/260x195/448866/ffffff" title="xxxx" alt="">
+									</a>
+								</div>
+								<div class="card-info">
+									<p class="card-info-title">
+										<a href="#" title="年前年后-小米路由器Ax3600-WiFi6和一些C4D渲染" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;">年前年后-小米路由器Ax3600-WiFi6和一些C4D渲染</a>
+									</p>
+									<p class="card-info-type" title="#">网页-电商
+									</p>
+									<p class="card-info-item">
+										<span class="statistics-view" title="共4451浏览">1142</span>
+									</p>
+								</div>
+								<div class="card-item">
+									<span class="user-avatar showMemberCard">
+										<a href="#" title="次世xx文化" target="_blank" z-st="home_main_card_user">
+											<img src="" srcset="http://placehold.it/420x336/ff3333/ffffff"
+											 width="30" height="30" alt="">次世文化</a>
+									</span>
+									<span class="time" title="#">5天前</span>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+				<!-- 首页推荐完 -->
+				<!-- 最新发布 -->
+				<div class="all-work-list layui-hide" id="newNavBox">
+					<div class="work-list-box">
+						<section class="container">
+							<div class="card-box">
+								<div class="card-img">
+									<a href="" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
+										<img src="http://placehold.it/260x195/998866/ffffff" title="xxxx" alt="">
+									</a>
+								</div>
+								<div class="card-info">
+									<p class="card-info-title">
+										<a href="#" title="年前年后-小米路由器Ax3600-WiFi6和一些C4D渲染" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;">年前年后-小米路由阿斯达所大所大所</a>
+									</p>
+									<p class="card-info-type" title="#">网页-电商
+									</p>
+									<p class="card-info-item">
+										<span class="statistics-view" title="共4451浏览">1142</span>
+									</p>
+								</div>
+								<div class="card-item">
+									<span class="user-avatar showMemberCard">
+										<a href="#" title="次世xx文化" target="_blank" z-st="home_main_card_user">
+											<img src="" srcset="http://placehold.it/420x336/ff3333/ffffff"
+											 width="30" height="30" alt="">次世文化</a>
+									</span>
+									<span class="time" title="#">5天前</span>
+								</div>
+							</div>
+							<div class="card-box">
+								<div class="card-img">
+									<a href="" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
+										<img src="http://placehold.it/260x195/990066/ffffff" title="xxxx" alt="">
+									</a>
+								</div>
+								<div class="card-info">
+									<p class="card-info-title">
+										<a href="#" title="年前年后-小米路由器Ax3600-WiFi6和一些C4D渲染" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;">年前年年前年后-小米路由阿斯达所大所大所00-WiFi6和一些C4D渲染</a>
+									</p>
+									<p class="card-info-type" title="#">网页-电商
+									</p>
+									<p class="card-info-item">
+										<span class="statistics-view" title="共4451浏览">1142</span>
+									</p>
+								</div>
+								<div class="card-item">
+									<span class="user-avatar showMemberCard">
+										<a href="#" title="次世xx文化" target="_blank" z-st="home_main_card_user">
+											<img src="" srcset="http://placehold.it/420x336/ff3333/ffffff"
+											 width="30" height="30" alt="">次世文化</a>
+									</span>
+									<span class="time" title="#">5天前</span>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+				<!-- 最新发布完 -->
+				<div class="pageturning ">
+					<div class="clear layui-row" style="margin-left: 41%;">
+						<div name="" class="laypage_main laypageskin_default" id="demopage">
+						</div>
+					</div>
+				</div>
+			</main>
+			<!-- 意见反馈 -->
+			<div class="pop-up feedback-pop hide">
+				<div class="popup-title">意见反馈</div>
+				<div class="popup-con">
+					<div class="pinlunt">
+						<textarea type="text" id="form-data-content" class="textarea-style" onpropertychange="MaxMe(this)" oninput="MaxMe(this)"
+						 style="height: 42px;"></textarea>
+					</div>
+					<div class="p-relative mt-20">
+						<input type="text" id="form-data-contact" placeholder="请留下您的联系方式，可以方便我们后续跟进（选填）" class="text-style">
+					</div>
+					<div class="text-center">
+						<input type="button" class="btn-default-main pop-confirm" value="确定" id="js-feedback-confirm">
+						<input type="button" class="btn-default-secondary pop-cancel" value="取消" id="js-feedback-cancel">
+					</div>
+				</div>
+				<i class="pop-close"></i>
+			</div>
+			<footer id="footer">
+<!--				<div class="footer-wrapper">-->
+<!--					<div class="footer-wrapper-top">-->
+<!--						<div class="footer-wrapper-top-left">-->
+<!--							<a href="#" class="footer-mobile"><i class="hide"></i>移动版</a>-->
+<!--							<a href="#">关于我们</a>-->
+<!--							<a href="#">用户协议</a>-->
+<!--							<a href="#">隐私政策</a>-->
+<!--							<a href="#">侵权申诉</a>-->
+<!--							<a href="#">企业服务</a>-->
+<!--							<a href="#">帮助中心</a>-->
+<!--							<a href="#">联系我们</a>-->
+
+<!--							<a href="#" onclick="changeLang(&#39;zh&#39;);">中文</a>-->
+<!--							<a href="#" onclick="changeLang(&#39;en&#39;);">English</a>-->
+<!--						</div>-->
+<!--						<div class="footer-wrapper-top-right">-->
+<!--							<a href="#" class="footer-weixin"><i class="hide" z-st="footer_focusUs_wechat"></i></a>-->
+<!--							<a href="#" class="footer-weibo" target="_blank" z-st="footer_focusUs_weibo"></a>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="footer-wrapper-middle">-->
+<!--						<span class="police"><a href="#" target="_blank">沪公网安备11010502000601号</a></span>-->
+<!--						<i></i>-->
+<!--						<a href="#" target="_blank">广播电视节目制作经营许可证（沪）字第06999号</a>-->
+<!--						<i></i><a href="#" target="_blank">沪ICP备11017826号<a>-->
+<!--								<i></i><a href="#" target="_blank">沪ICP证130166号</a>-->
+<!--				-->
+<!--					</div>-->
+<!--					<div class="footer-wrapper-bottom" style="margin-top: 10px;">-->
+<!--						<a href="#" target="_blank">营业执照</a>-->
+<!--						<i></i><a href="#" target="_blank">网上有害信息举报专区</a>-->
+<!--						<i></i><span>不良信息举报电话：021-56538668</span>-->
+<!--						<i></i><span>举报邮箱 jubao@gcool.com.cn</span>-->
+<!--						<i></i><span>联系电话：010-56538663</span>-->
+<!--				-->
+<!--						<span class="footer-copy-right">Copyright © 2006-2020 <a href="#" target="_blank">站酷</a></span>-->
+<!--					</div>-->
+<!--				</div>-->
+				<div class="sidebar-fixed-wrapper js-sidebar-fixed" style="bottom: 40px;">
+					<a class="back-to-top sidebar-fixed_box" z-st="shortcut_totop" style="display: block;" href="#"></a>
+				</div>
+			</footer>
+		</div>
+		<div class="sidebar-fixed-wrapper js-sidebar-fixed" style="bottom: 40px;">
+			<div class="back-to-top sidebar-fixed_box" z-st="shortcut_totop" style="display: none;"></div>
+		</div>
+		<style>
+			a.menu-list-box:hover {
+				color: #FFE300 !important;
+			}
+
+			.js-header_upload {
+				height: 56px;
+			}
+
+			header nav .header-menu-bar .more-menu i {
+				/* background: url(imgok/dian.svg) no-repeat left center !important; */
+				display: inline-block;
+				background-repeat: no-repeat;
+				background-position: left center;
+				width: 20px;
+				height: 56px;
+				background-size: 20px auto;
+
+			}
+
+			header nav .header-menu-bar .more-menu:hover i {
+				/* background: url(imgok/dian_hover.svg) no-repeat left center !important; */
+			}
+
+			.icon-arrow-sou {
+				background: url(/static/img/sou.svg) no-repeat !important;
+			}
+
+			.search-unlogin:hover .icon-arrow-sou {
+				background: url(/static/img/sou_hover.svg) center center no-repeat !important;
+			}
+
+			.icon-arrow-yun {
+
+				height: 20px;
+				padding: 18px 16px;
+				display: inline-block;
+			}
+
+			/*.js-header_upload:hover a.upload-link:after {*/
+			/*	background: url(imgok/yun_hover.svg) center center no-repeat !important;*/
+			/*}*/
+
+			/*a.upload-link:after {*/
+			/*	background: url(imgok/yun.svg) center center no-repeat !important;*/
+			/*}*/
+
+			.card-info-type {
+				padding-top: 0;
+			}
+		</style>
+
+		</div>
+		</footer>
+		<script>
+			layui.use(['carousel', 'layer', 'laypage'], function() {
+				var carousel = layui.carousel;
+				var laypage = layui.laypage,
+					layer = layui.layer,$=layui.$;
+				//建造实例
+				carousel.render({
+					elem: '#test1',
+					height: '350px',
+					width: '100%' //设置容器宽度
+						,
+					arrow: 'always' //始终显示箭头
+						,
+					anim: 'default' //切换动画方式
+						,
+					indicator: 'none'
+				});
+				laypage.render({
+					elem: 'demopage',
+					count: 100,
+					theme: '#ffe300',
+					prev: '<',
+					next: '>'
+				});
+				$("#IndexNav li").click(function(){
+					$(this).parent().children().removeClass("current");
+					$(this).addClass("current");
+					var box=$(this).children().attr("id")+'Box';
+					$(".all-work-list").addClass("layui-hide");
+					$("#"+box).removeClass("layui-hide");
+				})
+					$("#zHeader").load("[[@{/getHeader}]]");
+				$("#footer").load("[[@{/getFooter}]]");
+			});
+		</script>
+	</body>
+	<html>
