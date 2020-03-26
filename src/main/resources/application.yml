@@ -8,9 +8,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/angel
+    url: jdbc:mysql://47.111.190.67:3306/angel
     username: root
-    password: root
+    password: kylhtx666
   mvc:
       view:
         suffix: .html
