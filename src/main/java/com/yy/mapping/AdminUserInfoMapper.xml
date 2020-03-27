@@ -283,4 +283,24 @@
       sex = #{sex,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByAdmin" resultMap="BaseResultMap" parameterType="com.yy.pojo.AdminUserInfo">
+      select * from adminUserInfo
+      <where>
+        <if test="id != null">
+         and id = #{id,jdbcType=INTEGER}
+        </if>
+        <if test="workername != null">
+          and  workerName = #{workername,jdbcType=VARCHAR}
+        </if>
+        <if test="telnum != null">
+          and telNum = #{telnum,jdbcType=VARCHAR}
+        </if>
+        <if test="passwd != null">
+          and passwd = #{passwd,jdbcType=VARCHAR}
+        </if>
+        <if test="sex != null">
+          and sex = #{sex,jdbcType=INTEGER}
+        </if>
+      </where>
+  </select>
 </mapper>

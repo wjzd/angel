@@ -378,4 +378,43 @@
       payTime = #{paytime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByOrderInfo" resultMap="BaseResultMap" parameterType="com.yy.pojo.OrderInfo">
+    select * from orderInfo
+    <where>
+      <if test="id != null">
+       and id = #{id,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buytime != null">
+        and buyTime = #{buytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buymoney != null">
+        and buyMoney = #{buymoney,jdbcType=DOUBLE},
+      </if>
+      <if test="userid != null">
+        and userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="ordernum != null">
+        and orderNum = #{ordernum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderamount != null">
+        and orderAmount = #{orderamount,jdbcType=INTEGER},
+      </if>
+      <if test="orderunit != null">
+        and  orderUnit = #{orderunit,jdbcType=DOUBLE},
+      </if>
+      <if test="orderprice != null">
+        and  orderPrice = #{orderprice,jdbcType=DOUBLE},
+      </if>
+      <if test="paystate != null">
+        and  payState = #{paystate,jdbcType=INTEGER},
+      </if>
+      <if test="comid != null">
+        and comId = #{comid,jdbcType=INTEGER},
+      </if>
+      <if test="paytime != null">
+        and payTime = #{paytime,jdbcType=TIMESTAMP},
+      </if>
+    </where>
+  </select>
 </mapper>

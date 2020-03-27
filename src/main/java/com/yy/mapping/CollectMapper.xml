@@ -268,4 +268,21 @@
       collectTime = #{collecttime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectCollect" resultMap="BaseResultMap" parameterType="com.yy.pojo.Collect">
+    select * from collect
+    <where>
+      <if test="id != null">
+       and #{id,jdbcType=INTEGER}
+      </if>
+      <if test="userid != null">
+        and #{userid,jdbcType=INTEGER}
+      </if>
+      <if test="comid != null">
+        and #{comid,jdbcType=INTEGER}
+      </if>
+      <if test="collecttime != null">
+        and #{collecttime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
 </mapper>

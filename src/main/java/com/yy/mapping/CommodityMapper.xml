@@ -512,47 +512,47 @@
     select * from commodity
     <where>
 
-      <if test="record.id != null">
-      and  id = #{record.id,jdbcType=INTEGER}
+      <if test="id != null">
+      and  id = #{id,jdbcType=INTEGER}
       </if>
-      <if test="record.comname != null">
-        and comName = #{record.comname,jdbcType=VARCHAR}
+      <if test="comname != null">
+        and comName = #{comname,jdbcType=VARCHAR}
       </if>
-      <if test="record.comoriprice != null">
-        and  comOriPrice = #{record.comoriprice,jdbcType=DOUBLE}
+      <if test="comoriprice != null">
+        and  comOriPrice = #{comoriprice,jdbcType=DOUBLE}
       </if>
-      <if test="record.comprice != null">
-        and  comPrice = #{record.comprice,jdbcType=DOUBLE}
+      <if test="comprice != null">
+        and  comPrice = #{comprice,jdbcType=DOUBLE}
       </if>
-      <if test="record.imgurl != null">
-        and imgUrl = #{record.imgurl,jdbcType=VARCHAR}
+      <if test="imgurl != null">
+        and imgUrl = #{imgurl,jdbcType=VARCHAR}
       </if>
-      <if test="record.salenum != null">
-        and saleNum = #{record.salenum,jdbcType=INTEGER}
+      <if test="salenum != null">
+        and saleNum = #{salenum,jdbcType=INTEGER}
       </if>
-      <if test="record.collectnum != null">
-        and collectNum = #{record.collectnum,jdbcType=INTEGER}
+      <if test="collectnum != null">
+        and collectNum = #{collectnum,jdbcType=INTEGER}
       </if>
-      <if test="record.browsenum != null">
-        and browseNum = #{record.browsenum,jdbcType=INTEGER}
+      <if test="browsenum != null">
+        and browseNum = #{browsenum,jdbcType=INTEGER}
       </if>
-      <if test="record.isout != null">
-        and isout = #{record.isout,jdbcType=INTEGER}
+      <if test="isout != null">
+        and isout = #{isout,jdbcType=INTEGER}
       </if>
-      <if test="record.reecom != null">
-        and reecom = #{record.reecom,jdbcType=INTEGER}
+      <if test="reecom != null">
+        and reecom = #{reecom,jdbcType=INTEGER}
       </if>
-      <if test="record.adminid != null">
-        and  adminId = #{record.adminid,jdbcType=INTEGER}
+      <if test="adminid != null">
+        and  adminId = #{adminid,jdbcType=INTEGER}
       </if>
-      <if test="record.comurl != null">
-        and comUrl = #{record.comurl,jdbcType=VARCHAR}
+      <if test="comurl != null">
+        and comUrl = #{comurl,jdbcType=VARCHAR}
       </if>
-      <if test="record.category != null">
-        and category = #{record.category,jdbcType=VARCHAR}
+      <if test="category != null">
+        and category = #{category,jdbcType=VARCHAR}
       </if>
-      <if test="record.details != null">
-        and details = #{record.details,jdbcType=LONGVARCHAR}
+      <if test="details != null">
+        and details = #{details,jdbcType=LONGVARCHAR}
       </if>
 
     </where>
