@@ -1,6 +1,5 @@
 package com.yy.controller;
 
-import com.yy.pojo.SysUser;
 import com.yy.service.UserService;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,7 +21,7 @@ public class UserCon {
     private UserService userService;
 
 
-    @RequestMapping(value="/userList")
+   /* @RequestMapping(value="/userList")
 
     public String userList(SysUser sysUser, HttpServletResponse resp){
 
@@ -49,5 +48,5 @@ public class UserCon {
         }
 
 
-    }
+    }*/
 }
