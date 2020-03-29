@@ -2,15 +2,18 @@ package com.yy.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.sun.imageio.plugins.common.ImageUtil;
+import com.yy.service.IndexService;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -22,12 +25,17 @@ import java.util.UUID;
 
 @Controller
 public class IndexController {
+
+    @Resource
+    private IndexService indexService;
+
     @RequestMapping("/")
     public String index(){
         return "index";
     }
     @RequestMapping("/getHeader")
-    public String header(){
+    public String header(Model model){
+        model.addAttribute("menus",indexService.getMenuList());
         return "header";
     }
     @RequestMapping("/getFooter")
