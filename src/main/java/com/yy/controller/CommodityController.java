@@ -3,10 +3,13 @@ package com.yy.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
+import com.yy.pojo.CategoryMenu;
 import com.yy.pojo.Commodity;
 import com.yy.pojo.ResultTable;
+import com.yy.service.CategoryMennService;
 import com.yy.service.CommodityService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +24,8 @@ public class CommodityController {
 
     @Resource
     private CommodityService commodityService;
+    @Resource
+    private CategoryMennService categoryMennService;
 
     @RequestMapping("/toCommodity")
     public String toCommodity(){
@@ -41,7 +46,10 @@ public class CommodityController {
         return JSON.toJSONString(resultTable);
     }
     @RequestMapping("/addCommodity")
-    public String addCommodity(){
+    public String addCommodity(Model model,Commodity commodity){
+        //商品分類
+        List<CategoryMenu> cateList=categoryMennService.selectAll(null);
+        model.addAttribute("cateList",cateList);
         return "/views/addCommodity";
     }
 }

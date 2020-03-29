@@ -119,6 +119,40 @@ public class Commodity {
     private Date insertTime;
 
     private Date updateTime;
+    private String comUser;
+    private String comCode;
+
+    public Date getInsertTime() {
+        return insertTime;
+    }
+
+    public void setInsertTime(Date insertTime) {
+        this.insertTime = insertTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getComCode() {
+        return comCode;
+    }
+
+    public void setComCode(String comCode) {
+        this.comCode = comCode;
+    }
+
+    public String getComUser() {
+        return comUser;
+    }
+
+    public void setComUser(String comUser) {
+        this.comUser = comUser;
+    }
 
     public String getUserImg() {
         return userImg;

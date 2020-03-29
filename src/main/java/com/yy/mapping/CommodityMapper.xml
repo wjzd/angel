@@ -259,6 +259,12 @@
       <if test="userImg != null">
         userImg,
       </if>
+      <if test="comUser != null">
+        comUser,
+      </if>
+      <if test="comCode != null">
+        comCode,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -304,7 +310,13 @@
         #{details,jdbcType=LONGVARCHAR},
       </if>
       <if test="userImg != null">
-        userImg,
+        #{userImg,jdbcType=VARCHAR},
+      </if>
+      <if test="comUser != null">
+        #{comUser,jdbcType=VARCHAR},
+      </if>
+      <if test="comCode != null">
+        #{comCode,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -473,7 +485,13 @@
       <if test="userImg != null">
         userImg = #{userImg,jdbcType=LONGVARCHAR},
       </if>
+      <if test="comUser != null">
+        comUser = #{comUser,jdbcType=VARCHAR},
+      </if>
 
+      <if test="comCode != null">
+        comCode = #{comCode,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -517,7 +535,9 @@
       reecom = #{reecom,jdbcType=INTEGER},
       adminId = #{adminid,jdbcType=INTEGER},
       comUrl = #{comurl,jdbcType=VARCHAR},
-      category = #{category,jdbcType=VARCHAR}
+      category = #{category,jdbcType=VARCHAR},
+      comUser = #{comUser,jdbcType=VARCHAR},
+    comCode = #{comCode,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByCom" resultMap="BaseResultMap" parameterType="com.yy.pojo.Commodity">
@@ -567,6 +587,12 @@
         and details = #{details,jdbcType=LONGVARCHAR}
       </if>
 
+      <if test="comUser != null">
+      and comUser = #{comUser,jdbcType=VARCHAR}
+    </if>
+      <if test="comCode != null">
+        and comCode = #{comCode,jdbcType=VARCHAR}
+      </if>
     </where>
 
   </select>

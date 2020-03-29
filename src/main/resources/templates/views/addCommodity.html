@@ -1,26 +1,225 @@
 
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>赋值已知数据 - 数据表格</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="keyword1,keyword2,keyword3"></meta>
+    <meta name="description" content="this is my page"></meta>
+    <meta name="content-type" content="text/html; charset=UTF-8"></meta>
     <link rel="stylesheet" th:href="@{/static/layuiadmin/layui/css/layui.css}" media="all">
     <link rel="stylesheet" th:href="@{/static/layuiadmin/style/admin.css}" media="all">
+    <script th:src="@{/static/ueditor/ueditor.config.js}"></script>
+    <script th:src="@{/static/ueditor/ueditor.all.min.js}"></script>
+    <script th:src="@{/static/ueditor/lang/zh-cn/zh-cn.js}"></script>
+    <script type="text/javascript">
+
+        //实例化编辑器
+        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+        var ue = UE.getEditor('editor');
+
+
+        function isFocus(e){
+            alert(UE.getEditor('editor').isFocus());
+            UE.dom.domUtils.preventDefault(e)
+        }
+        function setblur(e){
+            UE.getEditor('editor').blur();
+            UE.dom.domUtils.preventDefault(e)
+        }
+        function insertHtml() {
+            var value = prompt('插入html代码', '');
+            UE.getEditor('editor').execCommand('insertHtml', value)
+        }
+        function createEditor() {
+            enableBtn();
+            UE.getEditor('editor');
+        }
+        function getAllHtml() {
+            alert(UE.getEditor('editor').getAllHtml())
+        }
+        function getContent() {
+            var arr = [];
+            arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+            arr.push("内容为：");
+            arr.push(UE.getEditor('editor').getContent());
+            alert(arr.join("\n"));
+        }
+        function getPlainTxt() {
+            var arr = [];
+            arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+            arr.push("内容为：");
+            arr.push(UE.getEditor('editor').getPlainTxt());
+            alert(arr.join('\n'))
+        }
+        function setContent(isAppendTo) {
+            var arr = [];
+            arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+            UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+            alert(arr.join("\n"));
+        }
+        function setDisabled() {
+            UE.getEditor('editor').setDisabled('fullscreen');
+            disableBtn("enable");
+        }
+
+        function setEnabled() {
+            UE.getEditor('editor').setEnabled();
+            enableBtn();
+        }
+
+        function getText() {
+            //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+            var range = UE.getEditor('editor').selection.getRange();
+            range.select();
+            var txt = UE.getEditor('editor').selection.getText();
+            alert(txt)
+        }
+
+        function getContentTxt() {
+            var arr = [];
+            arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+            arr.push("编辑器的纯文本内容为：");
+            arr.push(UE.getEditor('editor').getContentTxt());
+            alert(arr.join("\n"));
+        }
+        function hasContent() {
+            var arr = [];
+            arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+            arr.push("判断结果为：");
+            arr.push(UE.getEditor('editor').hasContents());
+            alert(arr.join("\n"));
+        }
+        function setFocus() {
+            UE.getEditor('editor').focus();
+        }
+        function deleteEditor() {
+            disableBtn();
+            UE.getEditor('editor').destroy();
+        }
+        function disableBtn(str) {
+            var div = document.getElementById('btns');
+            var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+            for (var i = 0, btn; btn = btns[i++];) {
+                if (btn.id == str) {
+                    UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+                } else {
+                    btn.setAttribute("disabled", "true");
+                }
+            }
+        }
+        function enableBtn() {
+            var div = document.getElementById('btns');
+            var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+            for (var i = 0, btn; btn = btns[i++];) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            }
+        }
+
+        function getLocalData () {
+            alert(UE.getEditor('editor').execCommand( "getlocaldata" ));
+        }
+
+        function clearLocalData () {
+            UE.getEditor('editor').execCommand( "clearlocaldata" );
+            alert("已清空草稿箱")
+        }
+    </script>
 </head>
 <body>
-<div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-md12">
-            <div class="layui-card">
-               添加商品
+
+    <input th:value="${commodity.getId()}" name="id">
+    <div class="layui-form" lay-filter="layuiadmin-form-useradmin" id="layuiadmin-form-useradmin" style="padding: 20px 0 0 0;">
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品名称</label>
+            <div class="layui-input-inline">
+                <input type="text" th:value="${commodity.getComName}" name="comName" lay-verify="required" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
             </div>
         </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否上架</label>
+            <div class="layui-input-inline">
+                <select name="isout" lay-filter="LAY-user-adminrole-type">
+                    <option value="1">上架</option>
+                    <option value="0">下架</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否推荐</label>
+            <div class="layui-input-inline">
+                <select name="reecom" lay-filter="LAY-user-adminrole-type">
+                    <option value="0">不推荐</option>
+                    <option value="1">推荐到首页</option>
+                    <option value="2">精选</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品图片</label>
+            <div class="layui-input-inline">
+                <input type="text" name="imgUrl" lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" >
+            </div>
+            <button style="float: left;" type="button" class="layui-btn" id="layuiadmin-upload-useradmin">上传图片</button>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品用户</label>
+            <div class="layui-input-inline">
+                <input type="text" th:value="${commodity.comUser}" name="comUser" lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" >
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户图片</label>
+            <div class="layui-input-inline">
+                <input type="text" name="userImg" lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" >
+            </div>
+            <button style="float: left;" type="button" class="layui-btn" id="layuiadmin-upload">上传图片</button>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品云盘路径</label>
+            <div class="layui-input-inline">
+                <input type="text" th:value="${commodity.comUrl}" name="comUrl" lay-verify="required" placeholder="请输入云盘地址" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品提取码</label>
+            <div class="layui-input-inline">
+                <input type="text" th:value="${commodity.comCode}" name="comCode" lay-verify="required" placeholder="请输入提取码" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品类别</label>
+            <div class="layui-input-inline">
+
+                <select name="rolename" lay-filter="LAY-user-adminrole-type">
+                    <option th:each="cate,stat:${cateList}" th:text="${cate.getCategoryname()}" th:value="${cate.getCategoryname()}"></option>
+
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品详情</label>
+            <div class="">
+
+
+                <textarea id="editor" th:value="${commodity.editor}" name="details"  style="width: 90%;height: 40em;"></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+
+            <input type="button" class="layui-btn" lay-submit lay-filter="LAY-user-front-submit" id="LAY-user-front-submit" value="确认">
+        </div>
     </div>
-</div>
+
+
 <script th:src="@{/static/layuiadmin/layui/layui.js}"></script>
 <script>
     layui.config({

@@ -34,12 +34,14 @@
     	type="XMLMAPPER" />
 
 
-	  <table domainObjectName="AdminUserInfo" tableName="adminUserInfo" ></table>
+	  <!--<table domainObjectName="AdminUserInfo" tableName="adminUserInfo" ></table>
 	  <table domainObjectName="Collect" tableName="collect" ></table>
 	  <table domainObjectName="Commodity" tableName="commodity" ></table>
 	  <table domainObjectName="DownloanInfo" tableName="downloanInfo" ></table>
 	  <table domainObjectName="OrderInfo" tableName="orderInfo" ></table>
-	  <table domainObjectName="UserInfo" tableName="userInfo" ></table>
+	  <table domainObjectName="UserInfo" tableName="userInfo" ></table>-->
+
+	  <table domainObjectName="CategoryMenu" tableName="categoryMenu" ></table>
 
 
 
