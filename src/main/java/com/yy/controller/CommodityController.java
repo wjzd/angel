@@ -24,7 +24,7 @@ public class CommodityController {
 
     @RequestMapping("/toCommodity")
     public String toCommodity(){
-        return "views/commodity";
+        return "/views/commodity";
     }
 
     @RequestMapping("/getCommodityList")
@@ -39,5 +39,9 @@ public class CommodityController {
         resultTable.setData(commodityList);
         resultTable.setCount(commodityList.size());
         return JSON.toJSONString(resultTable);
+    }
+    @RequestMapping("/addCommodity")
+    public String addCommodity(){
+        return "/views/addCommodity";
     }
 }

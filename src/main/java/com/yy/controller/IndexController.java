@@ -3,6 +3,7 @@ package com.yy.controller;
 import com.alibaba.fastjson.JSON;
 import com.sun.imageio.plugins.common.ImageUtil;
 import com.yy.service.IndexService;
+import com.yy.service.PageService;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -28,9 +29,14 @@ public class IndexController {
 
     @Resource
     private IndexService indexService;
-
+    @Resource
+    private PageService pageService;
     @RequestMapping("/")
-    public String index(){
+    public String index(Model model){
+        //首页推荐
+        model.addAttribute("tuijian",indexService.getCommodityList());
+        //最新发布
+        model.addAttribute("new",pageService.getListByTime(0));
         return "index";
     }
     @RequestMapping("/getHeader")
@@ -42,6 +48,9 @@ public class IndexController {
     public String footer(){
         return "footer";
     }
+
+
+
     @RequestMapping("/ueditor")
     public String euditor(){
         return "ueditor/ueditor";

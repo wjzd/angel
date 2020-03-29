@@ -24,7 +24,7 @@ public class PageController {
         //根据分类查询出编辑精选的商品
        List<Commodity> jinxuan=pageService.getListbyCategoryIdAndreecom(id);
         //根据分类查询出最新的商品
-       List<Commodity> zuixin=pageService.getListByTime();
+       List<Commodity> zuixin=pageService.getListByTime(id);
         return "commodity";
     }
 }

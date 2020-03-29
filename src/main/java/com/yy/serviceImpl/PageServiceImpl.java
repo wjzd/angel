@@ -25,9 +25,13 @@ public class PageServiceImpl implements PageService {
     }
 
     @Override
-    public List<Commodity> getListByTime() {
+    public List<Commodity> getListByTime(int categoryId) {
         CommodityExample commodityExample=new CommodityExample();
         CommodityExample.Criteria criteria=commodityExample.createCriteria();
+        if (categoryId!=0){
+            criteria.andCategoryEqualTo(String.valueOf(categoryId));
+        }
+        criteria.andIsoutEqualTo(1);
         commodityExample.setOrderByClause("insertTime desc");
         return commodityMapper.selectByExample(commodityExample);
     }

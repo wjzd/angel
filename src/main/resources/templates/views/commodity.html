@@ -19,6 +19,7 @@
                 <div class="layui-card-header">网站商品管理</div>
                 <div class="layui-card-body">
                     <a class="layui-btn layui-btn-sm" id="addCommodity" href="javascript:;">添加商品</a>
+                    <a class="layui-hide" id="realJump"></a>
                     <table class="layui-hide" id="commodityTable"></table>
                 </div>
             </div>
@@ -37,7 +38,7 @@
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index', 'table'], function(){
-        var table = layui.table;
+        var table = layui.table,$=layui.$;
         //展示已知数据
         table.render({
             elem: '#commodityTable'
@@ -72,10 +73,9 @@
             }
         });
         $("#addCommodity").click(function () {
-            var a = document.createElement("a");
-            a.setAttribute("lay-href","你要跳转的controller");
-            a.setAttribute("tip","添加商品");
-            a.click();
+           $("#realJump").attr("lay-href","[[@{/views/addCommodity}]]");
+           $("#realJump").attr("lay-tips","添加商品")
+            $("#realJump").click();
         })
     });
 </script>
