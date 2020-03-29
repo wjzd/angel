@@ -20,6 +20,8 @@
     <result column="adminId" jdbcType="INTEGER" property="adminid" />
     <result column="comUrl" jdbcType="VARCHAR" property="comurl" />
     <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="insertTime" jdbcType="TIMESTAMP" property="insertTime"/>
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yy.pojo.Commodity">
     <!--
@@ -104,7 +106,7 @@
       This element was generated on Thu Mar 26 14:09:35 CST 2020.
     -->
     id, comName, comOriPrice, comPrice, imgUrl, saleNum, collectNum, browseNum, isout, 
-    reecom, adminId, comUrl, category
+    reecom, adminId, comUrl, category,insertTime,updateTime
   </sql>
   <sql id="Blob_Column_List">
     <!--
