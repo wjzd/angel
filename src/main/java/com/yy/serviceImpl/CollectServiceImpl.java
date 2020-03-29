@@ -19,4 +19,14 @@ public class CollectServiceImpl implements CollectService {
     public List<Collect> selectCollect(Collect collect) {
         return collectMapper.selectCollect(collect);
     }
+
+    @Override
+    public int insertSelective(Collect collect) {
+        return collectMapper.insertSelective(collect);
+    }
+
+    @Override
+    public int deleteByPrimaryKey(Collect collect) {
+        return collectMapper.deleteByPrimaryKey(collect.getId());
+    }
 }

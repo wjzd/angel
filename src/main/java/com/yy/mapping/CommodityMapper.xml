@@ -254,6 +254,9 @@
       <if test="details != null">
         details,
       </if>
+      <if test="userImg != null">
+        userImg,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -297,6 +300,9 @@
       </if>
       <if test="details != null">
         #{details,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="userImg != null">
+        userImg,
       </if>
     </trim>
   </insert>
@@ -462,6 +468,10 @@
       <if test="details != null">
         details = #{details,jdbcType=LONGVARCHAR},
       </if>
+      <if test="userImg != null">
+        userImg = #{userImg,jdbcType=LONGVARCHAR},
+      </if>
+
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
