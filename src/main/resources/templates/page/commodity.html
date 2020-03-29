@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,19 +9,19 @@
 		<meta name="renderer" content="webkit|ie-comp|ie-stand">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<script src="../js/jquery-1.10.2.min.js"></script>
-		<script src="../js/jquery-migrate-1.2.1.min.js"></script>
-		<script src="../js/bootstrap.min.js"></script>
-		<script type="text/javascript" async="" src="../js/vds.js"></script>
-		<link rel="stylesheet" href="../css/main.min.css">
-		<link rel="stylesheet" href="../css/homePage.css">
-		<link rel="stylesheet" href="../css/slider.css">
-		<link href="../css/style.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" type="text/css" href="../css/index.css" />
-		<link rel="stylesheet" type="text/css" href="../layuiadmin/layui/css/layui.css" />
-		<script src="../layuiadmin/layui/layui.all.js"></script>
+		<script th:src="@{/static/js/jquery-1.10.2.min.js}"></script>
+		<script th:src="@{/static/js/jquery-migrate-1.2.1.min.js}"></script>
+		<script th:src="@{/static/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" async="" th:src="@{/static/js/vds.js}"></script>
+		<link rel="stylesheet" th:href="@{/static/css/main.min.css}">
+		<link rel="stylesheet" th:href="@{/static/css/homePage.css}">
+		<link rel="stylesheet" th:href="@{/static/css/slider.css}">
+		<link th:href="@{/static/css/style.css}" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" th:href="@{/static/css/index.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/static/layuiadmin/layui/css/layui.css}" />
+		<script th:src="@{/static/layuiadmin/layui/layui.all.js}"></script>
 		<!-- 这个js是公共的 -->
-		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script th:src="@{/static/js/common.js}" type="text/javascript" charset="utf-8"></script>
 		<style>
 			.work-list-box.hide > .card-box {
       display: none;
