@@ -18,7 +18,7 @@
             <div class="layui-card">
                 <div class="layui-card-header">网站商品管理</div>
                 <div class="layui-card-body">
-                    <a class="layui-btn layui-btn-sm" th:href="@{/}">添加商品</a>
+                    <a class="layui-btn layui-btn-sm" id="addCommodity">添加商品</a>
                     <table class="layui-hide" id="commodityTable"></table>
                 </div>
             </div>
@@ -71,6 +71,12 @@
                 layer.alert('编辑行：<br>'+ JSON.stringify(data))
             }
         });
+        $("#addCommodity").click(function () {
+            var a = document.createElement("a");
+            a.setAttribute("lay-href","你要跳转的controller");
+            a.setAttribute("tip","添加商品");
+            a.click();
+        })
     });
 </script>
 </body>
