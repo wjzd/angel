@@ -154,7 +154,7 @@
 								<div class="card-item">
 									<span class="user-avatar showMemberCard">
 										<a href="#" th:title="${commodity.getAdminid()}" target="_blank" z-st="home_main_card_user" th:text="${commodity.getAdminid()}">
-											<img th:src="${commodity.getUserImg()}" width="30" height="30" alt=""/>
+											<img th:src="${commodity.getUserImg()}" th:srcset="${commodity.getUserImg()}" width="30" height="30" alt=""/>
 										</a>
 									</span>
 									<span class="time" title="#">5天前</span>
