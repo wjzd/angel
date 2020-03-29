@@ -38,11 +38,6 @@ public class IndexController {
     public String euditor(){
         return "ueditor/ueditor";
     }
-
-
-
-
-
         @RequestMapping("/config")
         public void initController(MultipartFile upfile, HttpServletRequest request, HttpServletResponse response) {
 
