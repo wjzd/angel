@@ -9,16 +9,16 @@
 		<meta name="renderer" content="webkit|ie-comp|ie-stand">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<script th:src="@{/static/js/jquery-1.10.2.min.js}"></script>
-		<script th:src="@{/static/js/jquery-migrate-1.2.1.min.js}"></script>
-		<script th:src="@{/static/js/bootstrap.min.js}"></script>
-		<script type="text/javascript" async="" th:src="@{/static/js/vds.js}"></script>
 		<link rel="stylesheet" th:href="@{/static/css/main.min.css}">
 		<link rel="stylesheet" th:href="@{/static/css/homePage.css}">
 		<link rel="stylesheet" th:href="@{/static/css/slider.css}">
 		<link th:href="@{/static/css/style.css}" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" type="text/css" th:href="@{/static/css/index.css}" />
 		<link rel="stylesheet" type="text/css" th:href="@{/static/layuiadmin/layui/css/layui.css}" />
+		<script th:src="@{/static/js/jquery-1.10.2.min.js}"></script>
+		<script th:src="@{/static/js/jquery-migrate-1.2.1.min.js}"></script>
+		<script th:src="@{/static/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" async="" th:src="@{/static/js/vds.js}"></script>
 		<script th:src="@{/static/layuiadmin/layui/layui.all.js}"></script>
 		<!-- 这个js是公共的 -->
 		<script th:src="@{/static/js/common.js}" type="text/javascript" charset="utf-8"></script>
@@ -413,13 +413,13 @@
 				display: inline-block;
 			}
 
-			.js-header_upload:hover a.upload-link:after {
-				background: url(imgok/yun_hover.svg) center center no-repeat !important;
-			}
+			/*.js-header_upload:hover a.upload-link:after {*/
+			/*	background: url(imgok/yun_hover.svg) center center no-repeat !important;*/
+			/*}*/
 
-			a.upload-link:after {
-				background: url(imgok/yun.svg) center center no-repeat !important;
-			}
+			/*a.upload-link:after {*/
+			/*	background: url(imgok/yun.svg) center center no-repeat !important;*/
+			/*}*/
 
 			.card-info-type {
 				padding-top: 0;
@@ -459,8 +459,8 @@
 					$(".all-work-list").addClass("layui-hide");
 					$("#"+box).removeClass("layui-hide");
 				})
-				$("#zHeader").load("[[@{/getHeader}]]")
-				$("#footer").load("[[@{/getFooter}]]")
+					$("#zHeader").load("[[@{/getHeader}]]");
+				$("#footer").load("[[@{/getFooter}]]");
 			});
 		</script>
 	</body>
