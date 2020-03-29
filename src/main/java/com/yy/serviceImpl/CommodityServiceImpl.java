@@ -18,4 +18,14 @@ public class CommodityServiceImpl implements CommodityService {
     public List<Commodity> selectByCom(Commodity commodity) {
         return commodityMapper.selectByCom(commodity);
     }
+
+    @Override
+    public int insertSelective(Commodity commodity) {
+        return commodityMapper.insertSelective(commodity);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(Commodity commodity) {
+        return commodityMapper.updateByPrimaryKeySelective(commodity);
+    }
 }

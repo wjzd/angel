@@ -26,4 +26,9 @@ public class UserServiceImpl implements UserService{
     public void insertSelective(UserInfo userInfo) {
         userInfoMapper.insertSelective(userInfo);
     }
+
+    @Override
+    public int updateByPrimaryKeySelective(UserInfo userInfo) {
+        return userInfoMapper.updateByPrimaryKeySelective(userInfo);
+    }
 }

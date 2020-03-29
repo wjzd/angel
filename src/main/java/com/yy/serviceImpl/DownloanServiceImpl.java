@@ -19,4 +19,9 @@ public class DownloanServiceImpl implements DownloanService {
     public List<DownloanInfo> selectByDown(DownloanInfo downloanInfo) {
         return downloanInfoMapper.selectByDown(downloanInfo);
     }
+
+    @Override
+    public int insertSelective(DownloanInfo downloanInfo) {
+        return downloanInfoMapper.insertSelective(downloanInfo);
+    }
 }

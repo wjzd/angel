@@ -18,4 +18,14 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     public List<OrderInfo> selectByOrderInfo(OrderInfo orderInfo) {
         return orderInfoMapper.selectByOrderInfo(orderInfo);
     }
+
+    @Override
+    public int insertSelective(OrderInfo orderInfo) {
+        return orderInfoMapper.insertSelective(orderInfo);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(OrderInfo orderInfo) {
+        return orderInfoMapper.updateByPrimaryKeySelective(orderInfo);
+    }
 }
