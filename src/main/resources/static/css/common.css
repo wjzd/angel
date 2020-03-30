@@ -416,12 +416,12 @@ a.mt-20 {
 
 .check-c {
   margin-right: 10px;
-  background: url("../images/common/checkbox.svg") no-repeat 0 3px;
+  background: url("/static/img/checkbox.svg") no-repeat 0 3px;
   background-size: 14px; }
 
 .check-cd {
   margin-right: 10px;
-  background: url("../images/common/checkboxed.svg") no-repeat 0 3px;
+  background: url("/static/img/checkboxed.svg") no-repeat 0 3px;
   background-size: 14px; }
 
 .mCS-dark.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar.hoverscroll {

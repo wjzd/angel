@@ -170,7 +170,7 @@
   height: 24px;
   float: left;
   margin-right: 22px;
-  background: url(../images/logo.svg) no-repeat left top;
+  background: url('http://placehold.it/134x24/998866/ffffff') no-repeat left top;
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
@@ -1174,7 +1174,7 @@
 }
 
 .p-wechat-login {
-  background-image: url(../images/wechat.png);
+  background-image: url(/static/img/wechat.png);
 }
 
 .p-wechat-login:hover {
@@ -1182,7 +1182,7 @@
 }
 
 .p-weibo-login {
-  background-image: url(../images/weibo.png);
+  background-image: url(/static/img/weibo.png);
 }
 
 .p-weibo-login:hover {
@@ -1190,7 +1190,7 @@
 }
 
 .p-qq-login {
-  background-image: url(../images/qq.png);
+  background-image: url(/static/img/qq.png);
 }
 
 .p-qq-login:hover {

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>量子科技 (QCOOL) - 新手互动平台 - 打开量子科技，发现更好的源码！</title>
+    <meta content="" name="keywords"/>
+    <meta content="" name="description"/>
+    <meta content="webkit|ie-comp|ie-stand" name="renderer">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <link rel="stylesheet" th:href="@{/static/css/common.css}">
+    <link rel="stylesheet" th:href="@{/static/css/passnumberbind.css}">
+    <link rel="stylesheet" th:href="@{/static/css/jquery.mCustomScrollbar.css}">
+    <link rel="stylesheet" th:href="@{/static/css/register.css}">
+    <link rel="stylesheet" th:href="@{/static/layuiadmin/layui/css/layui.css}" type="text/css"/>
+    <script th:src="@{/static/js/jquery-1.10.2.min.js}"></script>
+    <script th:src="@{/static/layuiadmin/layui/layui.all.js}"></script>
+    <!-- 这个js是公共的 -->
+    <script th:src="@{/static/js/common.js}" type="text/javascript" charset="utf-8"></script>
+    <style>
+        #footer {
+            position: inherit;
+            left: 0;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="body">
+    <div class="passcard-box">
+        <div class="passcard-nav">
+            <a href="https://www.zcool.com.cn" class="check-zcool-logo"></a>
+            通行证
+            <a href="https://www.zcool.com.cn" class="login-right-subnav main-link-color">返回量子科技</a>
+            <span class="login-right-subnav login-nav">已有帐号，
+                    <a href="/loginApp.do?appId=1006&amp;cback=https://my.zcool.com.cn/focus/activity" class="main-link-color">马上登录</a>
+              </span>
+        </div>
+        <!-- 登录导航以下内容 -->
+        <div class="passcon">
+            <h2 class="passmail-title main-bg-color">注册会员</h2>
+            <form action="/regPhone_commit.do" id="form" method="POST" autocomplete="off">
+                <div class="retrieve-pass-box z-p-covers">
+                    <div class="retrie-center" id="inputparent">
+                        <div class="parent-input-box">
+                            <!-- <i class="tel"></i> -->
+                            <div class="country-phone-covers">
+                                <span class="phone-area-code-ipt" id="country-area-code">账号</span>
+                                <input type="text" name="" id="" maxlength="11" placeholder="请输入账号" class="text-style ipt-area-current">
+                            </div>
+                            <span class="form-tip"></span>
+                        </div>
+                        <div class="parent-input-box">
+                            <!-- <i class="tel"></i> -->
+                            <div class="country-phone-covers">
+                                <span class="phone-area-code-ipt">邮箱</span>
+                                <input type="text" name="" maxlength="11" placeholder="请输入邮箱" class="text-style ipt-area-current">
+                            </div>
+                            <span class="form-tip"></span>
+                        </div>
+                        <div class="parent-input-box js-h-from-ele" style="display: block;">
+                            <!-- <i class="setpassword"></i> -->
+                            <input type="password" name="password1" style="visibility:hidden;height:0px;border:none;float:left;">
+                            <input type="password" autocomplete="off" name="password" id="password" placeholder="8-20位密码，字母/数字/符号至少2种" class="text-style input-normal-style vericode"><i class="form-eye-icon"></i>
+                            <span class="form-tip">
+							<!-- <span class="intensity"><i class="intencolor">弱</i><i>中</i><i>强</i></span> -->
+                                </span>
+                        </div>
+                        <div class="agreemen-txt checkbox-wrap">
+                            <label class="label-checkbox check-c" for="Useragreement">
+                                <input type="checkbox" name="autolog" id="Useragreement" class="check-c">我已阅读并接受
+                                <a href="//www.zcool.com.cn/userAgreement" target="_blank" class="main-link-color">用户协议</a>
+                                和
+                                <a href="//www.zcool.com.cn/policy" target="_blank" class="main-link-color">隐私政策</a>
+                            </label>
+                            <span class="form-tip"></span>
+                        </div>
+                        <div class="passcard-btns register-btn">
+                            <input type="submit" value="注册" disabled="" id="z-p-registered" class="btn-disabled passcard-btn">
+                        </div>
+                        <div class="third-party-covers">
+                            <span class="p-666">使用社交帐号注册</span>
+                            <div class="pass-account-covers">
+                                <a href="/thirdlogin/wechat.do?appId=1006" class="p-wechat-login"></a>
+                                <a href="/thirdlogin/wb.do?appId=1006" class="p-weibo-login"></a>
+                                <a href="/thirdlogin/qq.do?appId=1006" class="p-qq-login"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <p>京ICP备11017824号-4 / 京ICP证130164号 北京市公安局朝阳分局备案编号:110105000501</p>
+        <p>Copyright © 2006-2018 ZCOOL <a href="javascript:;">中文</a> <a href="javascript:;">English</a></p>
+    </div>
+</div>
+<script>
+    layui.use(['carousel', 'layer', 'laypage'], function () {
+        var carousel = layui.carousel;
+        var laypage = layui.laypage,
+            layer = layui.layer, $ = layui.$;
+    });
+</script>
+</body>
+</html>
