@@ -14,8 +14,8 @@
     <link rel="stylesheet" th:href="@{/static/css/homePage.css}">
     <link rel="stylesheet" th:href="@{/static/css/slider.css}">
     <link th:href="@{/static/css/style.css}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" th:href="@{/static/css/index.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/static/layuiadmin/layui/css/layui.css}" />
+    <link rel="stylesheet" th:href="@{/static/css/index.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/static/layuiadmin/layui/css/layui.css}" type="text/css"/>
     <script th:src="@{/static/js/jquery-1.10.2.min.js}"></script>
     <script th:src="@{/static/js/jquery-migrate-1.2.1.min.js}"></script>
     <script th:src="@{/static/js/bootstrap.min.js}"></script>
@@ -24,7 +24,7 @@
     <!-- 这个js是公共的 -->
     <script th:src="@{/static/js/common.js}" type="text/javascript" charset="utf-8"></script>
     <style>
-        #footer{
+        #footer {
             position: inherit;
             left: 0;
             bottom: 0;
@@ -49,9 +49,6 @@
 
 
     <div class="content-wrap">
-        <input name="creator" type="hidden" value="18408957">
-        <input data-cateid="33" data-catename="摄影" data-isnew="0" data-objid="10987132" data-objtype="3" data-recommend="2"
-               id="dataInput" type="hidden">
         <!--作品头部区域-->
         <div class="work-details-wrap border-bottom">
             <div class="work-details-box-wrap">
@@ -113,45 +110,22 @@
                         <div class="avatar-container-80">
                             <a class="avatar" href="https://www.zcool.com.cn/u/18408957" target="_blank" title="渠程摄影">
                                 <img alt=""
-                                     height="80" src="https://img.zcool.cn/community/031d5305c114555a80121ab5d0e75d7.jpg@80w_80h_1c_1e_1o_100sh.jpg" width="80">
+                                     height="80"
+                                     src="https://img.zcool.cn/community/031d5305c114555a80121ab5d0e75d7.jpg@80w_80h_1c_1e_1o_100sh.jpg"
+                                     width="80">
                             </a>
 
                         </div>
-                        <div class="author-info">
+                        <div class="author-info" style="margin-top: 30px;">
                             <p class="author-info-title">
                                 <a class="title-content" href="https://www.zcool.com.cn/u/18408957" target="_blank"
                                    title="渠程摄影">渠程摄影
                                 </a>
-
-
                             </p>
                             <div class="position-info">
-                <span title="杭州 | 摄影师">
-                    杭州&nbsp;|
-
-                        摄影师
-
-
-                </span>
-                            </div>
-                            <div class="btn-area">
-
-                                <div class="js-project-focus-btn">
-
-                                    <input class="btn-default-main btn-current attention notfollow" data-id="18408957" title="添加关注"
-                                           type="button" value="关注"
-                                           z-st="follow">
-
-                                    <div class="js-focus-loadding-btn focus-loadding-y hide">
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                </div>
-                                <input class="btn-default-secondary btn-current private-letter" onclick="prepareSendMessage('18408957','渠程摄影')"
-                                       title="发私信" type="button"
-                                       value="私信" z-st="privateMsg">
-
+                            <span title="杭州 | 摄影师">
+                                杭州&nbsp;|摄影师
+                            </span>
                             </div>
                         </div>
                     </div>
@@ -162,41 +136,25 @@
 
         <div class="work-details-content">
             <!--作品内容区域, 文字,图片和视频-->
-
-
             <!--作品内容区域, 文字,图片和视频-->
             <div class="work-content-wrap ">
                 <div class="work-center-con">
-                    <input data-activityid="0" data-eventid="0" type="hidden">
-
-
                     <div class="atricle-text">
                         <p class="txt-con">
                             服装拍摄<br>BRAND: TREMINAL <br>PHOTO:3CSTUDIO QUCHENG🙋🏻&zwj;♂️<br>MODEL:Bryan
                         </p>
                     </div>
                     <div class="video-content-wrap">
-
                     </div>
-
-
                     <div class="work-show-box js-work-content">
-
-
                         <div class="reveal-work-wrap text-center" data-id="50683478">
                             <div class="photo-information-content">
-
-
                                 <img class="no-right-key"
                                      data-height="2333.3333333333335" data-info="渠程摄影对此作品设置了隐私保护，禁止保存至本地。"
-                                     data-width="3000" src="https://img.zcool.cn/community/01652a5e7f1887a801216518d51f6f.jpg@1280w_1l_2o_100sh.jpg">
-
-                                <a class="photo-box" data-img-id="50683478" href="javascript:">照片信息
-                                </a>
+                                     data-width="3000"
+                                     src="https://img.zcool.cn/community/01652a5e7f1887a801216518d51f6f.jpg@1280w_1l_2o_100sh.jpg">
                                 <div class="photo-info hi-de" exif="{orientation:'1'}" id="exif_50683478">
                                 </div>
-
-
                                 <!-- 存证图标 -->
 
                             </div>
@@ -210,11 +168,13 @@
 
                                 <img class="no-right-key"
                                      data-height="1966.2857142857142" data-info="渠程摄影对此作品设置了隐私保护，禁止保存至本地。"
-                                     data-width="3000" src="https://img.zcool.cn/community/01c7a85e7f188da80120a895a5ada4.jpg@1280w_1l_2o_100sh.jpg">
+                                     data-width="3000"
+                                     src="https://img.zcool.cn/community/01c7a85e7f188da80120a895a5ada4.jpg@1280w_1l_2o_100sh.jpg">
 
                                 <a class="photo-box" data-img-id="50683483" href="javascript:">照片信息
                                 </a>
-                                <div class="photo-info hi-de" exif="{make:'Canon',model:'Canon EOS 5DS',orientation:'1',lens:'EF24-70mm f/2.8L II USM',FNumber:'f/8.0',ISO:'200',exposure:'1/125 sec',EV:'0 EV',focal:'38.0 mm',date:'2020:03:26 16:15:39'}"
+                                <div class="photo-info hi-de"
+                                     exif="{make:'Canon',model:'Canon EOS 5DS',orientation:'1',lens:'EF24-70mm f/2.8L II USM',FNumber:'f/8.0',ISO:'200',exposure:'1/125 sec',EV:'0 EV',focal:'38.0 mm',date:'2020:03:26 16:15:39'}"
                                      id="exif_50683483">
                                 </div>
 
@@ -236,7 +196,8 @@
 
                                 <a class="photo-box" data-img-id="50683476" href="javascript:">照片信息
                                 </a>
-                                <div class="photo-info hi-de" exif="{make:'Canon',model:'Canon EOS 5DS',orientation:'1',lens:'EF24-70mm f/2.8L II USM',FNumber:'f/8.0',ISO:'200',exposure:'1/125 sec',EV:'0 EV',focal:'35.0 mm',date:'2020:03:26 15:41:38'}"
+                                <div class="photo-info hi-de"
+                                     exif="{make:'Canon',model:'Canon EOS 5DS',orientation:'1',lens:'EF24-70mm f/2.8L II USM',FNumber:'f/8.0',ISO:'200',exposure:'1/125 sec',EV:'0 EV',focal:'35.0 mm',date:'2020:03:26 15:41:38'}"
                                      id="exif_50683476">
                                 </div>
 
@@ -254,12 +215,16 @@
 
                                 <img class="no-right-key lazy-img-class"
                                      data-height="3601"
-                                     data-info="渠程摄影对此作品设置了隐私保护，禁止保存至本地。" data-src="https://img.zcool.cn/community/01ad9b5e7f1898a801216518454509.jpg@1280w_1l_2o_100sh.jpg" data-width="2800"
-                                     src="https://img.zcool.cn/community/01ad9b5e7f1898a801216518454509.jpg@1280w_1l_2o_100sh.jpg" style="width: 1280px;">
+                                     data-info="渠程摄影对此作品设置了隐私保护，禁止保存至本地。"
+                                     data-src="https://img.zcool.cn/community/01ad9b5e7f1898a801216518454509.jpg@1280w_1l_2o_100sh.jpg"
+                                     data-width="2800"
+                                     src="https://img.zcool.cn/community/01ad9b5e7f1898a801216518454509.jpg@1280w_1l_2o_100sh.jpg"
+                                     style="width: 1280px;">
 
                                 <a class="photo-box" data-img-id="50683488" href="javascript:">照片信息
                                 </a>
-                                <div class="photo-info hi-de" exif="{make:'Canon',model:'Canon EOS 5DS',orientation:'1',lens:'EF24-70mm f/2.8L II USM',FNumber:'f/8.0',ISO:'200',exposure:'1/125 sec',EV:'0 EV',focal:'55.0 mm',date:'2020:03:26 14:57:46'}"
+                                <div class="photo-info hi-de"
+                                     exif="{make:'Canon',model:'Canon EOS 5DS',orientation:'1',lens:'EF24-70mm f/2.8L II USM',FNumber:'f/8.0',ISO:'200',exposure:'1/125 sec',EV:'0 EV',focal:'55.0 mm',date:'2020:03:26 14:57:46'}"
                                      id="exif_50683488">
                                 </div>
 
@@ -277,8 +242,10 @@
 
                                 <img class="no-right-key lazy-img-class"
                                      data-height="2333.3333333333335"
-                                     data-info="渠程摄影对此作品设置了隐私保护，禁止保存至本地。" data-src="https://img.zcool.cn/community/014cdb5e7f1893a80120a89568cabd.jpg@1280w_1l_2o_100sh.jpg"
-                                     data-width="3000" src="https://img.zcool.cn/community/014cdb5e7f1893a80120a89568cabd.jpg@1280w_1l_2o_100sh.jpg"
+                                     data-info="渠程摄影对此作品设置了隐私保护，禁止保存至本地。"
+                                     data-src="https://img.zcool.cn/community/014cdb5e7f1893a80120a89568cabd.jpg@1280w_1l_2o_100sh.jpg"
+                                     data-width="3000"
+                                     src="https://img.zcool.cn/community/014cdb5e7f1893a80120a89568cabd.jpg@1280w_1l_2o_100sh.jpg"
                                      style="width: 1280px;">
 
                                 <a class="photo-box" data-img-id="50683487" href="javascript:">照片信息
@@ -292,61 +259,16 @@
                             </div>
                             <p class="packaging-competition"></p>
                         </div>
-
-
-                        <div class="reveal-work-wrap text-center" data-id="50683482">
-                            <div class="photo-information-content">
-
-
-                                <img class="no-right-key lazy-img-class"
-                                     data-height="2333.3333333333335"
-                                     data-info="渠程摄影对此作品设置了隐私保护，禁止保存至本地。" data-src="https://img.zcool.cn/community/01f7dc5e7f188ba801216518c668c6.jpg@1280w_1l_2o_100sh.jpg"
-                                     data-width="3000" src="https://img.zcool.cn/community/01f7dc5e7f188ba801216518c668c6.jpg@1280w_1l_2o_100sh.jpg"
-                                     style="width: 1280px;">
-
-                                <a class="photo-box" data-img-id="50683482" href="javascript:">照片信息
-                                </a>
-                                <div class="photo-info hi-de" exif="{orientation:'1'}" id="exif_50683482">
-                                </div>
-
-
-                                <!-- 存证图标 -->
-
-                            </div>
-                            <p class="packaging-competition"></p>
-                        </div>
-
-
-                        <div class="reveal-work-wrap text-center" data-id="50683481">
-                            <div class="photo-information-content">
-
-
-                                <img class="no-right-key lazy-img-class"
-                                     data-height="3210.0"
-                                     data-info="渠程摄影对此作品设置了隐私保护，禁止保存至本地。" data-src="https://img.zcool.cn/community/013e095e7f188ba80120a89554a52c.jpg@1280w_1l_2o_100sh.jpg" data-width="3000"
-                                     src="https://img.zcool.cn/community/013e095e7f188ba80120a89554a52c.jpg@1280w_1l_2o_100sh.jpg" style="width: 1280px;">
-
-                                <a class="photo-box" data-img-id="50683481" href="javascript:">照片信息
-                                </a>
-                                <div class="photo-info hi-de" exif="{orientation:'1'}" id="exif_50683481">
-                                </div>
-
-
-                                <!-- 存证图标 -->
-
-                            </div>
-                            <p class="packaging-competition"></p>
-                        </div>
-
-
                         <div class="reveal-work-wrap text-center" data-id="50683486">
                             <div class="photo-information-content">
 
 
                                 <img class="no-right-key lazy-img-class"
                                      data-height="2333.3333333333335"
-                                     data-info="渠程摄影对此作品设置了隐私保护，禁止保存至本地。" data-src="https://img.zcool.cn/community/01f9f35e7f1892a801216518b1a3ad.jpg@1280w_1l_2o_100sh.jpg"
-                                     data-width="3000" src="https://img.zcool.cn/community/01f9f35e7f1892a801216518b1a3ad.jpg@1280w_1l_2o_100sh.jpg"
+                                     data-info="渠程摄影对此作品设置了隐私保护，禁止保存至本地。"
+                                     data-src="https://img.zcool.cn/community/01f9f35e7f1892a801216518b1a3ad.jpg@1280w_1l_2o_100sh.jpg"
+                                     data-width="3000"
+                                     src="https://img.zcool.cn/community/01f9f35e7f1892a801216518b1a3ad.jpg@1280w_1l_2o_100sh.jpg"
                                      style="width: 1280px;">
 
                                 <a class="photo-box" data-img-id="50683486" href="javascript:">照片信息
@@ -360,20 +282,22 @@
                             </div>
                             <p class="packaging-competition"></p>
                         </div>
-
-
                         <div class="reveal-work-wrap text-center" data-id="50683490">
                             <div class="photo-information-content">
 
 
                                 <img class="no-right-key lazy-img-class"
                                      data-height="3000"
-                                     data-info="渠程摄影对此作品设置了隐私保护，禁止保存至本地。" data-src="https://img.zcool.cn/community/01fcff5e7f1898a801216518cf18bd.jpg@1280w_1l_2o_100sh.jpg" data-width="3000"
-                                     src="https://img.zcool.cn/community/01fcff5e7f1898a801216518cf18bd.jpg@1280w_1l_2o_100sh.jpg" style="width: 1280px;">
+                                     data-info="渠程摄影对此作品设置了隐私保护，禁止保存至本地。"
+                                     data-src="https://img.zcool.cn/community/01fcff5e7f1898a801216518cf18bd.jpg@1280w_1l_2o_100sh.jpg"
+                                     data-width="3000"
+                                     src="https://img.zcool.cn/community/01fcff5e7f1898a801216518cf18bd.jpg@1280w_1l_2o_100sh.jpg"
+                                     style="width: 1280px;">
 
                                 <a class="photo-box" data-img-id="50683490" href="javascript:">照片信息
                                 </a>
-                                <div class="photo-info hi-de" exif="{make:'Canon',model:'Canon EOS 5DS',orientation:'1',lens:'EF24-70mm f/2.8L II USM',FNumber:'f/8.0',ISO:'200',exposure:'1/125 sec',EV:'0 EV',focal:'26.0 mm',date:'2020:03:26 13:32:43'}"
+                                <div class="photo-info hi-de"
+                                     exif="{make:'Canon',model:'Canon EOS 5DS',orientation:'1',lens:'EF24-70mm f/2.8L II USM',FNumber:'f/8.0',ISO:'200',exposure:'1/125 sec',EV:'0 EV',focal:'26.0 mm',date:'2020:03:26 13:32:43'}"
                                      id="exif_50683490">
                                 </div>
 
@@ -391,12 +315,16 @@
 
                                 <img class="no-right-key lazy-img-class"
                                      data-height="2000.0"
-                                     data-info="渠程摄影对此作品设置了隐私保护，禁止保存至本地。" data-src="https://img.zcool.cn/community/01c8245e7f1898a80120a895ccdb4c.jpg@1280w_1l_2o_100sh.jpg" data-width="3000"
-                                     src="https://img.zcool.cn/community/01c8245e7f1898a80120a895ccdb4c.jpg@1280w_1l_2o_100sh.jpg" style="width: 1280px;">
+                                     data-info="渠程摄影对此作品设置了隐私保护，禁止保存至本地。"
+                                     data-src="https://img.zcool.cn/community/01c8245e7f1898a80120a895ccdb4c.jpg@1280w_1l_2o_100sh.jpg"
+                                     data-width="3000"
+                                     src="https://img.zcool.cn/community/01c8245e7f1898a80120a895ccdb4c.jpg@1280w_1l_2o_100sh.jpg"
+                                     style="width: 1280px;">
 
                                 <a class="photo-box" data-img-id="50683489" href="javascript:">照片信息
                                 </a>
-                                <div class="photo-info hi-de" exif="{make:'Canon',model:'Canon EOS 5DS',orientation:'8',lens:'EF24-70mm f/2.8L II USM',FNumber:'f/8.0',ISO:'200',exposure:'1/125 sec',EV:'0 EV',focal:'55.0 mm',date:'2020:03:26 14:53:06'}"
+                                <div class="photo-info hi-de"
+                                     exif="{make:'Canon',model:'Canon EOS 5DS',orientation:'8',lens:'EF24-70mm f/2.8L II USM',FNumber:'f/8.0',ISO:'200',exposure:'1/125 sec',EV:'0 EV',focal:'55.0 mm',date:'2020:03:26 14:53:06'}"
                                      id="exif_50683489">
                                 </div>
 
@@ -469,39 +397,18 @@
                     <div class="big-zan-icon">
                         <!-- <i class="one"></i><i class="two"></i><i class="three"></i> -->
                     </div>
-                    <i class="recommend-number">4</i>
-                    <div class="air-bubble-tips unlogin-recommended-tips hide" id="detail-recommend-login">
-                        <a class="recommend-notlogin btn-default-main mb-10 btn-current-small js-recommend-notlogin"
-                           href="javascript:">登录 </a><br>可以记录推荐数据哦！
-                    </div>
+                    <i class="recommend-number">下载</i>
                 </div>
             </div>
-
-
-            <div class="text-center hide" id="recommendedAvatar">
-                - <span class="js-recommended-total">0</span>位站酷推荐设计师推荐 -
-                <div class="recommended-designer-avatar-wrap js-recommended-avatar" data-total="0">
-
-
-                    <div class="recommended-designer_more hide js-plus-n"></div>
-
-                </div>
-            </div>
-
-
         </div>
         <!--举报,分享,附件,收藏数-->
         <div class="details-con-other border-top">
             <div class="work-details-box-wrap">
                 <div class="three-link">
-                    <input class="btn-default-secondary details-collection-btn collection js-not-fav js-project-fav" data-on="1"
+                    <input class="btn-default-secondary details-collection-btn collection js-not-fav js-project-fav"
+                           data-on="1"
                            title="收藏"
                            type="button" value="收藏" z-st="favorite">
-
-                    <!--                    <input type="button" class="btn-default-secondary details-share" id="share" value="分享">-->
-
-                    <span class="report" onclick="ZcJubaoNew.jubaoPop(10987132,3);" z-st="jubao"><a href="javascript:">举报 </a></span>
-
                 </div>
             </div>
         </div>
@@ -532,7 +439,9 @@
                         <div id="beacon_7cebbdcdd0"
                              style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img
                                 alt=""
-                                height="0" src="https://revive.hellorf.com/www/delivery/lg.php?bannerid=0&amp;campaignid=0&amp;zoneid=31&amp;loc=https%3A%2F%2Fwww.zcool.com.cn%2Fwork%2FZNDM5NDg1Mjg%3D.html&amp;referer=https%3A%2F%2Fwww.zcool.com.cn%2Fdiscover&amp;cb=7cebbdcdd0" style="width: 0px; height: 0px;" width="0"></div>
+                                height="0"
+                                src="https://revive.hellorf.com/www/delivery/lg.php?bannerid=0&amp;campaignid=0&amp;zoneid=31&amp;loc=https%3A%2F%2Fwww.zcool.com.cn%2Fwork%2FZNDM5NDg1Mjg%3D.html&amp;referer=https%3A%2F%2Fwww.zcool.com.cn%2Fdiscover&amp;cb=7cebbdcdd0"
+                                style="width: 0px; height: 0px;" width="0"></div>
                     </ins>
                     <script async="" src="//revive.hellorf.com/www/delivery/asyncjs.php"></script>
                 </div>
@@ -557,7 +466,6 @@
                     </div>
                     <div class="f-12">
                         <a class="c-666 js-detail-username showMemberCard" href="https://www.zcool.com.cn/u/18408957">渠程摄影</a>
-                        <span class="zcool-link-color ml-10 attention notfollow js-fixed-attention" data-id="18408957">关注</span>
                     </div>
                 </div>
             </div>
@@ -580,10 +488,10 @@
     </div>
 </footer>
 <script>
-    layui.use(['carousel', 'layer', 'laypage'], function() {
+    layui.use(['carousel', 'layer', 'laypage'], function () {
         var carousel = layui.carousel;
         var laypage = layui.laypage,
-            layer = layui.layer,$=layui.$;
+            layer = layui.layer, $ = layui.$;
         $("#zHeader").load("[[@{/getHeader}]]");
         $("#footer").load("[[@{/getFooter}]]");
 
@@ -592,12 +500,12 @@
 <script>
     var onoff = false;
     $(window).scroll(function () {
-       var height=$(this).scrollTop();
-       if (height>500){
-           $(".is-offset-fixed-wrap").removeClass("layui-hide");
-       }else {
-           $(".is-offset-fixed-wrap").addClass("layui-hide");
-       }
+        var height = $(this).scrollTop();
+        if (height > 500) {
+            $(".is-offset-fixed-wrap").removeClass("layui-hide");
+        } else {
+            $(".is-offset-fixed-wrap").addClass("layui-hide");
+        }
     })
 </script>
 </body>
