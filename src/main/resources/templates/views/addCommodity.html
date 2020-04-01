@@ -133,12 +133,13 @@
 </head>
 <body>
 
-    <input th:value="${commodity.getId()}" name="id">
+    <form th:action="@{/views/addCommodity}" id="form" method="POST" name="form">
+    <input type="hidden" th:value="${commodity.getId()}" name="id">
     <div class="layui-form" lay-filter="layuiadmin-form-useradmin" id="layuiadmin-form-useradmin" style="padding: 20px 0 0 0;">
         <div class="layui-form-item">
             <label class="layui-form-label">商品名称</label>
             <div class="layui-input-inline">
-                <input type="text" th:value="${commodity.getComName}" name="comName" lay-verify="required" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
+                <input type="text" th:value="${commodity.comname}" name="comname" lay-verify="required" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -155,70 +156,71 @@
             <label class="layui-form-label">是否推荐</label>
             <div class="layui-input-inline">
                 <select name="reecom" lay-filter="LAY-user-adminrole-type">
-                    <option value="0">不推荐</option>
-                    <option value="1">推荐到首页</option>
-                    <option value="2">精选</option>
+                    <option th:selected="${commodity.getReecom()==0}" value="0">不推荐</option>
+                    <option th:selected="${commodity.getReecom()==1}" value="1">推荐到首页</option>
+                    <option th:selected="${commodity.getReecom()==2}" value="2">精选</option>
                 </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">商品图片</label>
-            <div class="layui-input-inline">
-                <input type="text" name="imgUrl" lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" >
-            </div>
-            <button style="float: left;" type="button" class="layui-btn" id="layuiadmin-upload-useradmin">上传图片</button>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">商品用户</label>
-            <div class="layui-input-inline">
-                <input type="text" th:value="${commodity.comUser}" name="comUser" lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" >
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户图片</label>
-            <div class="layui-input-inline">
-                <input type="text" name="userImg" lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" >
-            </div>
-            <button style="float: left;" type="button" class="layui-btn" id="layuiadmin-upload">上传图片</button>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">商品云盘路径</label>
-            <div class="layui-input-inline">
-                <input type="text" th:value="${commodity.comUrl}" name="comUrl" lay-verify="required" placeholder="请输入云盘地址" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">商品提取码</label>
-            <div class="layui-input-inline">
-                <input type="text" th:value="${commodity.comCode}" name="comCode" lay-verify="required" placeholder="请输入提取码" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">商品类别</label>
             <div class="layui-input-inline">
 
-                <select name="rolename" lay-filter="LAY-user-adminrole-type">
-                    <option th:each="cate,stat:${cateList}" th:text="${cate.getCategoryname()}" th:value="${cate.getCategoryname()}"></option>
+                <select name="category" lay-filter="LAY-user-adminrole-type">
+                    <option th:selected="${commodity.getCategory() eq cate.getCategoryname()}" th:each="cate,stat:${cateList}" th:text="${cate.getCategoryname()}" th:value="${cate.getCategoryname()}"></option>
 
                 </select>
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">商品图片</label>
+            <div class="layui-input-inline">
+                <input type="text" name="imgUrl"  placeholder="请上传图片" autocomplete="off" class="layui-input" >
+            </div>
+            <button style="float: left;" type="button" class="layui-btn" id="layuiadmin-upload-useradmin">上传图片</button>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品用户</label>
+            <div class="layui-input-inline">
+                <input type="text" th:value="${commodity.getComUser()}" name="comUser"  placeholder="请上传图片" autocomplete="off" class="layui-input" >
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户图片</label>
+            <div class="layui-input-inline">
+                <input type="text" name="userImg"  placeholder="请上传图片" autocomplete="off" class="layui-input" >
+            </div>
+            <button style="float: left;" type="button" class="layui-btn" id="layuiadmin-upload">上传图片</button>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品云盘路径</label>
+            <div class="layui-input-inline">
+                <input type="text" th:value="${commodity.getComurl()}" name="comUrl"  placeholder="请输入云盘地址" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品提取码</label>
+            <div class="layui-input-inline">
+                <input type="text" th:value="${commodity.getComCode()}" name="comCode"  placeholder="请输入提取码" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <label class="layui-form-label">商品详情</label>
             <div class="">
 
 
-                <textarea id="editor" th:value="${commodity.editor}" name="details"  style="width: 90%;height: 40em;"></textarea>
+                <textarea id="editor" th:value="${commodity.getDetails()}" name="details"  style="width: 90%;height: 40em;"></textarea>
             </div>
         </div>
 
         <div class="layui-form-item">
 
-            <input type="button" class="layui-btn" lay-submit lay-filter="LAY-user-front-submit" id="LAY-user-front-submit" value="确认">
+            <input type="submit" class="layui-btn" lay-submit lay-filter="LAY-user-front-submit" id="LAY-user-front-submit" value="确认">
         </div>
     </div>
-
+    </form>
 
 <script th:src="@{/static/layuiadmin/layui/layui.js}"></script>
 <script>

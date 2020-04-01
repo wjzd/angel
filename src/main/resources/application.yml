@@ -25,5 +25,8 @@ spring:
 mybatis:
   type-aliases-package: com.yy.pojo
   mapper-locations: classpath:com/yy/mapping/*Mapper.xml
+logging:
+  level:
+    com.dao: DEBUG
 
 

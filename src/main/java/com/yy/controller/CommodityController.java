@@ -45,11 +45,46 @@ public class CommodityController {
         resultTable.setCount(commodityList.size());
         return JSON.toJSONString(resultTable);
     }
-    @RequestMapping("/addCommodity")
-    public String addCommodity(Model model,Commodity commodity){
+    @RequestMapping("/addCommodityInit")
+    public String addCommodityInit(Model model,Commodity commodity){
         //商品分類
         List<CategoryMenu> cateList=categoryMennService.selectAll(null);
+        if(commodity.getId()!=null){
+            commodity=commodityService.selectByCom(commodity).get(0);
+        }
         model.addAttribute("cateList",cateList);
+        model.addAttribute("commodity",commodity);
+        return "/views/addCommodity";
+    }
+    @RequestMapping("/addCommodity")
+    public String addCommodity(Model model,Commodity commodity){
+        try {
+            if(commodity.getId()!=null){//修改
+                int count=commodityService.updateByPrimaryKeySelective(commodity);
+                System.out.println("修改："+count);
+            }else{
+                commodityService.insertSelective(commodity);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        return "/views/commodity";
+    }
+    @RequestMapping("/updateCommodityInit")
+    public String updateCommodityInit(Model model,Commodity commodity){
+
+        //商品分類
+        List<CategoryMenu> cateList=categoryMennService.selectAll(null);
+        if(commodity.getId()!=null){
+            commodity=commodityService.selectByCom(commodity).get(0);
+        }
+
+        model.addAttribute("cateList",cateList);
+        model.addAttribute("commodity",commodity);
+
         return "/views/addCommodity";
     }
 }
