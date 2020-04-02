@@ -18,9 +18,9 @@
             <div class="layui-card">
                 <div class="layui-card-header">网站商品管理</div>
                 <div class="layui-card-body">
-                    <a class="layui-btn layui-btn-sm" id="addCommodity" th:href="@{/views/addCommodityInit}">添加商品</a>
+                    <!--<a class="layui-btn layui-btn-sm" id="addCommodity" th:href="@{/views/addCommodityInit}">添加用户</a>-->
                     <a class="layui-hide" id="realJump"></a>
-                    <table class="layui-hide" id="commodityTable" lay-filter="demo"></table>
+                    <table class="layui-hide" id="userListTable" lay-filter="demo"></table>
                 </div>
             </div>
         </div>
@@ -41,37 +41,35 @@
         var table = layui.table,$=layui.$;
         //展示已知数据
         table.render({
-            elem: '#commodityTable'
+            elem: '#userListTable'
             ,toolbar: '#toolbarDemo'
-            ,url:'[[@{/views/getCommodityList}]]'
+            ,url:'[[@{/userCon/userList}]]'
             ,cols: [ [ //标题栏
                 {field: 'id', title: 'ID', sort: true}
-                ,{field: 'comname', title: '商品名称'}
-                ,{field: 'imgurl', title: '展示图片'}
-                ,{field: 'salenum', title: '商品销量'}
-                ,{field: 'collectnum', title: '收藏数量'}
-                ,{field: 'browsenum', title: '浏览数量',sort: true}
-                ,{field: 'reecom', title: '是否推荐'}
-                ,{field: 'isout', title: '上架',templet:'isout'}
+                ,{field: 'account', title: '账号'}
+                ,{field: 'workername', title: '昵称'}
+                ,{field: 'telnum', title: '电话'}
+                ,{field: 'sex', title: '性别'}
+                ,{field: 'isvip', title: 'vip',sort: true}
+                ,{field: 'viptime', title: '到期时间'}
+                ,{field: 'email', title: '邮箱',templet:'isout'}
                 ,{fixed: 'right',title:'操作',  width:200, align:'center', toolbar: '#barDemo'}
             ] ]
             ,page:true
             ,limit:30
             ,done: function(res, curr, count){
-             $("[data-field='reecom']").children().each(function() {
+             $("[data-field='sex']").children().each(function() {
                     if ($(this).text() == '0') {
-                        $(this).text("不推荐")
+                        $(this).text("女")
                     } else if ($(this).text() == '1') {
-                        $(this).text("推荐")
-                    }else if ($(this).text() == '2') {
-                        $(this).text("精选")
+                        $(this).text("男")
                     }
                 })
-                $("[data-field='isout']").children().each(function() {
+                $("[data-field='isvip']").children().each(function() {
                     if ($(this).text() == '0') {
-                        $(this).text("下架")
+                        $(this).text("NO")
                     } else if ($(this).text() == '1') {
-                        $(this).text("上架")
+                        $(this).text("YES")
                     }
                 })
 
@@ -89,8 +87,8 @@
                 });
             } else if(obj.event === 'edit'){
                 var id=JSON.stringify(data.id);
-                layer.alert('编辑行：<br>'+ JSON.stringify(data.id))
-                $("#realJump").attr("lay-href","[[@{/views/updateCommodityInit?id=}]]"+id);
+                //layer.alert('编辑行：<br>'+ JSON.stringify(data.id))
+                $("#realJump").attr("lay-href","[[@{/userCon/userAddInit?id=}]]"+id);
                 $("#realJump").attr("lay-tips","修改商品")
                 $("#realJump").click();
             }

@@ -133,87 +133,67 @@
 </head>
 <body>
 
-    <form th:action="@{/views/addCommodity}" id="form" method="POST" name="form">
-    <input type="hidden" th:value="${commodity.getId()}" name="id">
+    <form th:action="@{/userCon/userAdd}" id="form" method="POST" name="form">
+    <input type="hidden" th:value="${userInfo.getId()}" name="id">
     <div class="layui-form" lay-filter="layuiadmin-form-useradmin" id="layuiadmin-form-useradmin" style="padding: 20px 0 0 0;">
         <div class="layui-form-item">
-            <label class="layui-form-label">商品名称</label>
+            <label class="layui-form-label">用户账号</label>
             <div class="layui-input-inline">
-                <input type="text" th:value="${commodity.comname}" name="comname" lay-verify="required" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
+                <input type="text" th:value="${userInfo.getAccount()}" name="account" lay-verify="required" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">是否上架</label>
+            <label class="layui-form-label">昵称</label>
             <div class="layui-input-inline">
-                <select name="isout" lay-filter="LAY-user-adminrole-type">
-                    <option th:selected="${commodity.getIsout()==1}" value="1">上架</option>
-                    <option th:selected="${commodity.getIsout()==0}" value="0">下架</option>
-                </select>
+                <input type="text" th:value="${userInfo.getWorkername()}" name="workername" lay-verify="required" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
+
 
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">是否推荐</label>
+            <label class="layui-form-label">电话</label>
             <div class="layui-input-inline">
-                <select name="reecom" lay-filter="LAY-user-adminrole-type">
-                    <option th:selected="${commodity.getReecom()==0}" value="0">不推荐</option>
-                    <option th:selected="${commodity.getReecom()==1}" value="1">推荐到首页</option>
-                    <option th:selected="${commodity.getReecom()==2}" value="2">精选</option>
-                </select>
+                <input type="text" th:value="${userInfo.getTelnum()}" name="telnum" lay-verify="required" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
+
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">商品类别</label>
+            <label class="layui-form-label">性别</label>
             <div class="layui-input-inline">
 
-                <select name="category" lay-filter="LAY-user-adminrole-type">
-                    <option th:selected="${commodity.getCategory() eq cate.getCategoryname()}" th:each="cate,stat:${cateList}" th:text="${cate.getCategoryname()}" th:value="${cate.getCategoryname()}"></option>
+                <select name="sex" lay-filter="LAY-user-adminrole-type">
+                    <option th:selected="${userInfo.getSex()==0}" value="0">女</option>
+                    <option th:selected="${userInfo.getSex()==1}" value="1">男</option>
 
                 </select>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">商品图片</label>
-
-                <img th:src="@{${commodity.getImgurl()}}" class="layui-upload-img uploandImg" id="demo1" style="width: 10em;height: 10em;">
-            <button type="button" class="layui-btn uploandButton" id="test1">上传图片</button>
-            <input type="text" class="imgurl" th:value="${commodity.getImgurl()}" name="imgurl"/>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">商品用户</label>
+            <label class="layui-form-label">是否是vip</label>
             <div class="layui-input-inline">
-                <input type="text" th:value="${commodity.getComUser()}" name="comUser"  placeholder="请上传图片" autocomplete="off" class="layui-input" >
+                <select name="isvip" lay-filter="LAY-user-adminrole-type">
+                    <option th:selected="${userInfo.getIsvip()==0}" value="0">NO</option>
+                    <option th:selected="${userInfo.getIsvip()==1}" value="1">YES</option>
+
+                </select>
             </div>
-        </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户图片</label>
-
-            <img th:src="@{${commodity.getUserImg()}}" class="layui-upload-img uploandImg" style="width: 10em;height: 10em;">
-            <button type="button" class="layui-btn uploandButton" >上传图片</button>
-            <input type="text" class="userImg" th:value="${commodity.getUserImg()}" name="userImg"/>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">商品云盘路径</label>
+            <label class="layui-form-label">到期时间</label>
             <div class="layui-input-inline">
-                <input type="text" th:value="${commodity.getComurl()}" name="comUrl"  placeholder="请输入云盘地址" autocomplete="off" class="layui-input">
+                <input type="text" th:value="${userInfo.getViptime()}" name="viptime"  placeholder="请上传图片" autocomplete="off" class="layui-input" >
             </div>
         </div>
+
         <div class="layui-form-item">
-            <label class="layui-form-label">商品提取码</label>
+            <label class="layui-form-label">邮箱</label>
             <div class="layui-input-inline">
-                <input type="text" th:value="${commodity.getComCode()}" name="comCode"  placeholder="请输入提取码" autocomplete="off" class="layui-input">
+                <input type="text" th:value="${userInfo.getEmail()}" name="email"  placeholder="" autocomplete="off" class="layui-input" >
             </div>
+
         </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">商品详情</label>
-            <div class="">
-
-
-                <textarea id="editor" th:value="${commodity.getDetails()}" name="details"  style="width: 90%;height: 40em;"></textarea>
-            </div>
-        </div>
 
         <div class="layui-form-item">
 
@@ -222,7 +202,7 @@
     </div>
     </form>
 
- <script th:src="@{/static/layuiadmin/layui/layui.all.js}" charset="utf-8"></script>
+<script th:src="@{/static/layuiadmin/layui/layui.js}"></script>
 <script>
     layui.config({
         base: '[[@{/static/layuiadmin/}]]' //静态资源所在路径
@@ -230,48 +210,8 @@
         index: 'lib/index' //主入口模块
     }).use(['index', 'table'], function(){
         //展示已知数据
-    }).use('jquery', function(){
-        var $= layui.jquery
-        function test() {
-            alert(1234);
-        }
-    }).use('upload', function() {
-        var $ = layui.jquery
-            , upload = layui.upload;
 
-        //普通图片上传
-        var uploadInst = upload.render({
-            elem: '.uploandButton'
-            ,url: '/downloanCon/uploadFile' //改成您自己的上传接口
-            ,before: function(obj){
-
-                //预读本地文件示例，不支持ie8
-                obj.preview(function(index, file, result){
-
-                    $(".uploandImg").attr('src', result); //图片链接（base64）
-                });
-            }
-            ,done: function(res){
-
-                alert($(this.item).text());
-                $(this).next().val("测试");
-               // $(".imgurl").val(res.fileUrl);
-                //如果上传失败
-                if(res.code > 0){
-                    return layer.msg('上传失败');
-                }
-                //上传成功
-            }
-            ,error: function(){
-                //演示失败状态，并实现重传
-                var demoText = $('#demoText');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                demoText.find('.demo-reload').on('click', function(){
-                    uploadInst.upload();
-                });
-            }
-        });
-    })
+    });
 </script>
 </body>
 </html>

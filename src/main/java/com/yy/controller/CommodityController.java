@@ -37,7 +37,7 @@ public class CommodityController {
     public String getList(ResultTable resultTable,@RequestParam(value="pn",defaultValue="1") Integer pn,Commodity commodity){
         //获取第1页，5条内容，默认查询总数count
         /* 第一个参数是第几页；第二个参数是每页显示条数 */
-        PageHelper.startPage(pn, 8);
+        PageHelper.startPage(pn, 4);
 
         List<Commodity> commodityList=commodityService.selectByCom(null);
         resultTable.setCode(0);
