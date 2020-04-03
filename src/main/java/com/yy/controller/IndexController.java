@@ -37,7 +37,7 @@ public class IndexController {
 //        model.addAttribute("tuijian",indexService.getCommodityList());
 //        //最新发布
 //        model.addAttribute("new",pageService.getListByTime(0));
-        return "/page/userCenter";
+        return "/page/vipPage";
     }
     @RequestMapping("/getHeader")
     public String header(Model model){

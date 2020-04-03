@@ -253,7 +253,7 @@
             }
             ,done: function(res){
 
-                alert($(this.item).text());
+                alert($(this).next().next().text());
                 $(this).next().val("测试");
                // $(".imgurl").val(res.fileUrl);
                 //如果上传失败

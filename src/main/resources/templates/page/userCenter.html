@@ -21,6 +21,9 @@
     <script th:src="@{/static/layuiadmin/layui/layui.all.js}"></script>
     <!-- 这个js是公共的 -->
     <script th:src="@{/static/js/common.js}" type="text/javascript" charset="utf-8"></script>
+    <style>
+        .noclear{clear: none}
+    </style>
 </head>
 <body>
 <div id="body">
@@ -131,10 +134,6 @@
             </div>
             <div class="container-area-right">
                 <div class="bg-box-radius">
-
-
-
-
                     <div class="tab-menu border-bottom">
                         <ul class="tab-box">
                             <li class="current"><a href="#">个人资料</a></li>
@@ -142,7 +141,7 @@
                             <li><a href="#">账号安全</a></li>
                         </ul>
                     </div>
-                    <div class="datum-item-box border-bottom" id="essentialinformation">
+                    <div class="datum-item-box border-bottom">
                         <div class="text-center name-datum-box">
                             <div class="user-avatars" id="form-data-cover">
                                 <div class="opacity-layer hide">修改头像</div>
@@ -153,351 +152,35 @@
                                 <a href="https://passport.zcool.com.cn/accountSafe.do?appId=1006" class="user-name-modify" target="_blank">修改</a>
                             </div>
                         </div>
-                        <div class="datum-title-box">
-                            <!--  btn-disabled -->
-                            基本信息
-                        </div>
-                        <div class="table-wrap">
-<!--                            <table class="datum-table" cellspacing="0">-->
-<!--                                <tbody><tr>-->
-<!--                                    <th>手机号</th>-->
-<!--                                    <td>-->
-<!--                                        <div class="always">-->
-<!--                                            17*******99-->
-<!--                                            <a href="https://passport.zcool.com.cn/accountSafe.do?appId=1006" class="modify">修改</a><span class="permission-prompt">仅自己可见</span>-->
-<!--                                        </div>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <th class="padding-top-30">邮箱</th>-->
-<!--                                    <td class="padding-top-30">-->
-<!--                                        <div class="always">-->
-<!--                                            <a href="https://passport.zcool.com.cn/accountSafe.do?appId=1006" class="modify">去绑定</a><span class="permission-prompt">仅自己可见</span>-->
-<!--                                        </div>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <th class="padding-top-30"><span class="required-sign"></span>性别</th>-->
-<!--                                    <td class="padding-top-30">-->
-<!--                                        <div class="radio">-->
+                        <form class="layui-form" action="" style="position: relative;top: -200px;">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">邮箱</label>
+                                <div class="layui-input-block">
+                                    <input type="email" name="邮箱" required  lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">名称</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="name" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">密码</label>
+                                <div class="layui-input-block">
+                                    <input type="password" name="password" required  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <input type="button" name="" value="保存" id="essential-information" class="btn-default-main btn-current-small mt-30 right">
+                        </form>
 
-<!--                                            <label for="radio_1" class="radio-0"><input type="radio" name="radio" id="radio_1" value="1">男</label>-->
-<!--                                            <label for="radio_2" class="radio-1"><input type="radio" name="radio" id="radio_2" value="2">女</label>-->
+<!--                        <div class="table-wrap">-->
 
 
-<!--                                        </div>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <th>家乡</th>-->
-<!--                                    <td>-->
-<!--                                        <div class="city-plug-parent city-box hometown-box js-tab-city">-->
-<!--                                            <span class="cur-city-select" data-code="4170" data-path=",1,7,247,4170," id="homecity">北京</span>-->
-<!--                                            <i class="select-shixin-arrow"></i>-->
-<!--                                            <div class="city-panel-layer hide">-->
-<!--                                                <div class="radio city-title js-city-radio">-->
-<!--                                                    <label for="radio_cn" class="radio-0 mr-30"><input type="radio" name="city-radio" id="radio_cn" value="cn" checked="checked" class="">中国</label>-->
-<!--                                                    <label for="radio_en" class="radio-1"><input type="radio" name="city-radio" id="radio_en" value="en" class="">其他国家和地区</label>-->
-<!--                                                </div>-->
-<!--                                                <div class="js-city-covers"></div>-->
-<!--                                            </div>-->
 
-<!--                                        </div>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <th><span class="required-sign"></span>现居</th>-->
-<!--                                    <td>-->
-<!--                                        <div class="city-plug-parent city-box now-city-box js-tab-city">-->
-<!--                                            <span class="cur-city-select" data-code="4170" data-path=",1,7,247,4170," id="nowcity">北京</span>-->
-<!--                                            <i class="select-shixin-arrow"></i>-->
-<!--                                            <div class="city-panel-layer hide">-->
-<!--                                                <div class="radio city-title js-city-radio">-->
-<!--                                                    <label for="radio_nowcn" class="radio-0 mr-30"><input type="radio" name="city-radio" id="radio_nowcn" value="cn" checked="checked" class="">中国</label>-->
-<!--                                                    <label for="radio_nowen" class="radio-1"><input type="radio" name="city-radio" id="radio_nowen" value="en" class="">其他国家和地区</label>-->
-<!--                                                </div>-->
-<!--                                                <div class="js-city-covers"></div>-->
-<!--                                            </div>-->
 
-<!--                                        </div>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <th class="padding-top-30">酷龄</th>-->
-<!--                                    <td class="padding-top-30">刚出生</td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <th class="padding-top-30">签名</th>-->
-<!--                                    <td class="padding-top-30">-->
-<!--                                        <div class="long-text-box">-->
-<!--                                            <input type="text" name="" id="signature" value="" placeholder="不超过20个汉字或40个字符" class="text-style" style="padding-right: 40px;"><span class="count">40</span>-->
-<!--                                        </div>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <th valign="top" class="brief-introduction">简介</th>-->
-<!--                                    <td class="padding-top-30">-->
-<!--                                        <div class="long-text-box">-->
-<!--                                            <textarea id="brief-introduction" class="text-style textarea-style" onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="height: 42px; padding-right: 60px;"></textarea><span class="count">2000</span>-->
-<!--                                        </div>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                </tbody></table>-->
-<!--                            <input type="button" name="" value="保存" id="essential-information" class="btn-default-main btn-current-small mt-30 right">-->
-
-                        </div>
+<!--                        </div>-->
                     </div>
-
-
-
-
-
-<!--                    <div class="datum-item-box border-bottom" id="edu">-->
-<!--                        <div class="datum-title-box">-->
-<!--                            教育背景-->
-<!--                        </div>-->
-<!--                        <div class="table-wrap">-->
-<!--                            <table class="datum-table left" cellspacing="0">-->
-<!--                                <tbody><tr>-->
-<!--                                    <th>学校名称</th>-->
-<!--                                    <td>-->
-<!--                                        &lt;!&ndash; <input type="text" name="school-name" placeholder="请填写学校" class="text-style short-text-box"> &ndash;&gt;-->
-<!--                                        <div class="school-name-wrap">-->
-<!--                                            <div class="morktext-box">-->
-<!--                                                <input type="text" name="school-name" value="" data-id="" placeholder="请填写学校" id="school-name" class="text-style short-text-box">-->
-<!--                                            </div>-->
-<!--                                            &lt;!&ndash; <i class="count">50</i> &ndash;&gt;-->
-<!--                                            <div class="matching-list school-name-list hide">-->
-<!--                                                <ul class="scrollbar">-->
-<!--                                                </ul>-->
-<!--                                                <div class="empty hide">-->
-<!--                                                    没有匹配学校-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                </tbody></table>-->
-<!--                            <input type="button" name="" id="educational-btn" value="保存" class="btn-default-main btn-current-small mt-20 right">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="datum-item-box border-bottom" id="contact">-->
-<!--                        <div class="datum-title-box">-->
-<!--                            联系方式-->
-<!--                        </div>-->
-<!--                        <div class="table-wrap">-->
-<!--                            <table class="datum-table left" cellspacing="0">-->
-<!--                                <tbody><tr>-->
-<!--                                    <th>QQ</th>-->
-<!--                                    <td><input type="text" name="qq-account" maxlength="20" class="text-style short-text-box" value="" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">-->
-<!--                                        <div class="dropdown-box">-->
-<!--                                            <section>-->
-<!--                                                <div class="col job-select">-->
-<!--                                                    <div class="wrapper">-->
-<!--                                                        <div class="flat"><span class="old"><select class="" id="qq-privacy" tabindex="9" data-settings="{&quot;wrapperClass&quot;:&quot;flat&quot;}">-->
-<!--                                        <option value="4" data-id="4">仅自己可见</option>-->
-<!--                                        <option value="1" data-id="1">所有人可见</option>-->
-<!--                                    </select></span><span class="selected">仅自己可见</span><span class="carat"></span><div class="select-wrap"><ul class="ul-select scrollbar"><li data-id="4" class="active">仅自己可见</li><li data-id="1">所有人可见</li></ul></div></div>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </section>-->
-<!--                                        </div>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <th>微信</th>-->
-<!--                                    <td><input type="text" name="wechat" maxlength="30" class="text-style short-text-box" value="" onkeyup="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')" onafterpaste="this.value=this.value.replace(/[\u4e00-\u9fa5]/g,'')">-->
-<!--                                        <div class="dropdown-box">-->
-<!--                                            <section>-->
-<!--                                                <div class="col job-select">-->
-<!--                                                    <div class="wrapper">-->
-<!--                                                        <div class="flat"><span class="old"><select class="" id="wechat-privacy" tabindex="9" data-settings="{&quot;wrapperClass&quot;:&quot;flat&quot;}">-->
-<!--                                        <option value="1" data-id="1">所有人可见</option>-->
-<!--                                        <option value="4" data-id="4">仅自己可见</option>-->
-<!--                                    </select></span><span class="selected">所有人可见</span><span class="carat"></span><div class="select-wrap"><ul class="ul-select scrollbar"><li data-id="1" class="active">所有人可见</li><li data-id="4">仅自己可见</li></ul></div></div>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </section>-->
-<!--                                        </div>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                </tbody></table>-->
-<!--                            <input type="button" name="" value="保存" id="contact-way" class="btn-default-main btn-current-small right" style="margin-top: 90px;">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="datum-item-box border-bottom" id="link">-->
-<!--                        <div class="datum-title-box">-->
-<!--                            个人链接-->
-<!--                        </div>-->
-<!--                        <div class="table-wrap" id="personal-links">-->
-<!--                            <table class="datum-table" cellspacing="0">-->
-<!--                                <tbody>-->
-<!--                                <tr>-->
-<!--                                    <th>站酷主页</th>-->
-<!--                                    <td>-->
-<!--                        <span class="hide domain-style">-->
-<!--                            <span class="personalized-domain"></span>.zcool.com.cn-->
-<!--                        </span>-->
-
-<!--                                        <span class="modify" id="set-domain-name">设置个性域名</span>-->
-
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <th>新浪微博</th>-->
-<!--                                    <td>-->
-<!--                                        <div class="long-text-box">-->
-<!--                                            <input type="text" name="micro-blog-sina" value="" placeholder="https://weibo.com/example" class="text-style">-->
-<!--                                        </div>-->
-<!--                                        <img src="//static.zcool.cn/git_z/z/images/related-weibo.png" class="personal-link-icon">-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <th>behance</th>-->
-<!--                                    <td>-->
-<!--                                        <div class="long-text-box">-->
-<!--                                            <input type="text" name="behance" value="" placeholder="https://www.behance.net/example" class="text-style">-->
-<!--                                        </div>-->
-<!--                                        <img src="//static.zcool.cn/git_z/z/images/behance.png" class="personal-link-icon">-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <th>dribbble</th>-->
-<!--                                    <td>-->
-<!--                                        <div class="long-text-box">-->
-<!--                                            <input type="text" name="dribbble" value="" placeholder="https://dribbble.com/xxxxxx" class="text-style">-->
-<!--                                        </div>-->
-<!--                                        <img src="//static.zcool.cn/git_z/z/images/dribbble.png" class="personal-link-icon">-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                </tbody><tbody class="other-personal-link">-->
-<!--                            <tr>-->
-<!--                                <th>个人网站</th>-->
-<!--                                <td>-->
-<!--                                    <div class="long-text-box">-->
-<!--                                        <input type="text" name="personal-website" value="" placeholder="输入域名" class="text-style">-->
-<!--                                    </div>-->
-<!--                                    <img src="//static.zcool.cn/git_z/z/images/personal_website.png" class="personal-link-icon">-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <th>facebook</th>-->
-<!--                                <td>-->
-<!--                                    <div class="long-text-box">-->
-<!--                                        <input type="text" name="facebook" value="" placeholder="https://www.facebook.com/xxxxxx" class="text-style">-->
-<!--                                    </div>-->
-<!--                                    <img src="//static.zcool.cn/git_z/z/images/facebook.png" class="personal-link-icon">-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <th>twitter</th>-->
-<!--                                <td>-->
-<!--                                    <div class="long-text-box">-->
-<!--                                        <input type="text" name="twitter" value="" placeholder="https://twitter.com/xxxxxx" class="text-style">-->
-<!--                                    </div>-->
-<!--                                    <img src="//static.zcool.cn/git_z/z/images/twitter.png" class="personal-link-icon">-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <th>flickr</th>-->
-<!--                                <td>-->
-<!--                                    <div class="long-text-box">-->
-<!--                                        <input type="text" name="flickr" value="" placeholder="https://www.flickr.com/photos/xxxxxx" class="text-style">-->
-<!--                                    </div>-->
-<!--                                    <img src="//static.zcool.cn/git_z/z/images/flickr.png" class="personal-link-icon">-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <th>devlantart</th>-->
-<!--                                <td>-->
-<!--                                    <div class="long-text-box">-->
-<!--                                        <input type="text" name="deviantart" value="" placeholder="http://xxxxxx.deviantart.com/" class="text-style">-->
-<!--                                    </div>-->
-<!--                                    <img src="//static.zcool.cn/git_z/z/images/deviantart.png" class="personal-link-icon">-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            </tbody>-->
-<!--                                <tbody><tr>-->
-<!--                                    <th></th>-->
-<!--                                    <td>-->
-<!--                                        <span class="zcool-link-color more">更多</span>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                </tbody></table>-->
-<!--                            <input type="button" name="" id="personal-link-btn" value="保存" class="btn-default-main btn-current-small right mt-20">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="datum-item-box border-bottom" id="personalequipment">-->
-<!--                        <div class="datum-title-box">-->
-<!--                            个人装备-->
-<!--                        </div>-->
-<!--                        <div class="personal-equipment-box">-->
-<!--                            <div class="add-equipment">-->
-<!--                                <div class="morktext-box">-->
-<!--                                    <input type="text" id="equipment" name="" placeholder="" class="text-style add-equipmenttext">-->
-<!--                                </div>-->
-<!--                                &lt;!&ndash; <i class="count">50</i> &ndash;&gt;-->
-<!--                                <div class="eq-matebox hide" style="display: none;">-->
-<!--                                    <ul class="scrollbar">-->
-<!--                                    </ul>-->
-<!--                                    <div class="empty hide">-->
-<!--                                        没有匹配装备-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <input type="button" name="" disabled="" class="add-equipmentbtn" value="可添加(20)">-->
-<!--                            <input type="button" name="" class="equipment-disabled hide" disabled="" value="可添加(0)" style="display: none;">-->
-<!--                            <div class="equipment-listcon">-->
-
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="datum-item-box" id="label">-->
-<!--                        <div class="datum-title-box">-->
-<!--                            个人标签-->
-<!--                        </div>-->
-<!--                        <div class="personal-mark-box">-->
-<!--                            <div class="mark-input-wrap">-->
-<!--                                <div class="morktext-box">-->
-<!--                                    <input type="text" id="workmark" name="" placeholder="个人标签，不超过8个汉字/16个英文字符 " class="work-mark text-style" style="padding-right: 40px;"><span class="count">16</span>-->
-<!--                                </div>-->
-<!--                                &lt;!&ndash; <i class="count">50</i> &ndash;&gt;-->
-<!--                                <input type="button" name="" disabled="" class="mark-btn disabled-color zcool-link-color" value="贴标签(5)">-->
-<!--                                <input type="button" name="" class="disabled-color mark-disabled hide" value="贴标签(0)">-->
-<!--                            </div>-->
-<!--                            <div class="mark-con">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-                    <!-- 设置域名 -->
-<!--                    <div class="pop-up pop-domain-name hide">-->
-<!--                        <div class="popup-title">设置个性域名</div>-->
-<!--                        <div class="popup-con text-center">-->
-<!--                            <p class="text-center domain-name-tips">域名一旦设置，不能更改 <br>-->
-<!--                                域名不得设置与自己不相关的企业域名一致，站酷保持回收权</p>-->
-<!--                            <div class="domain-name-text-box flex-center">-->
-<!--                                https://-->
-<!--                                <div class="p-relative ml-5 mr-5">-->
-<!--                                    <input type="text" name="domain-name" maxlength="16" placeholder="不超过16个英文/数字" class="text-style">-->
-<!--                                </div>-->
-<!--                                .zcool.com.cn-->
-<!--                            </div>-->
-<!--                            <div class="domain-name-error hide">-->
-<!--                                <span class="error-prompt"><i class="error-icon"></i>域名已存在</span>-->
-<!--                            </div>-->
-<!--                            <input type="button" name="" id="domain-name-btn" class="btn-default-main pop-confirm" value="确定">-->
-<!--                            <input type="button" name="" class="btn-default-secondary pop-cancel" value="取消">-->
-<!--                        </div>-->
-<!--                        <i class="pop-close"></i>-->
-<!--                    </div>-->
-<!--                    <div class="pop-up-normal domain-success-pop hide">-->
-<!--                        <p class="tips-text tips-text-normal">域名设置成功-->
-<!--                            <br>-->
-<!--                            <span>anzhengluo</span>.zcool.com.cn</p>-->
-<!--                    </div>-->
-<!--                    <div class="pop-up-normal datum-tips-pop hide">-->
-<!--                        <p class="tips-text tips-text-normal"></p>-->
-<!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -513,24 +196,13 @@
 </div>
 </footer>
 <script>
-    layui.use(['carousel', 'layer', 'laypage'], function() {
+    layui.use(['carousel', 'layer', 'laypage','form'], function() {
         var carousel = layui.carousel;
         var laypage = layui.laypage,
             layer = layui.layer,$=layui.$;
         $("#zHeader").load("[[@{/getHeader}]]");
         $("#footer").load("[[@{/getFooter}]]");
         //建造实例
-        carousel.render({
-            elem: '#test1',
-            height: '350px',
-            width: '100%' //设置容器宽度
-            ,
-            arrow: 'always' //始终显示箭头
-            ,
-            anim: 'default' //切换动画方式
-            ,
-            indicator: 'none'
-        });
         laypage.render({
             elem: 'demopage',
             count: 100,
