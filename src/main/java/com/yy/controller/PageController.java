@@ -9,22 +9,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 import java.util.List;
 
+import static com.yy.controller.IndexController.categoryName;
+
 /**
  * 控制页面跳转Controller
  */
 @Controller
-@RequestMapping("/page")
+@RequestMapping("page")
 public class PageController {
 
     @Resource
     private PageService pageService;
 
-    @RequestMapping("/getCommodity")
-    public String getCommodity(int id, Model model){
+    @RequestMapping("getCommodity")
+    public String getCommodity(String  category, Model model){
         //根据分类查询出编辑精选的商品
-       List<Commodity> jinxuan=pageService.getListbyCategoryIdAndreecom(id);
+       List<Commodity> jinxuan=pageService.getListbyCategoryIdAndreecom(category);
         //根据分类查询出最新的商品
-       List<Commodity> zuixin=pageService.getListByTime(id);
-        return "commodity";
+       List<Commodity> zuixin=pageService.getListByTime(category);
+       model.addAttribute("jinxuans",jinxuan);
+       model.addAttribute("zuixins",zuixin);
+       categoryName=category;
+        return "/page/commodity";
     }
 }

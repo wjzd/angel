@@ -14,10 +14,10 @@ public class PageServiceImpl implements PageService {
     private CommodityMapper commodityMapper;
 
     @Override
-    public List<Commodity> getListbyCategoryIdAndreecom(int categoryId){
+    public List<Commodity> getListbyCategoryIdAndreecom(String  categoryName){
         CommodityExample commodityExample=new CommodityExample();
         CommodityExample.Criteria criteria=commodityExample.createCriteria();
-        criteria.andCategoryEqualTo(String.valueOf(categoryId));
+        criteria.andCategoryEqualTo(categoryName);
         criteria.andIsoutEqualTo(1);
         criteria.andReecomEqualTo(2);
         List<Commodity> jinxuan=commodityMapper.selectByExample(commodityExample);
@@ -25,11 +25,11 @@ public class PageServiceImpl implements PageService {
     }
 
     @Override
-    public List<Commodity> getListByTime(int categoryId) {
+    public List<Commodity> getListByTime(String  categoryName) {
         CommodityExample commodityExample=new CommodityExample();
         CommodityExample.Criteria criteria=commodityExample.createCriteria();
-        if (categoryId!=0){
-            criteria.andCategoryEqualTo(String.valueOf(categoryId));
+        if (!categoryName.equals("")){
+            criteria.andCategoryEqualTo(categoryName);
         }
         criteria.andIsoutEqualTo(1);
         commodityExample.setOrderByClause("insertTime desc");

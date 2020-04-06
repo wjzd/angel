@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PageService {
     //查询精选列表
-    List<Commodity> getListbyCategoryIdAndreecom(int categoryId);
+    List<Commodity> getListbyCategoryIdAndreecom(String  categoryName);
     //查询列表 时间
-    List<Commodity> getListByTime(int categoryId);
+    List<Commodity> getListByTime(String  categoryName);
 }

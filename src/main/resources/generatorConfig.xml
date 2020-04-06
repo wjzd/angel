@@ -5,7 +5,7 @@
 <generatorConfiguration >
 
   <!-- 本地mysql驱动包 D:\XXX\XXX\mysql.jar -->
-  <classPathEntry location="D:\maven\repository\mysql\mysql-connector-java\5.1.26\mysql-connector-java-5.1.26.jar" />
+  <classPathEntry location="E:\maven\repository\mysql\mysql-connector-java\5.1.26\mysql-connector-java-5.1.26.jar" />
 
   <context id="context1" >
   	<!-- 数据库连接 -->
@@ -34,14 +34,12 @@
     	type="XMLMAPPER" />
 
 
-	  <!--<table domainObjectName="AdminUserInfo" tableName="adminUserInfo" ></table>
-	  <table domainObjectName="Collect" tableName="collect" ></table>
-	  <table domainObjectName="Commodity" tableName="commodity" ></table>
-	  <table domainObjectName="DownloanInfo" tableName="downloanInfo" ></table>
-	  <table domainObjectName="OrderInfo" tableName="orderInfo" ></table>
-	  <table domainObjectName="UserInfo" tableName="userInfo" ></table>-->
-
-	  <table domainObjectName="CategoryMenu" tableName="categoryMenu" ></table>
+<!--	  <table domainObjectName="CategoryMenu" tableName="categoryMenu" ></table>-->
+<!--	  <table domainObjectName="Collect" tableName="collect" ></table>-->
+<!--	  <table domainObjectName="Commodity" tableName="commodity" ></table>-->
+<!--	  <table domainObjectName="DownloanInfo" tableName="downloanInfo" ></table>-->
+<!--	  <table domainObjectName="OrderInfo" tableName="orderInfo" ></table>-->
+<!--	  <table domainObjectName="UserInfo" tableName="userInfo" ></table>-->
 
 
 

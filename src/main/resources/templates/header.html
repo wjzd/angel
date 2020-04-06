@@ -13,7 +13,7 @@
 			}
 
 			header nav .header-menu-bar .more-menu i {
-				/* background: url(imgok/dian.svg) no-repeat left center !important; */
+				 background: url([[@{/static/}]]img/nav-more.svg) no-repeat left center !important;
 				display: inline-block;
 				background-repeat: no-repeat;
 				background-position: left center;
@@ -24,15 +24,15 @@
 			}
 
 			header nav .header-menu-bar .more-menu:hover i {
-				/* background: url(imgok/dian_hover.svg) no-repeat left center !important; */
+				 background: url([[@{/static/}]]img/nav-more-hover.svg) no-repeat left center !important;
 			}
 
 			.icon-arrow-sou {
-				background: url(/static/img/sou.svg) no-repeat !important;
+				background: url([[@{/static/}]]img/sou.svg) no-repeat !important;
 			}
 
 			.search-unlogin:hover .icon-arrow-sou {
-				background: url(/static/img/sou_hover.svg) center center no-repeat !important;
+				background: url([[@{/static/}]]img/sou_hover.svg) center center no-repeat !important;
 			}
 
 			.icon-arrow-yun {
@@ -42,16 +42,25 @@
 				display: inline-block;
 			}
 
-			/*.js-header_upload:hover a.upload-link:after {*/
-			/*	background: url(imgok/yun_hover.svg) center center no-repeat !important;*/
-			/*}*/
+			.js-header_upload:hover a.upload-link:after {
+				background: url([[@{/static/}]]img/nav-upload-hover.svg) center center no-repeat !important;
+			}
 
-			/*a.upload-link:after {*/
-			/*	background: url(imgok/yun.svg) center center no-repeat !important;*/
-			/*}*/
+			a.upload-link:after {
+				background: url([[@{/static/}]]img/nav-upload.svg) center center no-repeat !important;
+			}
 
 			.card-info-type {
 				padding-top: 0;
+			}
+			.header nav .user-center>ul .message a.message-list i{
+				background: url([[@{/static/}]]img/nav-message.svg) center center no-repeat !important;
+			}
+			header nav .user-center>ul .message a.message-list i{
+			background: url([[@{/static/}]]img/nav-message.svg) center center no-repeat !important;
+			}
+			header nav .user-center>ul .message:hover a.message-list i{
+				background: url([[@{/static/}]]img/nav-message-hover.svg) center center no-repeat !important;
 			}
 		</style>
 	</head>
@@ -62,7 +71,7 @@
 						
 			</div>
 			<div class="header-menu-bar">
-				<div class="search-input-hull layui-hide" style="display: block;">
+				<div class="search-input-hull hide">
 					<span class="search-ipt"></span>
 					<input type="text" placeholder="" value="" id="nav-search-ipt">
 					<span class="search-cancel"></span>
@@ -74,42 +83,70 @@
 				<div class="menu-box">
 					<ul class="menu-list-content">
 						<li class="current"><a class="menu-list-box" href="/" z-st="nav_tab_home">首页</a></li>
-						
+						<input type="text" th:value="${name}" class="hide" id="categoryName"/>
 						<li class="discover header-menu-withmore" th:each="menu,stat:${menus}">
 							<a class="menu-list-box" target="_blank" z-st="nav_tab_discover" th:href="@{/page/getCommodity(category=${menu.getCategoryname()})}" th:text="${menu.getCategoryname()}">彩票</a>
 						</li>
-
-<!--						<li class="">-->
-<!--							<a class="menu-list-box" href="#" z-st="nav_tab_designer">棋牌</a>-->
-<!--						</li>-->
-<!--						<li class="header-menu-withmore ">-->
-<!--							<a class="menu-list-box" href="#" z-st="nav_tab_job">直播<i class="drop-down-arrow"></i></a>-->
-<!--						-->
-<!--						</li>-->
-<!--						<li class="special header-menu-withmore ">-->
-<!--							<a class="menu-list-box" href="#" z-st="nav_tab_event">H5<i class="drop-down-arrow"></i></a>-->
-<!--						-->
-<!--						</li>-->
-<!--						<li class="zhengban header-menu-withmore ">-->
-<!--							<a href="#" target="_blank" class="menu-list-box">教程</a>-->
-<!--						-->
-<!--						</li>-->
-<!--						<li class="header-menu-withmore gogoup-course">-->
-<!--							<a href="#" target="_blank" class="menu-list-box">开通会员</a>-->
-<!--						</li>-->
+						<li class="header-menu-withmore gogoup-course">
+							<a href="#" target="_blank" class="menu-list-box">开通会员</a>
+						</li>
+						<li class="more-menu header-menu-withmore ">
+							<span class="menu-tit-box" id="header-more" z-st="nav_tab_more"><i></i><sup class="subnav-dot-sup"></sup></span>
+						</li>
 					</ul>
 				</div>
 			</div>
 						
-			<div class="search search-unlogin" z-st="nav_searchbox">
+			<div class="search search-unlogin">
 				<i class="icon-arrow-sou">&nbsp;</i>
 			</div>
+
 			<div class="user-center user-center-unlogin">
+				<div class="header-upload js-header_upload">
+					<a href="javascript:;" data-upload="https://my.zcool.com.cn/uploadProduct" class="upload-link" z-st="nav_upload"></a>
+				</div>
 				<ul class="unlogin">
 					<li><a href="/login.html" data-href="" class="nav-unlogin">登录<i></i></a><a href="/register.html">注册</a></li>
 					<!--/cart.html-->
 				</ul>
 			</div>
+			<div class="user-center hide">
+				<ul class="login">
+					<div class="header-upload js-header_upload">
+						<a href="javascript:;" data-upload="https://my.zcool.com.cn/uploadProduct" class="upload-link" z-st="nav_upload"></a>
+					</div>
+					<li class="message">
+						<a class="message-list" z-st="nav_msgbox"><i></i></a>
+					</li>
+					<li class="user"><div class="avatar-container-30">
+						<a href="https://www.zcool.com.cn/u/21277468" class="user-list" id="header-logined-user-face" z-st="nav_userbox_face">
+							<img src="https://static.zcool.cn/git_z/z/images/boy.png" title="xiashiwole" alt="xiashiwole">
+						</a>
+					</div>
+						<div class="menu-list user-box hide">
+							<section><a href="https://www.zcool.com.cn/u/21277468" z-st="nav_userbox_name">xiashiwole</a></section>
+							<div class="user-box-list">
+								<div class="user-box-list-area">
+									<p class="works-manange"><a href="https://my.zcool.com.cn/collections" z-st="nav_userbox_favorites">我的收藏</a></p>
+								</div>
+								<div class="user-box-list-area">
+									<p class="works-manange"><a href="https://my.zcool.com.cn/setting" z-st="nav_userbox_setting" id="usercenter-menu-account-focus">资料与账号</a></p>
+								</div>
+								<div class="user-box-list-area">
+									<p class="works-manange"><a href="javascript:logout();" z-st="nav_userbox_logout">退出</a></p>
+								</div>
+							</div>
+						</div></li>
+				</ul>
+				<ul class="unlogin hide">
+					<li><a href="javascript:;" data-href="https://passport.zcool.com.cn/loginApp.do?appId=1006" class="nav-unlogin">登录<i></i></a><a href="https://passport.zcool.com.cn/regPhone.do?appId=1006&amp;cback=https://my.zcool.com.cn/focus/activity">注册</a></li>
+				</ul>
+			</div>
 		</nav>
+	<script>
+		$(function () {
+
+		})
+	</script>
 	</body>
 </html>
