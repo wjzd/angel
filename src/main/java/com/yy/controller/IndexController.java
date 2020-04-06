@@ -48,7 +48,10 @@ public class IndexController {
     public String footer(){
         return "footer";
     }
-
+    @RequestMapping("/ckeditor")
+    public String ckeditor(){
+        return "/views/ckeditor";
+    }
 
 
     @RequestMapping("/ueditor")

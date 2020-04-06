@@ -6,6 +6,10 @@ server:
     context-path: /
 
 spring:
+  servlet:
+    multipart:
+      max-request-size: 30MB
+      max-file-size: 30MB
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://47.111.190.67:3306/angel?useUnicode=true&characterEncoding=utf-8&useSSL=false
@@ -27,6 +31,6 @@ mybatis:
   mapper-locations: classpath:com/yy/mapping/*Mapper.xml
 logging:
   level:
-    com.dao: DEBUG
+    com.yy.dao: DEBUG
 
 
