@@ -56,6 +56,8 @@ public class DownloanController {
     @RequestMapping(value = "uploadFile")
     @ResponseBody
     public String uploadImage(@RequestParam("file") MultipartFile file) {
+
+        System.out.println("文件上传");
         // 项目在容器中实际发布运行的根路径
         String realPath = ClassUtils.getDefaultClassLoader().getResource("").getPath();
         String fileUrl="";

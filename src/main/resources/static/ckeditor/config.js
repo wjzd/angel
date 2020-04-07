@@ -28,11 +28,19 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
-	config.removeButtons = 'Underline,Subscript,Superscript';
+	/*config.removeButtons = 'Underline,Subscript,Superscript';
 
 	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';
 
 	// Simplify the dialog windows.
-	config.removeDialogTabs = 'image:advanced;link:advanced';
+	config.removeDialogTabs = 'image:advanced;link:advanced';*/
+    // 解决request.getParameter("CKEditorFuncNum")获取不到
+    config.filebrowserUploadMethod = 'form';
+    // 清空预览区域显示内容
+    config.image_previewText = '';
+    // 隐藏超链接与高级选项
+    config.removeDialogTabs = 'image:advanced;image:Link';
+    // 要上传图片的接口
+    config.filebrowserImageUploadUrl = "/downloanCon/uploadFile";
 };
