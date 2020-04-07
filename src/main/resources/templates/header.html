@@ -87,7 +87,7 @@
 						<li class="discover header-menu-withmore" th:each="menu,stat:${menus}">
 							<a class="menu-list-box" target="_blank" z-st="nav_tab_discover" th:href="@{/page/getCommodity(category=${menu.getCategoryname()})}" th:text="${menu.getCategoryname()}">彩票</a>
 						</li>
-						<li class="header-menu-withmore gogoup-course">
+						<li class="header-menu-withmore">
 							<a href="#" target="_blank" class="menu-list-box">开通会员</a>
 						</li>
 						<li class="more-menu header-menu-withmore ">
@@ -106,7 +106,7 @@
 					<a href="javascript:;" data-upload="https://my.zcool.com.cn/uploadProduct" class="upload-link" z-st="nav_upload"></a>
 				</div>
 				<ul class="unlogin">
-					<li><a href="/login.html" data-href="" class="nav-unlogin">登录<i></i></a><a href="/register.html">注册</a></li>
+					<li><a th:href="@{/page/login}"  class="nav-unlogin">登录<i></i></a><a th:href="@{/page/register}">注册</a></li>
 					<!--/cart.html-->
 				</ul>
 			</div>
@@ -145,7 +145,24 @@
 		</nav>
 	<script>
 		$(function () {
-
+			$(".search-unlogin").click(function () {
+				$(".search-input-hull").removeClass("hide");
+				$(".menu-box").addClass("hide");
+			});
+			$(".search-cancel").click(function () {
+				$(".search-input-hull").addClass("hide");
+				$(".menu-box").removeClass("hide");
+			})
+			$(".menu-list-box").each(function () {
+				var name=$("#categoryName").val();
+				if ($(this).text()==name){
+					console.log(name)
+					$(this).parent("li").addClass("current")
+					$(this).attr("href","#");
+				}else {
+					$(this).parent("li").removeClass("current");
+				}
+			});
 		})
 	</script>
 	</body>

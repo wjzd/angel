@@ -32,4 +32,12 @@ public class PageController {
        categoryName=category;
         return "/page/commodity";
     }
+    @RequestMapping("login")
+    public String login(){
+        return "/page/login";
+    }
+    @RequestMapping("register")
+    public String register(){
+        return "/page/register";
+    }
 }

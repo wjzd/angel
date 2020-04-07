@@ -229,8 +229,19 @@
 				<span class="footer-copy-right">Copyright © 2006-2020 <a href="#" target="_blank">站酷</a></span>
 			</div>
 		</div>
-		<div class="sidebar-fixed-wrapper js-sidebar-fixed" style="bottom: 40px;">
+		<div class="sidebar-fixed-wrapper js-sidebar-fixed hide" style="bottom: 40px;">
 			<a class="back-to-top sidebar-fixed_box" z-st="shortcut_totop" style="display: block;" href="#"></a>
 		</div>
+	<script>
+		$(function () {
+			var height = $(this).scrollTop();
+			console.log(height);
+			if (height>500){
+				$(".sidebar-fixed-wrapper").removeClass("hide");
+			} else {
+				$(".sidebar-fixed-wrapper").addClass("hide");
+			}
+		})
+	</script>
 	</body>
 </html>

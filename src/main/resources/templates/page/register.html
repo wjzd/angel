@@ -24,17 +24,20 @@
             left: 0;
             bottom: 0;
         }
+        .ipt-area-current{
+            width: 100% !important;
+        }
     </style>
 </head>
 <body>
 <div id="body">
     <div class="passcard-box">
         <div class="passcard-nav">
-            <a href="https://www.zcool.com.cn" class="check-zcool-logo"></a>
+            <a th:href="@{/}" class="check-zcool-logo"></a>
             通行证
-            <a href="https://www.zcool.com.cn" class="login-right-subnav main-link-color">返回量子科技</a>
+            <a th:href="@{/}" class="login-right-subnav main-link-color">返回量子科技</a>
             <span class="login-right-subnav login-nav">已有帐号，
-                    <a href="/loginApp.do?appId=1006&amp;cback=https://my.zcool.com.cn/focus/activity" class="main-link-color">马上登录</a>
+                    <a th:href="@{/page/login}" class="main-link-color">马上登录</a>
               </span>
         </div>
         <!-- 登录导航以下内容 -->
@@ -46,16 +49,14 @@
                         <div class="parent-input-box">
                             <!-- <i class="tel"></i> -->
                             <div class="country-phone-covers">
-                                <span class="phone-area-code-ipt" id="country-area-code">账号</span>
-                                <input type="text" name="" id="" maxlength="11" placeholder="请输入账号" class="text-style ipt-area-current">
+                                <input type="text" name="" id="account" placeholder="请输入账号" class="text-style ipt-area-current">
                             </div>
                             <span class="form-tip"></span>
                         </div>
                         <div class="parent-input-box">
                             <!-- <i class="tel"></i> -->
                             <div class="country-phone-covers">
-                                <span class="phone-area-code-ipt">邮箱</span>
-                                <input type="text" name="" maxlength="11" placeholder="请输入邮箱" class="text-style ipt-area-current">
+                                <input type="text" name="" id="email"  placeholder="请输入邮箱" class="text-style ipt-area-current">
                             </div>
                             <span class="form-tip"></span>
                         </div>
@@ -68,16 +69,16 @@
                                 </span>
                         </div>
                         <div class="agreemen-txt checkbox-wrap">
-                            <label class="label-checkbox check-c" for="Useragreement">
-                                <input type="checkbox" name="autolog" id="Useragreement" class="check-c">我已阅读并接受
-                                <a href="//www.zcool.com.cn/userAgreement" target="_blank" class="main-link-color">用户协议</a>
+                            <label class="label-checkbox check-cd" for="Useragreement">
+                                <input type="checkbox" name="autolog" id="Useragreement" class="check-c" checked>我已阅读并接受
+                                <a href="javascript:;" target="_blank" class="main-link-color">用户协议</a>
                                 和
-                                <a href="//www.zcool.com.cn/policy" target="_blank" class="main-link-color">隐私政策</a>
+                                <a href="javascript:;" target="_blank" class="main-link-color">隐私政策</a>
                             </label>
                             <span class="form-tip"></span>
                         </div>
                         <div class="passcard-btns register-btn">
-                            <input type="submit" value="注册" disabled="" id="z-p-registered" class="btn-disabled passcard-btn">
+                            <input type="submit" value="注册" disabled="" id="z-p-registered" class="btn-disabled passcard-btn btn-default-main">
                         </div>
                         <div class="third-party-covers">
                             <span class="p-666">使用社交帐号注册</span>
@@ -95,8 +96,8 @@
 
 
     <div class="footer">
-        <p>京ICP备11017824号-4 / 京ICP证130164号 北京市公安局朝阳分局备案编号:110105000501</p>
-        <p>Copyright © 2006-2018 ZCOOL <a href="javascript:;">中文</a> <a href="javascript:;">English</a></p>
+        <p>沪ICP备11017866号-4 / 沪ICP证130166号 上海市公安局静安分局备案编号:110106000601</p>
+        <p>Copyright © 2006-2020 QCOOL <a href="javascript:;">中文</a> <a href="javascript:;">English</a></p>
     </div>
 </div>
 <script>
@@ -104,6 +105,24 @@
         var carousel = layui.carousel;
         var laypage = layui.laypage,
             layer = layui.layer, $ = layui.$;
+        $("#Useragreement").click(function () {
+            if ($(this).is(":checked")){
+                $(this).parent().removeClass("check-c");
+                $(this).parent().addClass("check-cd")
+            }else {
+                $(this).parent().addClass("check-c");
+                $(this).parent().removeClass("check-cd")
+            }
+        });
+        var password=$("#password").val();
+        var emial=$("#email").val();
+        var account= $("#account").val();
+        $("#password").blur(function () {
+            console.log("1111");
+            if (password!="" && emial!="" && account!=""){
+                $("#z-p-registered").addClass("btn-default-main");
+            }
+        });
     });
 </script>
 </body>
