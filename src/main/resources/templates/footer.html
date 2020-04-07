@@ -3,6 +3,190 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<style>
+			footer {
+				width: 100%;
+				height: 229px;
+				background: #282828;
+				position: absolute;
+				bottom: 0;
+				color: #666;
+				font-size: 14px
+			}
+
+			footer .footer-wrapper {
+				height: 100%;
+				margin: 0 auto;
+				background: #282828
+			}
+
+			footer .footer-wrapper .footer-wrapper-top {
+				width: 100%;
+				height: 130px;
+				border-bottom: 1px solid #333333;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				align-items: center;
+				-webkit-box-pack: justify;
+				-ms-flex-pack: justify;
+				justify-content: space-between
+			}
+
+			footer .footer-wrapper .footer-wrapper-top a:hover {
+				color: #999999
+			}
+
+			footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-left a {
+				margin-right: 38px
+			}
+
+			footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-left .footer-mobile {
+				position: relative
+			}
+
+			footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-left .footer-mobile i {
+				position: absolute;
+				background: url(
+				) no-repeat;
+				width: 122px;
+				height: 131px;
+				bottom: 23px;
+				left: 50%;
+				margin-left: -52px
+			}
+
+			footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-left .footer-mobile:hover i {
+				display: inline-block
+			}
+
+			footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-left .footer-mobile:before {
+				content: "";
+				display: inline-block;
+				background: url(
+				) no-repeat;
+				width: 14px;
+				height: 23px;
+				vertical-align: middle;
+				margin-right: 10px;
+				margin-top: -3px
+			}
+
+			footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-right {
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				align-items: center
+			}
+
+			footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-right .footer-weixin, footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-right .footer-weibo {
+				display: inline-block;
+				margin-left: 40px;
+				background-repeat: no-repeat;
+				background-position: center center
+			}
+
+			footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-right .footer-weixin {
+				background-position: 0 0;
+				width: 25px;
+				height: 21px;
+				position: relative;
+				background-image: url(
+				)
+			}
+
+			footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-right .footer-weixin i {
+				position: absolute;
+				background: url(
+				)
+			}
+
+			footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-right .footer-weixin:hover i {
+				display: inline-block
+			}
+
+			footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-right .footer-weibo {
+				width: 26px;
+				height: 21px;
+				background-image: url()
+			}
+
+			.sidebar-fixed-wrapper {
+				position: fixed;
+				left: 50%;
+				bottom: 40px;
+				z-index: 10
+			}
+
+			.sidebar-fixed-wrapper .sidebar-fixed_box {
+				width: 50px;
+				height: 50px;
+				margin-top: 10px;
+				cursor: pointer;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				position: relative;
+				background-repeat: no-repeat;
+				background-position: center;
+				border-radius: 4px;
+				-webkit-border-radius: 4px;
+				-moz-border-radius: 4px
+			}
+
+			@media screen and (max-width: 1200px) {
+				footer {
+					width: 1200px
+				}
+			}
+
+			@media screen and (max-width: 1600px) {
+				.footer-wrapper {
+					width: 1130px
+				}
+
+				footer .footer-wrapper .footer-wrapper-bottom i {
+					margin: 0 19px
+				}
+
+				footer .footer-wrapper .footer-wrapper-top .footer-wrapper-top-left a {
+					margin-right: 24px
+				}
+
+				.mac footer .footer-wrapper .footer-wrapper-bottom i {
+					margin: 0 20px
+				}
+
+				.sidebar-fixed-wrapper {
+					margin-left: 606px
+				}
+
+				.scroll-fixed .sidebar-fixed-wrapper {
+					margin-left: 598px
+				}
+			}
+
+			@media screen and (min-width: 1601px) {
+				.footer-wrapper {
+					width: 1380px
+				}
+
+				footer .footer-wrapper .footer-wrapper-bottom i {
+					margin: 0 20px
+				}
+
+				.sidebar-fixed-wrapper {
+					margin-left: 700px
+				}
+
+				.scroll-fixed .sidebar-fixed-wrapper {
+					margin-left: 692px
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<div class="footer-wrapper">

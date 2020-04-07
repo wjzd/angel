@@ -35,13 +35,13 @@
             <div class="container-area-left">
                 <div class="card-media personal-card">
                     <div class="avatar-container-80 z-center">
-                        <a href="https://www.zcool.com.cn/u/21277468" title="xiashiwole" class="author-avatar" target="_blank" z-st="user_card_1_face">
+                        <a href="#" title="xiashiwole" class="author-avatar" target="_blank" z-st="user_card_1_face">
                             <img src="https://static.zcool.cn/git_z/z/images/boy.png" srcset="https://static.zcool.cn/git_z/z/images/boy.png 2x" width="80" height="80" title="xiashiwole" alt="">
                         </a>
 
                     </div>
                     <div class="presonal-info">
-                        <a href="https://www.zcool.com.cn/u/21277468" class="author-name" target="_blank" title="xiashiwole" z-st="user_card_1_name">xiashiwole</a>
+                        <a href="#" class="author-name" target="_blank" title="xiashiwole" z-st="user_card_1_name">xiashiwole</a>
                     </div>
                     <div class="position-info">
         <span title="北京 | 设计爱好者">北京&nbsp;|
@@ -51,29 +51,29 @@
                     </div>
                     <div class="btn-area">
 
-                        <a href="javascript:;" data-url="https://my.zcool.com.cn/uploadProduct" class="btn-default-main card-media-mid-btn js-upload">开始创作</a><br>
+                        <a href="#"  class="btn-default-main card-media-mid-btn js-upload">开始创作</a><br>
 
 
-                        <a href="https://contributor.hellorf.com/" target="_blank" class="btn-default-secondary card-media-mid-btn mt-10">帮你的创作变现</a>
+                        <a href="" target="_blank" class="btn-default-secondary card-media-mid-btn mt-10">帮你的创作变现</a>
                     </div>
 
                 </div>
                 <div class="card-media personal-menu">
                     <ul class="menu-list">
                         <li class="menu-list-default current">
-                            <i></i><a href="https://my.zcool.com.cn/collections">我的收藏</a></li>
+                            <i></i><a href="javascript:;" id="Collection">我的收藏</a></li>
                     </ul>
                     <ul class="menu-list">
-                        <li class="menu-list-default ">
-                            <i></i><a href="https://my.zcool.com.cn/setting" id="left-data-account-focus">资料与账号</a></li>
+                        <li class="menu-list-default">
+                            <i></i><a href="javascript:;" id="left-data-account-focus">资料与账号</a></li>
                     </ul>
                 </div>
                 <!-- 消息列表左侧zhan广告 -->
                 <div class="ad-media-list">
-                    <a href="https://www.hellorf.com/?utm_source=zcool&amp;utm_medium=setting&amp;utm_campaign=menu&amp;utm_content=img" target="_blank"><img src="//static.zcool.cn/git_z/z/images/hellorf-ad.png" alt="海洛品牌广告"></a>
+                    <a href="#" target="_blank"><img src="//static.zcool.cn/git_z/z/images/hellorf-ad.png" alt="海洛品牌广告"></a>
                 </div>
             </div>
-            <div class="container-area-right p-relative hide">
+            <div class="container-area-right p-relative " id="CollectionBox">
                 <div class="middle-title-wrap bg-box-radius">
                     <h2 class="middle-title">我的收藏</h2>
                 </div>
@@ -132,7 +132,7 @@
                     </section>
                 </div>
             </div>
-            <div class="container-area-right">
+            <div class="container-area-right hide" id="left-data-account-focusBox">
                 <div class="bg-box-radius">
                     <div class="tab-menu border-bottom">
                         <ul class="tab-box">
@@ -203,19 +203,12 @@
         $("#zHeader").load("[[@{/getHeader}]]");
         $("#footer").load("[[@{/getFooter}]]");
         //建造实例
-        laypage.render({
-            elem: 'demopage',
-            count: 100,
-            theme: '#ffe300',
-            prev: '<',
-            next: '>'
-        });
-        $("#IndexNav li").click(function(){
-            $(this).parent().children().removeClass("current");
-            $(this).addClass("current");
-            var box=$(this).children().attr("id")+'Box';
-            $(".all-work-list").addClass("layui-hide");
-            $("#"+box).removeClass("layui-hide");
+        $(".menu-list-default").click(function () {
+            var id=$(this).children("a").attr("id");
+           $(".menu-list-default").removeClass("current");
+           $(this).addClass("current");
+           $(".container-area-right").addClass("hide");
+           $("#"+id+"Box").removeClass("hide");
         })
     });
 </script>

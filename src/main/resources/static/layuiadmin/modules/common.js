@@ -36,7 +36,7 @@ layui.define(function(exports){
       }
     });
   };
-
+$(".back-to-top .sidebar-fixed_box").addClass("layui-hide");
   
   //对外暴露的接口
   exports('common', {});

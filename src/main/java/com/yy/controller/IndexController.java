@@ -31,27 +31,28 @@ public class IndexController {
     private IndexService indexService;
     @Resource
     private PageService pageService;
+
+    public static String categoryName="首页";
     @RequestMapping("/")
     public String index(Model model){
         //首页推荐
 //        model.addAttribute("tuijian",indexService.getCommodityList());
 //        //最新发布
 //        model.addAttribute("new",pageService.getListByTime(0));
-        return "/page/vipPage";
+        categoryName="首页";
+        return "index";
     }
     @RequestMapping("/getHeader")
     public String header(Model model){
         model.addAttribute("menus",indexService.getMenuList());
+        model.addAttribute("name",categoryName);
         return "header";
     }
     @RequestMapping("/getFooter")
     public String footer(){
         return "footer";
     }
-    @RequestMapping("/ckeditor")
-    public String ckeditor(){
-        return "/views/ckeditor";
-    }
+
 
 
     @RequestMapping("/ueditor")

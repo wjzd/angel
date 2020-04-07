@@ -229,39 +229,15 @@
 					</div>
 				</div>
 			</main>
-			<!-- 意见反馈 -->
-			<div class="pop-up feedback-pop hide">
-				<div class="popup-title">意见反馈</div>
-				<div class="popup-con">
-					<div class="pinlunt">
-						<textarea type="text" id="form-data-content" class="textarea-style" onpropertychange="MaxMe(this)" oninput="MaxMe(this)"
-						 style="height: 42px;"></textarea>
-					</div>
-					<div class="p-relative mt-20">
-						<input type="text" id="form-data-contact" placeholder="请留下您的联系方式，可以方便我们后续跟进（选填）" class="text-style">
-					</div>
-					<div class="text-center">
-						<input type="button" class="btn-default-main pop-confirm" value="确定" id="js-feedback-confirm">
-						<input type="button" class="btn-default-secondary pop-cancel" value="取消" id="js-feedback-cancel">
-					</div>
-				</div>
-				<i class="pop-close"></i>
-			</div>
 			<footer id="footer">
-				<div class="sidebar-fixed-wrapper js-sidebar-fixed" style="bottom: 40px;">
-					<a class="back-to-top sidebar-fixed_box" z-st="shortcut_totop" style="display: block;" href="#"></a>
-				</div>
+
 			</footer>
 		</div>
-		<div class="sidebar-fixed-wrapper js-sidebar-fixed" style="bottom: 40px;">
-			<div class="back-to-top sidebar-fixed_box" z-st="shortcut_totop" style="display: none;"></div>
-		</div>
-
-
-		</div>
-		</footer>
 		<script>
-			layui.use(['carousel', 'layer', 'laypage'], function() {
+			layui.config({
+				base: '[[@{/static/js/}]]' //设定扩展的 layui 模块的所在目录，一般用于外部模块扩展
+			});
+			layui.use(['carousel', 'layer', 'laypage','common'], function() {
 				var carousel = layui.carousel;
 				var laypage = layui.laypage,
 					layer = layui.layer,$=layui.$;
@@ -291,8 +267,7 @@
 					$(".all-work-list").addClass("layui-hide");
 					$("#"+box).removeClass("layui-hide");
 				})
-					$("#zHeader").load("[[@{/getHeader}]]");
-				$("#footer").load("[[@{/getFooter}]]");
+
 			});
 		</script>
 	</body>
