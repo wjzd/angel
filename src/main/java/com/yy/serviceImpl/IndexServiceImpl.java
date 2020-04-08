@@ -25,12 +25,11 @@ public class IndexServiceImpl implements IndexService {
     }
 
     @Override
-    public List<Commodity> getCommodityList() {
+    public List<Commodity> getCommodityList(Integer pn) {
         CommodityExample commodityExample=new CommodityExample();
         CommodityExample.Criteria criteria=commodityExample.createCriteria();
         criteria.andIsoutEqualTo(1);
         criteria.andReecomEqualTo(1);
-        List<Commodity> jinxuan=commodityMapper.selectByExample(commodityExample);
         return commodityMapper.selectByExample(null);
     }
 }
