@@ -129,6 +129,21 @@
             UE.getEditor('editor').execCommand( "clearlocaldata" );
             alert("已清空草稿箱")
         }
+
+        // 手动指定上传文件调用的接口（不同文件类型不同接口）
+        UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+        UE.Editor.prototype.getActionUrl = function(action) {
+            // 这里很重要，很重要，很重要，要和配置中的imageActionName值一样
+            if(action == '/ueditor/upload'){
+                // 这里调用后端我们写的图片上传接口
+                return '/ueditor/upload';
+            }else if(action == 'uploadfile'){
+                return '/ueditor/uploadFileData';
+            }else{
+                return this._bkGetActionUrl.call(this, action);
+            }
+        }
+
     </script>
 </head>
 <body>

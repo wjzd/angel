@@ -182,7 +182,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">到期时间</label>
             <div class="layui-input-inline">
-                <input type="text" th:value="${userInfo.getViptime()}" name="viptime"  placeholder="请上传图片" autocomplete="off" class="layui-input" >
+                <input type="text" id="viptime"  th:value="${userInfo.getViptime()}" name="viptime"  autocomplete="off" class="layui-input viptime" >
             </div>
         </div>
 
@@ -211,7 +211,11 @@
     }).use(['index', 'table'], function(){
         //展示已知数据
 
+    }).laydate.render({
+        elem: '#viptime',
+
     });
+
 </script>
 </body>
 </html>

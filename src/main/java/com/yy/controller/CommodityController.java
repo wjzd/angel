@@ -87,4 +87,14 @@ public class CommodityController {
 
         return "/views/addCommodity";
     }
+
+    @RequestMapping("/commodityView")
+    public String commodityView(Model model,Commodity commodity){
+        if(commodity.getId()!=null){
+            commodity=commodityService.selectByCom(commodity).get(0);
+        }
+
+        model.addAttribute("commodity",commodity);
+        return "/views/commodityView";
+    }
 }

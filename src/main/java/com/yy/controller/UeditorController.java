@@ -1,14 +1,15 @@
 package com.yy.controller;
 
-
-import com.alibaba.fastjson.JSONObject;
-import com.sun.imageio.plugins.common.ImageUtil;
-import lombok.Value;
-import org.apache.logging.log4j.util.ProcessIdUtil;
+import com.alibaba.fastjson.JSON;
+import org.apache.commons.io.Charsets;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ClassUtils;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -25,22 +26,24 @@ public class UeditorController {
 
     @RequestMapping("/config")
     @ResponseBody
-    public String uploadConfig() {
-        String s = "{\n" +
-                "            \"imageActionName\": \"uploadimage\",\n" +
-                "                \"imageFieldName\": \"upfile\", \n" +
-                "                \"imageMaxSize\": 2048000, \n" +
-                "                \"imageAllowFiles\": [\".png\", \".jpg\", \".jpeg\", \".gif\", \".bmp\"], \n" +
-                "                \"imageCompressEnable\": true, \n" +
-                "                \"imageCompressBorder\": 1600, \n" +
-                "                \"imageInsertAlign\": \"none\", \n" +
-                "                \"imageUrlPrefix\": \"\",\n" +
-                "                \"imagePathFormat\": \"/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}\" }";
-        return s;
+    public String config(HttpServletRequest request, HttpServletResponse response) {
+        String json = "";
+        response.setContentType("application/json");
+        // 获取项目在磁盘的绝对路径
+        String path = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+        try {
+            // 将josn文件读到Stirng
+            json = IOUtils.toString(new FileInputStream(new File(path + "/static/ueditor/jsp/config.json")), Charsets.UTF_8.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 
+
     @PostMapping("/upload")
-    public Map<String,String> uploadFile(MultipartFile upfile){
+    @ResponseBody
+    public Map<String,String> uploadFile(MultipartFile upfile,HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         System.out.println("999999");
         // 项目在容器中实际发布运行的根路径
@@ -71,7 +74,7 @@ public class UeditorController {
             }
 
         } else {
-            return null;
+
         }
         System.out.println(fileUrl);
         Map<String,String> map=new HashMap<>();
@@ -79,8 +82,14 @@ public class UeditorController {
         map.put("url",fileUrl);
         map.put("title",fileName);
         map.put("original",fileName);
+
         return map;
     }
+
+
+
+
+
 
 
 }
