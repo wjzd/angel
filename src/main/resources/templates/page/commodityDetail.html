@@ -29,6 +29,7 @@
             left: 0;
             bottom: 0;
         }
+        .three-link .details-share{background-image:url([[@{/static/}]]img/details-share.svg);}
     </style>
 </head>
 <body>
@@ -336,10 +337,8 @@
             <div class="details-con-other border-top">
                 <div class="work-details-box-wrap">
                     <div class="three-link">
-                        <input class="btn-default-secondary details-collection-btn collection js-not-fav js-project-fav"
-                               data-on="1"
-                               title="收藏"
-                               type="button" value="收藏" z-st="favorite">
+                        <input type="button" z-st="favorite" class="btn-default-secondary details-collection-btn collection js-not-fav js-project-fav" value="收藏" data-on="1" title="收藏">
+                        <input type="button" class="btn-default-secondary details-share" id="share" value="分享">
                     </div>
                 </div>
             </div>
@@ -348,20 +347,6 @@
 
         <div class="work-details-box-wrap details-bottom mt-20">
             <div class="details-sidebar-wrap left">
-                <div class="show-list-box infomation-work">
-                    <div class="show-list-title-box flex-between">
-                        <h3 class="show-list-title">作品信息</h3>
-                        <i class="select-shixin-arrow rightnew-arrows"></i>
-                    </div>
-                    <ul class="info-list">
-                        <li>
-                            <p class="info-list-title">创作时间</p>
-                            <div class="info-list-decra creat-time-box">
-                                <p>2020/03/27</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
                 <div class="user-work">
                     <div class="ml10 newad" id="index_02">
                         <!-- Revive Adserver Asynchronous JS Tag - Generated with Revive Adserver v5.0.2 -->
@@ -400,32 +385,26 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="fixed-right-box">
-
+                 <div class="fixed-right-box">
                     <input type="button" class="btn-default-secondary fixed-collection collection js-not-fav js-project-fav" value="收藏" />
                     <input type="button" class="btn-default-secondary fixed-comments" value="评论">
-                </div> -->
+                </div>
             </div>
 
         </div>
-        <input id="productImagesValue"
-               type="hidden"
-               value="[com.zcool.iservice.zweb.content.model.ProductImage@69c33c62, com.zcool.iservice.zweb.content.model.ProductImage@9632673, com.zcool.iservice.zweb.content.model.ProductImage@6f29dc2e, com.zcool.iservice.zweb.content.model.ProductImage@7c2d8bbf, com.zcool.iservice.zweb.content.model.ProductImage@cfd9874, com.zcool.iservice.zweb.content.model.ProductImage@1cbd7726, com.zcool.iservice.zweb.content.model.ProductImage@3dd41033, com.zcool.iservice.zweb.content.model.ProductImage@2d340445, com.zcool.iservice.zweb.content.model.ProductImage@4dea07af, com.zcool.iservice.zweb.content.model.ProductImage@3a195d73]">
 
     </main>
     <footer id="footer">
-        <div class="sidebar-fixed-wrapper js-sidebar-fixed" style="bottom: 40px;">
-            <a class="back-to-top sidebar-fixed_box" href="#" style="display: block;" z-st="shortcut_totop"></a>
-        </div>
     </footer>
 </div>
 <script>
-    layui.use(['carousel', 'layer', 'laypage'], function () {
+    layui.config({
+        base: '[[@{/static/js/}]]' //设定扩展的 layui 模块的所在目录，一般用于外部模块扩展
+    });
+    layui.use(['carousel', 'layer', 'laypage','common'], function () {
         var carousel = layui.carousel;
         var laypage = layui.laypage,
             layer = layui.layer, $ = layui.$;
-        $("#zHeader").load("[[@{/getHeader}]]");
-        $("#footer").load("[[@{/getFooter}]]");
 
     });
 </script>

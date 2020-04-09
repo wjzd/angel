@@ -12,13 +12,20 @@
 		<script th:src="@{/static/js/jquery-migrate-1.2.1.min.js}"></script>
 		<script th:src="@{/static/js/bootstrap.min.js}"></script>
 		<script type="text/javascript" async="" th:src="@{/static/js/vds.js}"></script>
-		<link rel="stylesheet" type="text/css" th:href="@{/static/layuiadmin/layui/css/layui.css}" />
 		<link rel="stylesheet" type="text/css" th:href="@{/static/css/common.css}" />
 		<link rel="stylesheet" type="text/css" th:href="@{/static/css/jquery.mCustomScrollbar.css}" />
 		<link rel="stylesheet" type="text/css" th:href="@{/static/css/passnumberbind.css}" />
 		<link rel="stylesheet" type="text/css" th:href="@{/static/css/passlogin.css}" />
 		<link rel="stylesheet" type="text/css" th:href="@{/static/css/wxCode.css}" />
 		<script th:src="@{/static/layuiadmin/layui/layui.all.js}"></script>
+		<style>
+			.login-switch .static-l{background: url([[@{/static/}]]img/wx_l.svg) no-repeat !important;}
+			.auto-login .auto-login-c{background: url([[@{/static/}]]img/checkbox.svg) no-repeat 0 2px !important;}
+			.account-login .wechat-login{background-image: url([[@{/static/}]]img/wechat.png) !important;}
+			.auto-login .auto-login-cd{background: url([[@{/static/}]]img/checkboxed.svg) no-repeat 0 2px !important;}
+			.account-login .weibo-login{background-image: url([[@{/static/}]]img/weibo.png) !important;}
+			.account-login .qq-login{    background-image: url([[@{/static/}]]img/qq.png) !important;;}
+		</style>
 	</head>
 	<body>
 
@@ -77,11 +84,10 @@
 								</div>
 								<div class="auto-login">
 									<label class="auto-login-cd">
-										<!-- <input type="checkbox" name="autolog" id="autolog" checked="" class="auto-login-cd">下次自动登录</label> -->
+										<input type="checkbox" name="autolog" id="autolog" checked="" class="auto-login-cd">下次自动登录</label>
 									<div class="login-links">
-										<a href="#" class="">忘记密码</a>
-										&nbsp; | &nbsp;<a href="#"
-										 target="_blank" class="">注册</a>
+										<a href="" class="">忘记密码</a>
+										&nbsp; | &nbsp;<a th:href="@{/page/register}" target="_blank" class="">注册</a>
 
 									</div>
 								</div>
@@ -111,30 +117,8 @@
 							 target="_blank">注册新账号</a>
 						</div>
 					</div>
-
 					<!-- <p class="member-login">会员登录</p> -->
-
-
 				</div>
-				<script>
-					passportDomain = "passport.zcool.com.cn";
-					var app_host = 'https://www.zcool.com.cn';
-				</script>
-				<script>
-					//TODO 登录成功以后发送消息到父页面
-					//window.parent.postMessage('passport','*'); 
-
-					//TODO 父页面监听 
-					/*     window.addEventListener('message', function(event){
-							// 通过origin属性判断消息来源地址
-							console.log(event.data);    
-							console.log(event.source);  
-						}, false); */
-				</script>
-
-
-				<script></script>
-
 			</div>
 
 			<!-- iframe方式引用通行证登录框页面 -->
@@ -144,17 +128,22 @@
 
 
 			<div class="footer login-footer">
-				<p>京ICP备11017824号-4 / 京ICP证130164号 北京市公安局朝阳分局备案编号:110105000501</p>
-				<p>Copyright © 2006-2018 ZCOOL <a href="javascript:;" onclick="doChangeLang('zh')">中文</a> <a href="javascript:;"
+				<p>沪ICP备11017866号-4 / 沪ICP证130166号 上海市公安局静安分局备案编号:110106000601</p>
+				<p>Copyright © 2006-2020 QCOOL  <a href="javascript:;" onclick="doChangeLang('zh')">中文</a> <a href="javascript:;"
 					 onclick="doChangeLang('en')">English</a></p>
 			</div>
-			<!-- <script type="text/javascript" src="//static.zcool.cn/v1.1.88/passport4.0/lib/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="//static.zcool.cn/v1.1.88/passport4.0/lib/jquery.mCustomScrollbar.js"></script>
-<script type="text/javascript" src="//static.zcool.cn/v1.1.88/passport4.0/script/Verification.js"></script>
-<script type="text/javascript" src="//static.zcool.cn/v1.1.88/passport/scripts/passport-v1.0.7.js"></script> -->
-
 			<script>
-
+				$(function () {
+					$("#autolog").click(function () {
+						if ($(this).is(":checked")){
+							$(this).parent().removeClass("auto-login-c");
+							$(this).parent().addClass("auto-login-cd")
+						}else {
+							$(this).parent().addClass("auto-login-c");
+							$(this).parent().removeClass("auto-login-cd")
+						}
+					})
+				})
 			</script>
 		</div>
 	</body>

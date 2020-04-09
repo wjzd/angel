@@ -8,5 +8,5 @@ public interface PageService {
     //查询精选列表
     List<Commodity> getListbyCategoryIdAndreecom(String  categoryName);
     //查询列表 时间
-    List<Commodity> getListByTime(String  categoryName);
+    List<Commodity> getListByTime(String  categoryName,Integer pn);
 }

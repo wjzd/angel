@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -34,11 +35,12 @@ public class IndexController {
 
     public static String categoryName="首页";
     @RequestMapping("/")
-    public String index(Model model){
+    public String index(Model model,@RequestParam(value="pn",defaultValue="1") Integer pn){
         //首页推荐
-//        model.addAttribute("tuijian",indexService.getCommodityList());
+        model.addAttribute("tuijian",indexService.getCommodityList(pn));
 //        //最新发布
-//        model.addAttribute("new",pageService.getListByTime(0));
+        model.addAttribute("new",pageService.getListByTime("0",pn));
+
         categoryName="首页";
         return "index";
     }

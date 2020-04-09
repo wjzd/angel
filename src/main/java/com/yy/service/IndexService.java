@@ -8,5 +8,5 @@ import java.util.List;
 public interface IndexService {
     List<CategoryMenu> getMenuList();
 
-    List<Commodity> getCommodityList();
+    List<Commodity> getCommodityList(Integer pn);
 }
