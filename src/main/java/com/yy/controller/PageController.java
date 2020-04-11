@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import java.util.List;
 
-import static com.yy.controller.IndexController.categoryName;
+import static com.yy.controller.IndexController.categoryName1;
 
 /**
  * 控制页面跳转Controller
@@ -27,10 +27,10 @@ public class PageController {
         //根据分类查询出编辑精选的商品
        List<Commodity> jinxuan=pageService.getListbyCategoryIdAndreecom(category);
         //根据分类查询出最新的商品
-       List<Commodity> zuixin=pageService.getListByTime(category,pn);
+       List<Commodity> zuixin=pageService.getListByTime(category);
        model.addAttribute("jinxuans",jinxuan);
        model.addAttribute("zuixins",zuixin);
-       categoryName=category;
+        categoryName1=category;
         return "/page/commodity";
     }
     @RequestMapping("login")

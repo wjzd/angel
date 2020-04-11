@@ -4,8 +4,5 @@ layui.define(function(exports){
 
 	$("#zHeader").load("/getHeader");
 	$("#footer").load("/getFooter");
-
-
-
 	exports('common', {});
 });

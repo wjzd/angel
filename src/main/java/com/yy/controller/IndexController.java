@@ -1,7 +1,10 @@
 package com.yy.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.sun.imageio.plugins.common.ImageUtil;
+import com.yy.pojo.Commodity;
 import com.yy.service.IndexService;
 import com.yy.service.PageService;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -33,21 +36,49 @@ public class IndexController {
     @Resource
     private PageService pageService;
 
-    public static String categoryName="首页";
-    @RequestMapping("/")
-    public String index(Model model,@RequestParam(value="pn",defaultValue="1") Integer pn){
-        //首页推荐
-        model.addAttribute("tuijian",indexService.getCommodityList(pn));
-//        //最新发布
-        model.addAttribute("new",pageService.getListByTime("0",pn));
+    public static String categoryName1="首页";
 
-        categoryName="首页";
+    @RequestMapping("/")
+    public String getiIfarmeCommodity(@RequestParam(value = "categoryName",defaultValue = "",required = false)String categoryName,
+                                      @RequestParam(value = "reecom",defaultValue = "",required = false) String reecom,Model model, @RequestParam(value = "pageNum", defaultValue = "1",required = false) Integer pageNum,
+                                      @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize ){
+        PageInfo<Commodity> commodityPageInfo=null;
+        PageInfo<Commodity> timeCommodity=null;
+        if (reecom!="") {
+            //首页推荐
+            commodityPageInfo= indexService.getCommodityList(categoryName, 1, pageNum, pageSize);
+            //首页推荐
+            timeCommodity = indexService.getCommodityList(categoryName, 0, pageNum, pageSize);
+
+        }else if (reecom.equals("1")){
+            //首页推荐
+            commodityPageInfo = indexService.getCommodityList(categoryName, 1, pageNum, pageSize);
+
+        }else if (reecom.equals("0")){
+            timeCommodity = indexService.getCommodityList(categoryName, 0, pageNum, pageSize);
+        }
+        model.addAttribute("tuijian", commodityPageInfo.getList());
+        model.addAttribute("tuijiantotal", commodityPageInfo.getTotal());
+        model.addAttribute("tuijianpageNum", commodityPageInfo.getPageNum());
+        model.addAttribute("tuijianpageSize", commodityPageInfo.getPageSize());
+        model.addAttribute("tuijianreecom", 1);
+        model.addAttribute("tuijianCategoryName", categoryName);
+        model.addAttribute("time", timeCommodity.getList());
+        model.addAttribute("timetotal", timeCommodity.getTotal());
+        model.addAttribute("timepageNum", timeCommodity.getPageNum());
+        model.addAttribute("timepageSize", timeCommodity.getPageSize());
+        model.addAttribute("timereecom", 0);
+        model.addAttribute("timeCategoryName", categoryName);
+        categoryName1="首页";
+        model.addAttribute("categoryName",categoryName1);
+
         return "index";
     }
+
     @RequestMapping("/getHeader")
     public String header(Model model){
         model.addAttribute("menus",indexService.getMenuList());
-        model.addAttribute("name",categoryName);
+        model.addAttribute("name",categoryName1);
         return "header";
     }
     @RequestMapping("/getFooter")

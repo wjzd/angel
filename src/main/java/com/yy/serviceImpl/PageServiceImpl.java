@@ -25,7 +25,7 @@ public class PageServiceImpl implements PageService {
     }
 
     @Override
-    public List<Commodity> getListByTime(String  categoryName,Integer pn) {
+    public List<Commodity> getListByTime(String  categoryName) {
         CommodityExample commodityExample=new CommodityExample();
         CommodityExample.Criteria criteria=commodityExample.createCriteria();
         if (!categoryName.equals("")){
