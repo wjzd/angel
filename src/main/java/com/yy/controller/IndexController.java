@@ -41,13 +41,13 @@ public class IndexController {
     @RequestMapping("/")
     public String getiIfarmeCommodity(@RequestParam(value = "categoryName",defaultValue = "",required = false)String categoryName,
                                       @RequestParam(value = "reecom",defaultValue = "",required = false) String reecom,Model model, @RequestParam(value = "pageNum", defaultValue = "1",required = false) Integer pageNum,
-                                      @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize ){
+                                      @RequestParam(value = "pageSize", defaultValue = "40", required = false) Integer pageSize,@RequestParam(value = "state",defaultValue = "",required = false)String state){
         PageInfo<Commodity> commodityPageInfo=null;
         PageInfo<Commodity> timeCommodity=null;
         if (reecom!="") {
             //首页推荐
             commodityPageInfo= indexService.getCommodityList(categoryName, 1, pageNum, pageSize);
-            //首页推荐
+            //首页时间排序
             timeCommodity = indexService.getCommodityList(categoryName, 0, pageNum, pageSize);
 
         }else if (reecom.equals("1")){
@@ -63,12 +63,13 @@ public class IndexController {
         model.addAttribute("tuijianpageSize", commodityPageInfo.getPageSize());
         model.addAttribute("tuijianreecom", 1);
         model.addAttribute("tuijianCategoryName", categoryName);
-        model.addAttribute("time", timeCommodity.getList());
+        model.addAttribute("times", timeCommodity.getList());
         model.addAttribute("timetotal", timeCommodity.getTotal());
         model.addAttribute("timepageNum", timeCommodity.getPageNum());
         model.addAttribute("timepageSize", timeCommodity.getPageSize());
         model.addAttribute("timereecom", 0);
         model.addAttribute("timeCategoryName", categoryName);
+        model.addAttribute("state",state);
         categoryName1="首页";
         model.addAttribute("categoryName",categoryName1);
 

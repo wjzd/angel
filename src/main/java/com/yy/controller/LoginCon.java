@@ -8,20 +8,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/LoginCon")
 public class LoginCon {
 
-    @Reference
+    @Resource
     private UserService userService;
 //    @RequestMapping(value="/")
 //    public String index(){
@@ -57,17 +60,25 @@ public class LoginCon {
     //注册时判断账号注册过没有
     @RequestMapping("/registerJudge")
     @ResponseBody
-    public void registerJudge(UserInfo userInfo,HttpServletResponse resp,HttpServletRequest req) throws JSONException {
-
-
+    public void registerJudge(UserInfo userInfo, HttpServletResponse resp, HttpServletRequest req,
+                              @RequestParam(value = "account",defaultValue = "",required = false)String account,
+                              @RequestParam(value = "email",defaultValue = "",required = false)String email) throws JSONException {
         String error="0";
+        if (userInfo==null){
+            userInfo=new UserInfo();
+            if (!account.equals("")){
+                userInfo.setAccount(account);
+            }
+            if (!email.equals("")){
+                userInfo.setEmail(email);
+            }
+        }
         List<UserInfo> userList=userService.selectByarb(userInfo);
-        if(userList.size()>0){//已经注册
+        if(userList!=null && userList.size()>0){//已经注册
             error="1";
         }else{
             error="0";
         }
-
         JSONObject json=new JSONObject();
         json.put("error",error);
 
@@ -85,12 +96,28 @@ public class LoginCon {
 
     //注册
     @RequestMapping("/registerUser")
-    public void registerUser(UserInfo userInfo){
-
+    @ResponseBody
+    public String  registerUser(UserInfo userInfo,  @RequestParam(value = "account")String account,
+                             @RequestParam(value = "email",required = false)String email,
+                             @RequestParam(value = "password",required = false)String password ){
+        String error="0";
+        if (userInfo==null){
+            userInfo=new UserInfo();
+        }
+        userInfo.setAccount(account);
+        userInfo.setEmail(email);
+        userInfo.setPasswd(password);
+        userInfo.setWorkername(UUID.randomUUID().toString().replaceAll("-",""));
+        userInfo.setIsvip(0);
         String passwd= MD5Util.string2MD5(userInfo.getPasswd());
         userInfo.setPasswd(passwd);
-        userService.insertSelective(userInfo);
-
+       try{
+            userService.insertSelective(userInfo);
+            error="1";
+       }catch (Exception e){
+            error="0";
+       }
+        return error;
     }
     //登录
     @RequestMapping("/loginUser")

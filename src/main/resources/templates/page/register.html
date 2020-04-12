@@ -19,11 +19,6 @@
     <!-- 这个js是公共的 -->
     <script th:src="@{/static/js/common.js}" type="text/javascript" charset="utf-8"></script>
     <style>
-        #footer {
-            position: inherit;
-            left: 0;
-            bottom: 0;
-        }
         .ipt-area-current{
             width: 100% !important;
         }
@@ -43,28 +38,28 @@
         <!-- 登录导航以下内容 -->
         <div class="passcon">
             <h2 class="passmail-title main-bg-color">注册会员</h2>
-            <form action="/regPhone_commit.do" id="form" method="POST" autocomplete="off">
+            <form  id="form"  autocomplete="off" onsubmit="return false">
                 <div class="retrieve-pass-box z-p-covers">
                     <div class="retrie-center" id="inputparent">
                         <div class="parent-input-box">
                             <!-- <i class="tel"></i> -->
                             <div class="country-phone-covers">
-                                <input type="text" name="" id="account" placeholder="请输入账号" class="text-style ipt-area-current">
+                                <input type="text" name="account" id="account" placeholder="请输入账号" class="text-style ipt-area-current" />
                             </div>
-                            <span class="form-tip"></span>
+                            <span class="form-tip red-color"></span>
                         </div>
                         <div class="parent-input-box">
                             <!-- <i class="tel"></i> -->
-                            <div class="country-phone-covers">
-                                <input type="text" name="" id="email"  placeholder="请输入邮箱" class="text-style ipt-area-current">
+                            <div class="country-phone-cover">
+                                <input type="email" name="email" id="email"  placeholder="请输入邮箱" class="text-style ipt-area-current"/>
                             </div>
-                            <span class="form-tip"></span>
+                            <span class="form-tip red-color"></span>
                         </div>
                         <div class="parent-input-box js-h-from-ele" style="display: block;">
                             <!-- <i class="setpassword"></i> -->
-                            <input type="password" name="password1" style="visibility:hidden;height:0px;border:none;float:left;">
-                            <input type="password" autocomplete="off" name="password" id="password" placeholder="8-20位密码，字母/数字/符号至少2种" class="text-style input-normal-style vericode"><i class="form-eye-icon"></i>
-                            <span class="form-tip">
+<!--                            <input type="password" name="password1" style="visibility:hidden;height:0px;border:none;float:left;">-->
+                            <input type="password" autocomplete="off" name="password" id="password" placeholder="8-20位密码" class="text-style input-normal-style vericode"/><i class="form-eye-icon"></i>
+                            <span class="form-tip red-color">
 							<!-- <span class="intensity"><i class="intencolor">弱</i><i>中</i><i>强</i></span> -->
                                 </span>
                         </div>
@@ -78,14 +73,14 @@
                             <span class="form-tip"></span>
                         </div>
                         <div class="passcard-btns register-btn">
-                            <input type="submit" value="注册" disabled="" id="z-p-registered" class="btn-disabled passcard-btn btn-default-main">
+                            <input type="submit" value="注册"  id="registered" class="passcard-btn btn-default-main">
                         </div>
                         <div class="third-party-covers">
                             <span class="p-666">使用社交帐号注册</span>
                             <div class="pass-account-covers">
-                                <a href="/thirdlogin/wechat.do?appId=1006" class="p-wechat-login"></a>
-                                <a href="/thirdlogin/wb.do?appId=1006" class="p-weibo-login"></a>
-                                <a href="/thirdlogin/qq.do?appId=1006" class="p-qq-login"></a>
+                                <a href="javascript:;" class="p-wechat-login"></a>
+                                <a href="javascript:;" class="p-weibo-login"></a>
+                                <a href="javascript:;" class="p-qq-login"></a>
                             </div>
                         </div>
                     </div>
@@ -115,14 +110,77 @@
             }
         });
         var password=$("#password").val();
-        var emial=$("#email").val();
-        var account= $("#account").val();
-        $("#password").blur(function () {
-            console.log("1111");
-            if (password!="" && emial!="" && account!=""){
-                $("#z-p-registered").addClass("btn-default-main");
+        // var email=$("#email").val();
+        // var account= $("input[name='account']").val();
+        $("#account").blur(function () {
+            var account= $("input[name='account']").val();
+            console.log(account);
+            if (account=="" || account.length<3 || account.length>15){
+                $(this).parent().next().text("账号必须为3-15个字符")
+            }else {
+                $.post('[[@{/LoginCon/registerJudge}]]',{account:account},function (res) {
+                    res=JSON.parse(res)
+                    if (res.error=="0"){
+                        $("#account").parent().next().text("");
+                    }else {
+                        $("#account").parent().next().text("账号已经被注册");
+                    }
+                })
             }
         });
+        $("#email").blur(function () {
+            var email=$("#email").val();
+            var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+            console.log(email);
+            if (email=="" || !reg.test(email)){
+                $(this).parent().next().text("邮箱格式错误");
+            }else {
+                $.post('[[@{/LoginCon/registerJudge}]]',{email:email},function (res) {
+                    res=JSON.parse(res)
+                    if (res.error=="0"){
+                        $("#email").parent().next().text("");
+                    }else {
+                        $("#email").parent().next().text("邮箱已经被注册");
+                    }
+                })
+            }
+        });
+        $("#password").blur(function () {
+            var password=$("#password").val();
+            if (password=="" || password.length<6 || password.length>20){
+                $("#password").next().next().text("密码必须为6-20个字符");
+            }else {
+                $("#password").next().next().text("");
+            }
+        });
+        $("#registered").click(function () {
+            var password=$("#password").val();
+            var email=$("#email").val();
+            var account= $("input[name='account']").val();
+            if (account=="" || account.length<3 || account.length>15){
+                $("#account").parent().next().text("账号必须为3-15个字符");
+            }else {
+
+            }
+            var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+            if (email=="" || !reg.test(email)){
+                $("#email").parent().next().text("邮箱格式错误");
+            }
+            if (password=="" || password.length<6 || password.length>20){
+                $("#password").next().next().text("密码必须为6-20个字符")
+            }
+            $.post('[[@{/LoginCon/registerUser}]]',{account:account,email:email,password:password},function (res) {
+                if (res=="1"){
+                    //注册成功
+                    layer.msg("恭喜你注册成功,赶快去登录吧",{time:1000*3,icon:1,shade:0.3},function () {
+                        window.location.href="[[@{/page/login}]]"
+                    })
+                } else {
+                    layer.msg("注册失败",{time:1000*3,icon:5,shade:0.3})
+                    window.location.reload();
+                }
+            })
+        })
     });
 </script>
 </body>

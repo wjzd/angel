@@ -34,7 +34,7 @@
 			<input type="hidden" id="thirdLogin" name="thirdLogin" value="">
 			<div class="pass-header-wrap">
 				<div class="login-passcard-nav">
-					<a href="//www.zcool.com.cn/" class="login-zcool-logo"></a>
+					<a th:href="@{/}" class="login-zcool-logo"></a>
 					通行证
 				</div>
 			</div>
@@ -62,24 +62,25 @@
 								</div>
 								<div class="email">
 									<!-- <input type="text" style="display:none;"> -->
-									<input type="text" id="username" placeholder="手机号/邮箱" class="text-style ipt-default-current" onfocus="document.getElementById('password').type='password'">
+									<input type="text" id="account" placeholder="账号/邮箱" class="text-style ipt-default-current">
+                                    <span class="form-tip red-color" style="font-size: 12px;">111</span>
 								</div>
+
 								<div class="password">
 									<!-- <input type="password" style="display:none;"> -->
-									<input type="text" id="password" placeholder="密码" maxlength="40" autocomplete="off" class="text-style ipt-default-current"
-									 onfocus="this.type='password'">
+									<input type="text" id="password" placeholder="密码" maxlength="40" autocomplete="off" class="text-style ipt-default-current" required>
 								</div>
-								<div class="code hide" id="l-image-code">
-									<input type="text" id="ipt-code" class="text-style ipt-code" value=""><img src="" id="randomCodeImg" width="180"
-									 height="44" onclick="loadRandomCodeImg()" alt=""><i class="js-image-code-tips code-wrong"></i>
-								</div>
+<!--								<div class="code hide" id="l-image-code">-->
+<!--									<input type="text" id="ipt-code" class="text-style ipt-code" value=""><img src="" id="randomCodeImg" width="180"-->
+<!--									 height="44" onclick="loadRandomCodeImg()" alt=""><i class="js-image-code-tips code-wrong"></i>-->
+<!--								</div>-->
 								<!-- <div class="forget-password">
 											<a href="javascript:;">忘记密码</a>
 										</div> -->
 
 								<div class="login">
 									<!--  btn-disabled  btn-default-main -->
-									<input type="button" id="loginbtn" class="btn-current-big btn-disabled" value="登录" style="background: #ffe300;color: #444444;">
+									<input type="button" id="loginbtn" class="btn-current-big" value="登录" style="background: #ffe300;color: #444444;">
 									<input type="button" id="" class="btn-current-big btn-default-main loadding-btn hide" value="登录中...">
 								</div>
 								<div class="auto-login">
@@ -123,7 +124,7 @@
 
 			<!-- iframe方式引用通行证登录框页面 -->
 			<div class="login-imgsource">
-				<a href="//www.hellorf.com/photo/show/403770346" target="_blank">图片来自站酷海洛 </a>
+				<a href="#" target="_blank">图片来自站酷海洛 </a>
 			</div>
 
 
@@ -134,6 +135,13 @@
 			</div>
 			<script>
 				$(function () {
+				    $(".loginbtn").click(function () {
+                        var account=$("#account").val();
+                        var password=$("#password").val();
+                        if (account==""){
+
+                        }
+                    })
 					$("#autolog").click(function () {
 						if ($(this).is(":checked")){
 							$(this).parent().removeClass("auto-login-c");

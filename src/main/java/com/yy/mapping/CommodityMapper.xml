@@ -213,7 +213,9 @@
       This element was generated on Thu Mar 26 14:09:35 CST 2020.
     -->
     insert into commodity
+
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      insertTime,
       <if test="id != null">
         id,
       </if>
@@ -265,8 +267,10 @@
       <if test="comCode != null">
         comCode,
       </if>
+
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+        now(),
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
@@ -442,6 +446,7 @@
       This element was generated on Thu Mar 26 14:09:35 CST 2020.
     -->
     update commodity
+    updateTime=now(),
     <set>
       <if test="comname != null">
         comName = #{comname,jdbcType=VARCHAR},

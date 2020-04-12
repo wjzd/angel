@@ -41,4 +41,8 @@ public class PageController {
     public String register(){
         return "/page/register";
     }
+    @RequestMapping("/vip")
+    public String vipPage(){
+        return "/page/vipPage";
+    }
 }

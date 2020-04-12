@@ -50,6 +50,7 @@ public class IndexServiceImpl implements IndexService {
             commodities=commodityMapper.selectByCom(commodity);
         }else {
             commodity.setCategory(null);
+            commodity.setReecom(null);
             commodities=commodityMapper.selectByCom(commodity);
         }
         return new PageInfo(commodities);

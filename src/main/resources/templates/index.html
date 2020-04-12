@@ -156,11 +156,13 @@
 								</div>
 								<div class="card-item">
 									<span class="user-avatar showMemberCard">
-										<a href="#" th:title="${commodity.getAdminid()}" target="_blank" z-st="home_main_card_user" th:text="${commodity.getAdminid()}">
+										<a href="#" th:title="${commodity.getComUser()}" target="_blank" z-st="home_main_card_user">
+
 											<img th:src="${commodity.getUserImg()}" th:srcset="${commodity.getUserImg()}" width="30" height="30" alt=""/>
+											<span th:text="${commodity.getComUser()}"></span>
 										</a>
 									</span>
-									<span class="time" title="#">5天前</span>
+									<span class="time" title="发布时间" th:text="${#dates.format(commodity.insertTime, 'yyyy-MM-dd')}">5天前</span>
 								</div>
 							</div>
 						</section>
@@ -179,29 +181,31 @@
 					<div class="work-list-box">
 						<section class="container">
 
-							<div class="card-box" th:each="commodity,stat:${time}">
+							<div class="card-box" th:each="time,stat:${times}">
 								<div class="card-img">
 									<a href="" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
-										<img th:src="${commodity.getImgurl()}" title="" alt="" th:title="${commodity.getComname()}">
+										<img th:src="${time.getImgurl()}" title="" alt="" th:title="${time.getComname()}">
 									</a>
 								</div>
 								<div class="card-info">
 									<p class="card-info-title">
-										<a href="#" th:title="${commodity.getComname()}" th:text="${commodity.getComname()}" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;"></a>
+										<a href="#" th:title="${time.getComname()}" th:text="${time.getComname()}" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;"></a>
 									</p>
-									<p class="card-info-type" title="#" th:text="${commodity.getCategory()}">
+									<p class="card-info-type" title="#" th:text="${time.getCategory()}">
 									</p>
 									<p class="card-info-item">
-										<span class="statistics-view" th:title="${commodity.getBrowsenum()}" th:text="${commodity.getBrowsenum()}"></span>
+										<span class="statistics-view" th:title="${time.getBrowsenum()}" th:text="${time.getBrowsenum()}"></span>
 									</p>
 								</div>
 								<div class="card-item">
 									<span class="user-avatar showMemberCard">
-										<a href="#" th:title="${commodity.getAdminid()}" target="_blank" z-st="home_main_card_user" th:text="${commodity.getAdminid()}">
-											<img th:src="${commodity.getUserImg()}" th:srcset="${commodity.getUserImg()}" width="30" height="30" alt=""/>
+										<a href="#" th:title="${time.getComUser()}" target="_blank" z-st="home_main_card_user">
+
+											<img th:src="${time.getUserImg()}" th:srcset="${time.getUserImg()}" width="30" height="30" alt=""/>
+											<span th:text="${time.getComUser()}"></span>
 										</a>
 									</span>
-									<span class="time" title="#">5天前</span>
+									<span class="time" title="发布时间" th:text="${#dates.format(time.insertTime, 'yyyy-MM-dd')}">5天前</span>
 								</div>
 							</div>
 						</section>
@@ -228,6 +232,9 @@
 				var carousel = layui.carousel;
 				var laypage = layui.laypage,
 					layer = layui.layer,$=layui.$;
+
+
+
 				//建造实例
 				carousel.render({
 					elem: '#test1',
@@ -251,13 +258,13 @@
 					,next: '>'
 					, jump: function (obj, first) {
 						//obj包含了当前分页的所有参数，比如：
-						console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
-						console.log(obj.limit); //得到每页显示的条数
+						// console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+						// console.log(obj.limit); //得到每页显示的条数
 						//首次不执行
 						if (!first) {
 							//do something
 							var tuijianreecom = $('#tuijianreecom').val();
-							var href = '/?reecom=' + tuijianreecom;
+							var href = '/?reecom=' + tuijianreecom+'&state=0';
 							href += '&pageNum=' + obj.curr;
 							href += '&pageSize=' + obj.limit;
 							console.log(href)
@@ -277,14 +284,14 @@
 					,next: '>'
 					, jump: function (obj, first) {
 						//obj包含了当前分页的所有参数，比如：
-						console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
-						console.log(obj.limit); //得到每页显示的条数
+						// console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+						// console.log(obj.limit); //得到每页显示的条数
 
 						//首次不执行
 						if (!first) {
 							//do something
 							var timereecom = $('#timereecom').val();
-							var href = '/?reecom=' + timereecom;
+							var href = '/?reecom=' + timereecom+'&state=1';
 							href += '&pageNum=' + obj.curr;
 							href += '&pageSize=' + obj.limit;
 							console.log(href)
@@ -293,6 +300,19 @@
 
 					}
 				});
+				var state='[[${state}]]';
+				if (state=="" || state==0){
+					//等于0显示首页推荐
+					// $("#tuijianNav").parent().children().removeClass("current");
+					// $("#tuijianNav").parent("li").addClass("current");
+					// $("#tuijianNavBox").removeClass("layui-hide");
+					// $("#newNav").addClass("layui-hide");
+				}else {
+					$("#newNav").parent().parent().children().removeClass("current");
+					$("#newNav").parent("li").addClass("current");
+					$("#newNavBox").removeClass("layui-hide");
+					$("#tuijianNavBox").addClass("layui-hide");
+				}
 				$("#IndexNav li").click(function(){
 					$(this).parent().children().removeClass("current");
 					$(this).addClass("current");
