@@ -41,16 +41,14 @@
         table.render({
             elem: '#userListTable'
             ,toolbar: '#toolbarDemo'
-            ,url:'[[@{/userCon/userList}]]'
+            ,url:'[[@{/downloanCon/downList}]]'
             ,cols: [ [ //标题栏
                 {field: 'id', title: 'ID', sort: true}
-                ,{field: 'account', title: '账号'}
-                ,{field: 'workername', title: '昵称'}
-                ,{field: 'telnum', title: '电话'}
-                ,{field: 'sex', title: '性别'}
-                ,{field: 'isvip', title: 'vip',sort: true}
-                ,{field: 'viptime', title: '到期时间'}
-                ,{field: 'email', title: '邮箱',templet:'isout'}
+                ,{field: 'userId', title: '下载用户',templet:'<div>{{createrFormat(d.userInfo.account)}}</div>'}
+                ,{field: 'workername', title: '商品',templet:'<div>{{createrFormat(d.commodity.comname)}}</div>'}
+                ,{field: 'telnum', title: '时间',templet : "<div>{{layui.util.toDateString(d.downtime, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
+                ,{field: 'downnum', title: '次数'}
+
 
             ] ]
             ,page:true
@@ -97,6 +95,10 @@
             $("#realJump").click();
         })
     });
+    //模板方法
+    function createrFormat(o){
+        return o;
+    }
 </script>
 </body>
 </html>

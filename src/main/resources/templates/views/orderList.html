@@ -42,16 +42,17 @@
         table.render({
             elem: '#userListTable'
             ,toolbar: '#toolbarDemo'
-            ,url:'[[@{/userCon/userList}]]'
+            ,url:'[[@{/orderCon/getOrderList}]]'
             ,cols: [ [ //标题栏
                 {field: 'id', title: 'ID', sort: true}
-                ,{field: 'account', title: '账号'}
-                ,{field: 'workername', title: '昵称'}
-                ,{field: 'telnum', title: '电话'}
-                ,{field: 'sex', title: '性别'}
-                ,{field: 'isvip', title: 'vip',sort: true}
-                ,{field: 'viptime', title: '到期时间'}
-                ,{field: 'email', title: '邮箱',templet:'isout'}
+                ,{field: 'commodity', title: '商品名称',templet:'<div>{{createrFormat(d.commodity.comname)}}</div>'}
+                ,{field: 'buytime', title: '购买时间'}
+                ,{field: 'buymoney', title: '金额'}
+                ,{field: 'userInfo', title: '用户',templet:'<div>{{createrFormat(d.userInfo.account)}}</div>'}
+                ,{field: 'ordernum', title: '订单编号'}
+                ,{field: 'orderamount', title: '购买数量'}
+                ,{field: 'orderunit', title: '单价',templet:'isout'}
+                ,{field: 'paytime', title: '支付时间',templet : "<div>{{layui.util.toDateString(d.paytime, 'yyyy-MM-dd HH:mm:ss')}}</div>"}
                 ,{fixed: 'right',title:'操作',  width:200, align:'center', toolbar: '#barDemo'}
             ] ]
             ,page:true
@@ -78,7 +79,12 @@
         table.on('tool(demo)', function(obj){
             var data = obj.data;
             if(obj.event === 'detail'){
-                layer.msg('ID：'+ data.id + ' 的查看操作');
+                //layer.msg('ID：'+ data.id + ' 的查看操作');
+                var id=JSON.stringify(data.id);
+                //layer.alert('编辑行：<br>'+ JSON.stringify(data.id))
+                $("#realJump").attr("lay-href","[[@{/orderCon/orderInfoById?id=}]]"+id);
+                $("#realJump").attr("lay-tips","查看订单")
+                $("#realJump").click();
             } else if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
@@ -98,6 +104,11 @@
             $("#realJump").click();
         })
     });
+
+    //模板方法
+    function createrFormat(o){
+        return o;
+    }
 </script>
 </body>
 </html>
