@@ -37,6 +37,7 @@ public class OrderInfoController {
         PageHelper.startPage(pn, 8);
 
         List<OrderInfo> orderInfoList=orderInfoService.selectByOrderInfo(orderInfo);
+        System.out.println("订单："+orderInfoList.get(0).getCommodity().getComname());
         resultTable.setCode(0);
         resultTable.setData(orderInfoList);
         resultTable.setCount(orderInfoList.size());
