@@ -87,9 +87,6 @@
 						<li class="discover header-menu-withmore" th:each="menu,stat:${menus}">
 							<a class="menu-list-box" target="_blank" z-st="nav_tab_discover" th:href="@{/page/getCommodity(category=${menu.getCategoryname()})}" th:text="${menu.getCategoryname()}">彩票</a>
 						</li>
-						<li class="header-menu-withmore">
-							<a th:href="@{/page/vip}" target="_blank" class="menu-list-box">开通会员</a>
-						</li>
 						<li class="more-menu header-menu-withmore ">
 							<span class="menu-tit-box" id="header-more" z-st="nav_tab_more"><i></i><sup class="subnav-dot-sup"></sup></span>
 						</li>

@@ -31,6 +31,9 @@ public class PageController {
        model.addAttribute("jinxuans",jinxuan);
        model.addAttribute("zuixins",zuixin);
         categoryName1=category;
+        if (category.equals("开通会员")){
+            return "/page/vipPage";
+        }
         return "/page/commodity";
     }
     @RequestMapping("login")
