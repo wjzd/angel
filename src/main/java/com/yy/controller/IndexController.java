@@ -1,32 +1,25 @@
 package com.yy.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.sun.imageio.plugins.common.ImageUtil;
 import com.yy.pojo.Commodity;
 import com.yy.service.IndexService;
 import com.yy.service.PageService;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @Controller
 public class IndexController {
@@ -77,7 +70,9 @@ public class IndexController {
     }
 
     @RequestMapping("/getHeader")
-    public String header(Model model){
+    public String header(Model model,HttpServletRequest request){
+//        HttpSession session = request.getSession();
+//        model.addAttribute("userInfo",request.getAttribute("userInfo"));
         model.addAttribute("menus",indexService.getMenuList());
         model.addAttribute("name",categoryName1);
         return "header";
@@ -87,7 +82,12 @@ public class IndexController {
         return "footer";
     }
 
-
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        session.removeAttribute("userInfo");
+        return "redirect:/";
+    }
 
     @RequestMapping("/ueditor")
     public String euditor(){

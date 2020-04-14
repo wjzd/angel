@@ -16,6 +16,7 @@
     <result column="isVip" jdbcType="INTEGER" property="isvip" />
     <result column="vipTime" jdbcType="TIMESTAMP" property="viptime" />
     <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="headImg" jdbcType="VARCHAR" property="headimg" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -193,6 +194,9 @@
       <if test="email != null">
         email,
       </if>
+      <if test="headimg != null">
+        headImg,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -221,6 +225,9 @@
       </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="headimg != null">
+        #{headimg,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -290,7 +297,8 @@
       sex = #{record.sex,jdbcType=INTEGER},
       isVip = #{record.isvip,jdbcType=INTEGER},
       vipTime = #{record.viptime,jdbcType=TIMESTAMP},
-      email = #{record.email,jdbcType=VARCHAR}
+      email = #{record.email,jdbcType=VARCHAR},
+      headImg = #{record.headimg,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -327,6 +335,9 @@
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
+      <if test="headimg != null">
+        headImg = #{headimg,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -344,7 +355,8 @@
       sex = #{sex,jdbcType=INTEGER},
       isVip = #{isvip,jdbcType=INTEGER},
       vipTime = #{viptime,jdbcType=TIMESTAMP},
-      email = #{email,jdbcType=VARCHAR}
+      email = #{email,jdbcType=VARCHAR},
+      headImg = #{headimg,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <!--查询用户-->
@@ -378,6 +390,9 @@
       </if>
       <if test="email != null">
         and  email = #{email,jdbcType=VARCHAR}
+      </if>
+      <if test="headimg != null">
+        and  headImg = #{headimg,jdbcType=VARCHAR}
       </if>
     </where>
 

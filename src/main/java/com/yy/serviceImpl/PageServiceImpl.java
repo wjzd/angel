@@ -1,4 +1,6 @@
 package com.yy.serviceImpl;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yy.dao.CommodityMapper;
 import com.yy.pojo.Commodity;
 import com.yy.pojo.CommodityExample;
@@ -34,5 +36,12 @@ public class PageServiceImpl implements PageService {
         criteria.andIsoutEqualTo(1);
         commodityExample.setOrderByClause("insertTime desc");
         return commodityMapper.selectByExample(commodityExample);
+    }
+
+    @Override
+    public PageInfo<Commodity> getCommodityByuserId(int userId,Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Commodity> commodityList=commodityMapper.getCommodityByuserId(userId);
+        return new PageInfo(commodityList);
     }
 }

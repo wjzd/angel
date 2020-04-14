@@ -98,7 +98,7 @@
 				<i class="icon-arrow-sou">&nbsp;</i>
 			</div>
 
-			<div class="user-center user-center-unlogin">
+			<div class="user-center user-center-unlogin" th:if="${session.userInfo == null}">
 				<div class="header-upload js-header_upload">
 					<a href="javascript:;" data-upload="https://my.zcool.com.cn/uploadProduct" class="upload-link" z-st="nav_upload"></a>
 				</div>
@@ -107,7 +107,7 @@
 					<!--/cart.html-->
 				</ul>
 			</div>
-			<div class="user-center hide">
+			<div class="user-center" th:if="${session.userInfo != null}">
 				<ul class="login">
 					<div class="header-upload js-header_upload">
 						<a href="javascript:;" data-upload="https://my.zcool.com.cn/uploadProduct" class="upload-link" z-st="nav_upload"></a>
@@ -116,18 +116,18 @@
 						<a class="message-list" z-st="nav_msgbox"><i></i></a>
 					</li>
 					<li class="user"><div class="avatar-container-30">
-						<a href="https://www.zcool.com.cn/u/21277468" class="user-list" id="header-logined-user-face" z-st="nav_userbox_face">
-							<img src="https://static.zcool.cn/git_z/z/images/boy.png" title="xiashiwole" alt="xiashiwole">
+						<a href="javascript:;" class="user-list" id="header-logined-user-face" z-st="nav_userbox_face">
+							<img th:src="${session.userInfo.getHeadimg()}"  th:title="${session.userInfo.workername}"th:alt="${session.userInfo.workername}">
 						</a>
 					</div>
 						<div class="menu-list user-box hide">
-							<section><a href="https://www.zcool.com.cn/u/21277468" z-st="nav_userbox_name">xiashiwole</a></section>
+							<section><a th:href="@{/page/center}" z-st="nav_userbox_name" th:text="${session.userInfo.workername}">xiashiwole</a></section>
 							<div class="user-box-list">
 								<div class="user-box-list-area">
-									<p class="works-manange"><a href="https://my.zcool.com.cn/collections" z-st="nav_userbox_favorites">我的收藏</a></p>
+									<p class="works-manange"><a th:href="@{/page/center(state=1)}" z-st="nav_userbox_favorites">我的收藏</a></p>
 								</div>
 								<div class="user-box-list-area">
-									<p class="works-manange"><a href="https://my.zcool.com.cn/setting" z-st="nav_userbox_setting" id="usercenter-menu-account-focus">资料与账号</a></p>
+									<p class="works-manange"><a th:href="@{/page/center(state=2)}" z-st="nav_userbox_setting" id="usercenter-menu-account-focus">资料与账号</a></p>
 								</div>
 								<div class="user-box-list-area">
 									<p class="works-manange"><a href="javascript:logout();" z-st="nav_userbox_logout">退出</a></p>
@@ -159,7 +159,12 @@
 					$(this).parent("li").removeClass("current");
 				}
 			});
+
 		})
+		function logout() {
+			window.location.href='[[@{/logout}]]'
+		}
+		
 	</script>
 	</body>
 </html>

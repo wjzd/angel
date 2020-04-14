@@ -11,11 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script th:src="@{/static/js/jquery-1.10.2.min.js}"></script>
     <script th:src="@{/static/js/jquery-migrate-1.2.1.min.js}"></script>
-    <script th:src="@{/static/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" async="" th:src="@{/static/js/vds.js}"></script>
     <link rel="stylesheet" th:href="@{/static/css/main.min.css}">
-    <link rel="stylesheet" th:href="@{/static/css/index.css}">
+    <link rel="stylesheet" th:href="@{/static/css/passnumberbind.css}">
     <link rel="stylesheet" th:href="@{/static/css/personalProfile.css}">
+    <link rel="stylesheet" th:href="@{/static/css/common.css}">
+    <link rel="stylesheet" th:href="@{/static/css/jquery.mCustomScrollbar.css}">
     <link th:href="@{/static/css/style.css}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" th:href="@{/static/layuiadmin/layui/css/layui.css}" />
     <script th:src="@{/static/layuiadmin/layui/layui.all.js}"></script>
@@ -73,7 +73,7 @@
                     <a href="#" target="_blank"><img src="//static.zcool.cn/git_z/z/images/hellorf-ad.png" alt="海洛品牌广告"></a>
                 </div>
             </div>
-            <div class="container-area-right p-relative " id="CollectionBox">
+            <div class="container-area-right" id="CollectionBox">
                 <div class="middle-title-wrap bg-box-radius">
                     <h2 class="middle-title">我的收藏</h2>
                 </div>
@@ -132,7 +132,7 @@
                     </section>
                 </div>
             </div>
-            <div class="container-area-right hide" id="left-data-account-focusBox">
+            <div class="container-area-right  hide" id="left-data-account-focusBox">
                 <div class="bg-box-radius">
                     <div class="tab-menu border-bottom">
                         <ul class="tab-box">
@@ -152,27 +152,92 @@
                                 <a href="https://passport.zcool.com.cn/accountSafe.do?appId=1006" class="user-name-modify" target="_blank">修改</a>
                             </div>
                         </div>
-                        <form class="layui-form" action="" style="position: relative;top: -200px;">
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">邮箱</label>
-                                <div class="layui-input-block">
-                                    <input type="email" name="邮箱" required  lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+<!--                        <form class="layui-form" action="" style="position: relative;top: -200px;">-->
+<!--                            <div class="layui-form-item">-->
+<!--                                <label class="layui-form-label">邮箱</label>-->
+<!--                                <div class="layui-input-block">-->
+<!--                                    <input type="email" name="邮箱" required  lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="layui-form-item">-->
+<!--                                <label class="layui-form-label">名称</label>-->
+<!--                                <div class="layui-input-block">-->
+<!--                                    <input type="text" name="name" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="layui-form-item">-->
+<!--                                <label class="layui-form-label">密码</label>-->
+<!--                                <div class="layui-input-block">-->
+<!--                                    <input type="password" name="password" required  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <input type="button" name="" value="保存" id="essential-information" class="btn-default-main btn-current-small mt-30 right">-->
+<!--                        </form>-->
+                        <div class="passcon account-wrap">
+                            <div class="account-number-tab">
+                                <span class="current-status">帐号安全</span> <span>第三方帐号绑定</span>
+                            </div>
+                            <div class="account-num-box" style="clear: both;position: relative;top: -200px;">
+                                <div class="account-num-tabcon">
+                                    <p class="first-line">
+                                        <span class="account-title">用户名</span><span class="account-tips-text"><span>xiashiwole</span>
+								</span>
+
+                                        <a href="#" onclick="modifyUname()" class="btn-default-main">修改</a>
+
+                                    </p>
+                                    <p>
+                                        <span class="account-title">邮箱帐号</span>
+
+                                        <span class="account-tips-text">未绑定邮箱，绑定后可使用该邮箱直接登录</span>
+
+
+                                        <a href="#" onclick="modifyemail(1)" class="btn-default-main">绑定</a>
+
+                                    </p>
+                                    <p>
+                                        <span class="account-title">手机帐号</span>
+                                        <span class="account-tips-text">
+
+									可以使用手机<b>17*******99</b>马上登录
+
+							</span>
+
+                                        <a href="#" onclick="modifyphoneView(2)" class="btn-default-main">更换</a>
+                                        <a href="#" id="unbindphone" class="btn-default-secondary">解绑</a>
+
+                                    </p>
+                                    <p>
+                                        <span class="account-title">登录密码</span><span class="account-tips-text two-line-txt">密码要求至少包含字母，符号或数字中的两项且长度超过8位，建议您经常修改密码，以保证帐号更加安全。</span>
+                                        <a href="#" id="modifysafepwd" class="btn-default-main">修改</a>
+                                    </p>
+
+                                </div>
+                                <div class="account-binding-box hide">
+                                    <p class="icon-box qqicon">
+                                        <span><span class="qq-login"></span>QQ</span>
+
+                                        <span class="bindtxt">未绑定</span>
+                                        <input id="qqbind" type="button" class="btn-default-main binding-btn" value="绑定">
+
+                                    </p>
+                                    <p class="icon-box sinaicon">
+                                        <span><span class="weibo-login"></span>微博</span>
+
+                                        <span class="bindtxt">未绑定</span>
+                                        <input id="wbbind" type="button" class="btn-default-main binding-btn" value="绑定">
+
+                                    </p>
+                                    <p class="icon-box">
+                                        <span><span class="wechat-login"></span>微信</span>
+
+                                        <span class="bindtxt">未绑定</span>
+                                        <input id="weixinbind" type="button" class="btn-default-main binding-btn" value="绑定">
+
+                                    </p>
                                 </div>
                             </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">名称</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="name" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">密码</label>
-                                <div class="layui-input-block">
-                                    <input type="password" name="password" required  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-                            <input type="button" name="" value="保存" id="essential-information" class="btn-default-main btn-current-small mt-30 right">
-                        </form>
+                        </div>
 
 <!--                        <div class="table-wrap">-->
 
@@ -211,6 +276,7 @@
            $(".container-area-right").addClass("hide");
            $("#"+id+"Box").removeClass("hide");
         })
+        var state='[[${state}]]';
     });
 </script>
 </body>

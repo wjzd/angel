@@ -123,4 +123,6 @@ public interface CommodityMapper{
     int updateByPrimaryKey(Commodity record);
 
     List<Commodity> selectByCom(Commodity commodity);
+
+    List<Commodity> getCommodityByuserId(int userId);
 }

@@ -107,10 +107,11 @@ public class LoginCon {
         userInfo.setAccount(account);
         userInfo.setEmail(email);
         userInfo.setPasswd(password);
-        userInfo.setWorkername(UUID.randomUUID().toString().replaceAll("-",""));
+        userInfo.setWorkername(UUID.randomUUID().toString().replaceAll("-","").substring(0,7));
         userInfo.setIsvip(0);
         String passwd= MD5Util.string2MD5(userInfo.getPasswd());
         userInfo.setPasswd(passwd);
+        userInfo.setHeadimg("/static/img/1.png");
        try{
             userService.insertSelective(userInfo);
             error="1";

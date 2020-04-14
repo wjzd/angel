@@ -1,5 +1,7 @@
 package com.yy.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.yy.pojo.Collect;
 import com.yy.pojo.Commodity;
 import com.yy.pojo.UserInfo;
 import com.yy.service.PageService;
@@ -50,13 +52,20 @@ public class PageController {
         return "/page/register";
     }
     @RequestMapping("/center")
-    public String userCenter(HttpServletRequest request,Model model){
+    public String userCenter(HttpServletRequest request,Model model,@RequestParam(value = "state",defaultValue = "1",required = false)String state,
+                             @RequestParam(value = "pageNum", defaultValue = "1",required = false) Integer pageNum,
+                             @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize){
         HttpSession session = request.getSession();
         UserInfo userInfo= (UserInfo) session.getAttribute("userInfo");
         if (userInfo==null){
             return "/page/login";
         }else {
-            model.addAttribute("userinfo",userInfo);
+            PageInfo<Commodity> commodityPageInfo=pageService.getCommodityByuserId(userInfo.getId(),pageNum,pageSize);
+            model.addAttribute("total",commodityPageInfo.getTotal());
+            model.addAttribute("pageSize",commodityPageInfo.getPageSize());
+            model.addAttribute("pageNum",commodityPageInfo.getPageNum());
+            model.addAttribute("state",state);
+            model.addAttribute("userInfo",userInfo);
         }
         return "/page/userCenter";
     }
