@@ -1,13 +1,18 @@
 package com.yy.controller;
 
 import com.yy.pojo.Commodity;
+import com.yy.pojo.UserInfo;
 import com.yy.service.PageService;
+import jdk.nashorn.internal.ir.IfNode;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static com.yy.controller.IndexController.categoryName1;
@@ -44,8 +49,15 @@ public class PageController {
     public String register(){
         return "/page/register";
     }
-    @RequestMapping("/vip")
-    public String vipPage(){
-        return "/page/vipPage";
+    @RequestMapping("/center")
+    public String userCenter(HttpServletRequest request,Model model){
+        HttpSession session = request.getSession();
+        UserInfo userInfo= (UserInfo) session.getAttribute("userInfo");
+        if (userInfo==null){
+            return "/page/login";
+        }else {
+            model.addAttribute("userinfo",userInfo);
+        }
+        return "/page/userCenter";
     }
 }

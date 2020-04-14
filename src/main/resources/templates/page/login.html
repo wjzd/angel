@@ -17,6 +17,7 @@
 		<link rel="stylesheet" type="text/css" th:href="@{/static/css/passnumberbind.css}" />
 		<link rel="stylesheet" type="text/css" th:href="@{/static/css/passlogin.css}" />
 		<link rel="stylesheet" type="text/css" th:href="@{/static/css/wxCode.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/static/layuiadmin/layui/css/layui.css}" />
 		<script th:src="@{/static/layuiadmin/layui/layui.all.js}"></script>
 		<style>
 			.login-switch .static-l{background: url([[@{/static/}]]img/wx_l.svg) no-repeat !important;}
@@ -25,6 +26,7 @@
 			.auto-login .auto-login-cd{background: url([[@{/static/}]]img/checkboxed.svg) no-repeat 0 2px !important;}
 			.account-login .weibo-login{background-image: url([[@{/static/}]]img/weibo.png) !important;}
 			.account-login .qq-login{    background-image: url([[@{/static/}]]img/qq.png) !important;;}
+			.ipt-tips-default, .email, .password{margin-bottom: 10px;!important;}
 		</style>
 	</head>
 	<body>
@@ -62,13 +64,14 @@
 								</div>
 								<div class="email">
 									<!-- <input type="text" style="display:none;"> -->
-									<input type="text" id="account" placeholder="账号/邮箱" class="text-style ipt-default-current">
-                                    <span class="form-tip red-color" style="font-size: 12px;">111</span>
+									<input type="text" id="account" placeholder="账号/邮箱" class="text-style ipt-default-current" value="">
+                                    <span class="form-tip red-color" style="font-size: 12px;color: red;display: block;height: 10px;" id="accountTip"></span>
 								</div>
 
 								<div class="password">
 									<!-- <input type="password" style="display:none;"> -->
-									<input type="text" id="password" placeholder="密码" maxlength="40" autocomplete="off" class="text-style ipt-default-current" required>
+									<input type="text" id="password" placeholder="密码" maxlength="40" autocomplete="off" class="text-style ipt-default-current"value="">
+									<span class="form-tip red-color" style="font-size: 12px;color: red;display: block;height: 10px;" id="passwordTip"></span>
 								</div>
 <!--								<div class="code hide" id="l-image-code">-->
 <!--									<input type="text" id="ipt-code" class="text-style ipt-code" value=""><img src="" id="randomCodeImg" width="180"-->
@@ -135,13 +138,62 @@
 			</div>
 			<script>
 				$(function () {
-				    $(".loginbtn").click(function () {
-                        var account=$("#account").val();
-                        var password=$("#password").val();
-                        if (account==""){
-
-                        }
-                    })
+				    // $("#loginbtn").click(function () {
+                    //     var account=$("#account").val();
+                    //     var password=$("#password").val();
+                    //     if (account==""){
+					// 		$("#accountTip").text("账号不能为空");
+					// 		return;
+                    //     }
+					// 	if (password==""){
+					// 		$("#passwordTip").text("密码不能为空");
+					// 		return;
+					// 	}
+					// 	$(this).addClass("hide");
+					// 	$(this).next().removeClass("hide");
+					// 	$.post('[[@{/LoginCon/loginUser}]]',{account:account,passwd:password},function (res) {
+					// 		res=JSON.parse(res);
+					// 		if (res.error){
+					//
+					// 		}
+					// 	})
+                    // })
+					// $("#autolog").click(function () {
+					// 	if ($(this).is(":checked")){
+					// 		$(this).parent().removeClass("auto-login-c");
+					// 		$(this).parent().addClass("auto-login-cd")
+					// 	}else {
+					// 		$(this).parent().addClass("auto-login-c");
+					// 		$(this).parent().removeClass("auto-login-cd")
+					// 	}
+					// });
+				});
+				layui.use(['layer'], function() {
+					var layer = layui.layer,$=layui.$;
+					$("#loginbtn").click(function () {
+						var account=$("#account").val();
+						var password=$("#password").val();
+						if (account==""){
+							$("#accountTip").text("账号不能为空");
+							return;
+						}
+						if (password==""){
+							$("#passwordTip").text("密码不能为空");
+							return;
+						}
+						$(this).addClass("hide");
+						$(this).next().removeClass("hide");
+						$.post('[[@{/LoginCon/loginUser}]]',{account:account,passwd:password},function (res) {
+							res=JSON.parse(res);
+							if (res.error==1){
+								layer.msg("登录失败，账号密码错误",{time:1000*3,icon:5});
+								$(this).removeClass("hide");
+								$(this).next().addClass("hide");
+							}else {
+								window.location.href='[[@{/}]]';
+							}
+						})
+					})
 					$("#autolog").click(function () {
 						if ($(this).is(":checked")){
 							$(this).parent().removeClass("auto-login-c");
@@ -150,8 +202,8 @@
 							$(this).parent().addClass("auto-login-c");
 							$(this).parent().removeClass("auto-login-cd")
 						}
-					})
-				})
+					});
+				});
 			</script>
 		</div>
 	</body>

@@ -136,7 +136,16 @@ public class LoginCon {
             userInfo=userList.get(0);
             session.setAttribute("userInfo", userInfo);
         }else{//账号或密码错误
-            error="1";
+            userInfo.setEmail(userInfo.getAccount());
+            userInfo.setAccount(null);
+            List<UserInfo> userList1=userService.selectByarb(userInfo);
+            if (userList1.size()>0){
+                error="0";
+                userInfo=userList1.get(0);
+                session.setAttribute("userInfo", userInfo);
+            }else {
+                error="1";
+            }
         }
 
         JSONObject json=new JSONObject();
