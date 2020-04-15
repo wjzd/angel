@@ -226,7 +226,7 @@
             <div class="">
 
 
-                <textarea id="editor" th:value="${commodity.getDetails()}" name="details"  style="width: 90%;height: 40em;"></textarea>
+                <textarea id="editor" th:text="${commodity.getDetails()}" name="details"  style="width: 90%;height: 40em;"></textarea>
             </div>
         </div>
 
@@ -234,6 +234,9 @@
 
             <input type="submit" class="layui-btn" lay-submit lay-filter="LAY-user-front-submit" id="LAY-user-front-submit" value="确认">
         </div>
+
+
+        <textarea th:text="${commodity.getDetails()}" name="details"  style="width: 90%;height: 40em;"></textarea>
     </div>
     </form>
 

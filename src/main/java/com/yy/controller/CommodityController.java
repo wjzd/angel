@@ -59,7 +59,9 @@ public class CommodityController {
     @RequestMapping("/addCommodity")
     public String addCommodity(Model model,Commodity commodity){
         try {
+            System.out.println("文本："+commodity.getDetails());
             if(commodity.getId()!=null){//修改
+
                 int count=commodityService.updateByPrimaryKeySelective(commodity);
                 System.out.println("修改："+count);
             }else{
@@ -69,9 +71,9 @@ public class CommodityController {
         }catch (Exception e){
             e.printStackTrace();
         }
+        System.out.println("文本："+commodity.getDetails());
 
-
-        return "/views/commodity";
+        return "redirect:/views/toCommodity";
     }
     @RequestMapping("/updateCommodityInit")
     public String updateCommodityInit(Model model,Commodity commodity){

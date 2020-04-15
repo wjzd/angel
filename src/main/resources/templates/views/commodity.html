@@ -92,7 +92,7 @@
                 });
             } else if(obj.event === 'edit'){
                 var id=JSON.stringify(data.id);
-                layer.alert('编辑行：<br>'+ JSON.stringify(data.id))
+                //layer.alert('编辑行：<br>'+ JSON.stringify(data.id))
                 $("#realJump").attr("lay-href","[[@{/views/updateCommodityInit?id=}]]"+id);
                 $("#realJump").attr("lay-tips","修改商品")
                 $("#realJump").click();
