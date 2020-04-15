@@ -136,6 +136,7 @@ public class LoginCon {
             error="0";
             userInfo=userList.get(0);
             session.setAttribute("userInfo", userInfo);
+            session.setMaxInactiveInterval(60*60);
         }else{//账号或密码错误
             userInfo.setEmail(userInfo.getAccount());
             userInfo.setAccount(null);

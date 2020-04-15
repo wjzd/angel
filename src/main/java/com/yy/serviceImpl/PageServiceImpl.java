@@ -2,8 +2,10 @@ package com.yy.serviceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yy.dao.CommodityMapper;
+import com.yy.dao.UserInfoMapper;
 import com.yy.pojo.Commodity;
 import com.yy.pojo.CommodityExample;
+import com.yy.pojo.UserInfo;
 import com.yy.service.PageService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -14,6 +16,8 @@ public class PageServiceImpl implements PageService {
 
     @Resource
     private CommodityMapper commodityMapper;
+    @Resource
+    private UserInfoMapper userInfoMapper;
 
     @Override
     public List<Commodity> getListbyCategoryIdAndreecom(String  categoryName){
@@ -43,5 +47,10 @@ public class PageServiceImpl implements PageService {
         PageHelper.startPage(pageNum,pageSize);
         List<Commodity> commodityList=commodityMapper.getCommodityByuserId(userId);
         return new PageInfo(commodityList);
+    }
+
+    @Override
+    public int updateUserInfo(UserInfo userInfo) {
+       return userInfoMapper.updateByPrimaryKey(userInfo);
     }
 }

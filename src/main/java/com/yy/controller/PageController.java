@@ -6,16 +6,24 @@ import com.yy.pojo.Commodity;
 import com.yy.pojo.UserInfo;
 import com.yy.service.PageService;
 import jdk.nashorn.internal.ir.IfNode;
+import lombok.SneakyThrows;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.yy.controller.IndexController.categoryName1;
 
@@ -54,13 +62,17 @@ public class PageController {
     @RequestMapping("/center")
     public String userCenter(HttpServletRequest request,Model model,@RequestParam(value = "state",defaultValue = "1",required = false)String state,
                              @RequestParam(value = "pageNum", defaultValue = "1",required = false) Integer pageNum,
-                             @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize){
+                             @RequestParam(value = "pageSize", defaultValue = "8", required = false) Integer pageSize){
         HttpSession session = request.getSession();
         UserInfo userInfo= (UserInfo) session.getAttribute("userInfo");
+        String email=userInfo.getEmail();
+        String resultEmail = email.replaceAll("(\\w?)(\\w+)(\\w)(@\\w+\\.[a-z]+(\\.[a-z]+)?)", "$1****$3$4");
+        userInfo.setEmail(resultEmail);
         if (userInfo==null){
             return "/page/login";
         }else {
             PageInfo<Commodity> commodityPageInfo=pageService.getCommodityByuserId(userInfo.getId(),pageNum,pageSize);
+            model.addAttribute("list",commodityPageInfo.getList());
             model.addAttribute("total",commodityPageInfo.getTotal());
             model.addAttribute("pageSize",commodityPageInfo.getPageSize());
             model.addAttribute("pageNum",commodityPageInfo.getPageNum());
@@ -68,5 +80,63 @@ public class PageController {
             model.addAttribute("userInfo",userInfo);
         }
         return "/page/userCenter";
+    }
+    @SneakyThrows
+    @RequestMapping("/modifyHeadImg")
+    @ResponseBody
+    public Map<String,String> modifyHeadImg(@RequestParam(value = "file") MultipartFile photo, HttpServletRequest request){
+        UserInfo userInfo= (UserInfo) request.getSession().getAttribute("userInfo");
+        Map<String, String> ret = new HashMap<String, String>();
+        if (photo == null) {
+            ret.put("type", "error");
+            ret.put("msg", "选择要上传的文件！");
+            return ret;
+        }
+        if (photo.getSize() > 1024 * 1024 * 10) {
+            ret.put("type", "error");
+            ret.put("msg", "文件大小不能超过10M！");
+            return ret;
+        }
+        //获取文件后缀
+        String suffix = photo.getOriginalFilename().substring(photo.getOriginalFilename().lastIndexOf(".") + 1, photo.getOriginalFilename().length());
+        if (!"jpg,jpeg,gif,png".toUpperCase().contains(suffix.toUpperCase())) {
+            ret.put("type", "error");
+            ret.put("msg", "请选择jpg,jpeg,gif,png格式的图片！");
+            return ret;
+        }
+        //获取项目根目录加上图片目录 webapp/static/imgages/upload/
+        File path = new File(ResourceUtils.getURL("classpath:").getPath());
+//      String savePath = request.getSession().getServletContext().getRealPath("/") + "/static/upload/";
+        String savePath=path.getAbsolutePath()+"/static/upload/";
+//        File savePath = new File(path.getAbsolutePath(),"static/upload/");
+        File savePathFile = new File(savePath);
+
+        if (!savePathFile.exists()) {
+            //若不存在该目录，则创建目录
+            savePathFile.mkdir();
+        }
+        String filename = new Date().getTime() + "." + suffix;
+        try {
+            //将文件保存指定目录
+            photo.transferTo(new File(savePath + filename));
+        } catch (Exception e) {
+            ret.put("type", "error");
+            ret.put("msg", "保存文件异常！");
+            e.printStackTrace();
+            return ret;
+        }
+        ret.put("type", "success");
+        ret.put("msg", "上传图片成功！");
+        ret.put("filepath", request.getSession().getServletContext().getContextPath() + "/static/upload/");
+        ret.put("filename", filename);
+        userInfo.setHeadimg("/static/upload/"+filename);
+        pageService.updateUserInfo(userInfo);
+        return ret;
+    }
+    @RequestMapping("/updateUserinfo")
+    public Map<String,String> updateUserInfo(UserInfo userInfo){
+        Map<String, String> ret = new HashMap<String, String>();
+        int state=pageService.updateUserInfo(userInfo);
+        return ret;
     }
 }

@@ -16,7 +16,7 @@ public class WebConfigurer extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authorityInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/LoginCon/login");
+                .excludePathPatterns("/LoginCon/login","/static/**");
         super.addInterceptors(registry);
     }
 }

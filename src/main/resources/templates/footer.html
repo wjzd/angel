@@ -260,7 +260,6 @@
 			var scrollFunc = function (e) {
 				var height = document.documentElement.scrollTop;
 				e = e || window.event;
-				console.log(height);
 				if (e.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件
 					if (e.wheelDelta > 0) { //当滑轮向上滚动时
 						// alert("滑轮向上滚动");
@@ -272,7 +271,6 @@
 					}
 					if (e.wheelDelta < 0) { //当滑轮向下滚动时
 						// alert("滑轮向下滚动");
-						console.log(height);
 						if (height>500){
 							$(".sidebar-fixed-wrapper").removeClass("hide");
 						} else {
@@ -288,7 +286,6 @@
 						}
 					}
 					if (e.detail< 0) { //当滑轮向下滚动时
-						console.log(height);
 						if (height>500){
 							$(".sidebar-fixed-wrapper").removeClass("hide");
 						} else {

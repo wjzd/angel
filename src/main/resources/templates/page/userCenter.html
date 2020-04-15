@@ -16,13 +16,20 @@
     <link rel="stylesheet" th:href="@{/static/css/personalProfile.css}">
     <link rel="stylesheet" th:href="@{/static/css/common.css}">
     <link rel="stylesheet" th:href="@{/static/css/jquery.mCustomScrollbar.css}">
-    <link th:href="@{/static/css/style.css}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" th:href="@{/static/layuiadmin/layui/css/layui.css}" />
     <script th:src="@{/static/layuiadmin/layui/layui.all.js}"></script>
     <!-- 这个js是公共的 -->
     <script th:src="@{/static/js/common.js}" type="text/javascript" charset="utf-8"></script>
     <style>
         .noclear{clear: none}
+        .album-card-box .card-info .card-info-item span.statistics-view:before, .card-box .card-info .card-info-item span.statistics-view:before{
+            background: url("[[@{/static/img/card-liulan.svg}]]") no-repeat 0 1px   !important;
+            background-size: 16px auto !important;    display: inline-block;
+            width: 16px;
+            height: 16px;
+            vertical-align: top;
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
@@ -35,26 +42,27 @@
             <div class="container-area-left">
                 <div class="card-media personal-card">
                     <div class="avatar-container-80 z-center">
-                        <a href="#" title="xiashiwole" class="author-avatar" target="_blank" z-st="user_card_1_face">
-                            <img src="https://static.zcool.cn/git_z/z/images/boy.png" srcset="https://static.zcool.cn/git_z/z/images/boy.png 2x" width="80" height="80" title="xiashiwole" alt="">
+                        <a href="javascript:;" title="xiashiwole" class="author-avatar" target="_blank" z-st="user_card_1_face" th:title="${session.userInfo.getWorkername()}">
+                            <img th:src="${session.userInfo.getHeadimg()}"  th:srcset="${session.userInfo.getHeadimg()}" width="80" height="80"  th:title="${session.userInfo.getWorkername()}">
                         </a>
 
                     </div>
                     <div class="presonal-info">
-                        <a href="#" class="author-name" target="_blank" title="xiashiwole" z-st="user_card_1_name">xiashiwole</a>
+                        <a href="javascript:;" class="author-name" target="_blank" th:text="${session.userInfo.getWorkername()}"  z-st="user_card_1_name"></a>
                     </div>
                     <div class="position-info">
-        <span title="北京 | 设计爱好者">北京&nbsp;|
-          设计爱好者
+        <span title="非会员用户" th:if="${session.userInfo.getIsvip()==0}">非会员用户
 
+        </span>
+                        <span title="会员用户" th:if="${session.userInfo.getIsvip()==1}" style="color: red">量子科技 | 会员用户
         </span>
                     </div>
                     <div class="btn-area">
 
-                        <a href="#"  class="btn-default-main card-media-mid-btn js-upload">开始创作</a><br>
+                        <a href="javascript:;"  class="btn-default-main card-media-mid-btn js-upload">开始创作</a><br>
 
 
-                        <a href="" target="_blank" class="btn-default-secondary card-media-mid-btn mt-10">帮你的创作变现</a>
+                        <a href="javascript:;" target="_blank" class="btn-default-secondary card-media-mid-btn mt-10">帮你的创作变现</a>
                     </div>
 
                 </div>
@@ -79,58 +87,35 @@
                     <h2 class="middle-title">我的收藏</h2>
                 </div>
                 <div class="work-list-box mt-20">
-                    <section class="container" style="height: 500px;">
-                        <div class="card-box">
+                    <section class="container" style="height: auto;">
+                        <div class="card-box" th:each="commodity,stat:${list}">
                             <div class="card-img">
-                                <a href="" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
-                                    <img src="http://placehold.it/260x195/998866/ffffff" title="xxxx" alt="">
+                                <a th:href="@{/page/getCommodityDetail(id=${commodity.getId()})}" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
+                                    <img th:src="${commodity.getImgurl()}" title="" alt="" th:title="${commodity.getComname()}">
                                 </a>
                             </div>
                             <div class="card-info">
                                 <p class="card-info-title">
-                                    <a href="#" title="年前年后-小米路由器Ax3600-WiFi6和一些C4D渲染" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;">年前年后-小米路由阿斯达所大所大所</a>
+                                    <a th:href="@{/page/getCommodityDetail(id=${commodity.getId()})}" th:title="${commodity.getComname()}" th:text="${commodity.getComname()}" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;"></a>
                                 </p>
-                                <p class="card-info-type" title="#">网页-电商
+                                <p class="card-info-type" title="#" th:text="${commodity.getCategory()}">
                                 </p>
                                 <p class="card-info-item">
-                                    <span class="statistics-view" title="共4451浏览">1142</span>
+                                    <span class="statistics-view" th:title="${commodity.getBrowsenum()}" th:text="${commodity.getBrowsenum()}"></span>
                                 </p>
                             </div>
                             <div class="card-item">
 									<span class="user-avatar showMemberCard">
-										<a href="#" title="次世xx文化" target="_blank" z-st="home_main_card_user">
-											<img src="" srcset="http://placehold.it/420x336/ff3333/ffffff"
-                                                 width="30" height="30" alt="">次世文化</a>
+										<a href="javascript:;" th:title="${commodity.getComUser()}" target="_blank" z-st="home_main_card_user">
+
+											<img th:src="${commodity.getUserImg()}" th:srcset="${commodity.getUserImg()}" width="30" height="30" alt=""/>
+											<span th:text="${commodity.getComUser()}"></span>
+										</a>
 									</span>
-                                <span class="time" title="#">5天前</span>
+                                <span class="time" title="发布时间" th:text="${#dates.format(commodity.insertTime, 'yyyy-MM-dd')}">5天前</span>
                             </div>
                         </div>
-                        <div class="card-box">
-                            <div class="card-img">
-                                <a href="" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
-                                    <img src="http://placehold.it/260x195/990066/ffffff" title="xxxx" alt="">
-                                </a>
-                            </div>
-                            <div class="card-info">
-                                <p class="card-info-title">
-                                    <a href="#" title="年前年后-小米路由器Ax3600-WiFi6和一些C4D渲染" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;">年前年年前年后-小米路由阿斯达所大所大所00-WiFi6和一些C4D渲染</a>
-                                </p>
-                                <p class="card-info-type" title="#">网页-电商
-                                </p>
-                                <p class="card-info-item">
-                                    <span class="statistics-view" title="共4451浏览">1142</span>
-                                </p>
-                            </div>
-                            <div class="card-item">
-									<span class="user-avatar showMemberCard">
-										<a href="#" title="次世xx文化" target="_blank" z-st="home_main_card_user">
-											<img src="" srcset="http://placehold.it/420x336/ff3333/ffffff"
-                                                 width="30" height="30" alt="">次世文化</a>
-									</span>
-                                <span class="time" title="#">5天前</span>
-                            </div>
-                        </div>
-                        <div id="page"></div>
+                        <div id="page" class="layui-row" style="margin-left: 40%;padding-bottom: 50px;"></div>
                     </section>
                 </div>
             </div>
@@ -147,112 +132,50 @@
                         <div class="text-center name-datum-box">
                             <div class="user-avatars" id="form-data-cover">
                                 <div class="opacity-layer hide">修改头像</div>
-                                <img src="https://static.zcool.cn/git_z/z/images/boy.png" srcset="https://static.zcool.cn/git_z/z/images/boy.png 2x" width="120" height="120" alt="">
+                                <img th:src="${session.userInfo.getHeadimg()}"  th:srcset="${session.userInfo.getHeadimg()}"  width="120" height="120" alt="">
                             </div>
+                            <input type="file" class="hide" id="headimg" onchange="upload()">
                             <div class="hover z-center">
-                                <span class="text-center modify-user-name">xiashiwole</span>
-                                <a href="https://passport.zcool.com.cn/accountSafe.do?appId=1006" class="user-name-modify" target="_blank">修改</a>
+                                <span class="text-center modify-user-name"  th:text="${session.userInfo.getWorkername()}">xiashiwole</span>
+                                <a href="" class="user-name-modify" target="_blank">修改</a>
                             </div>
                         </div>
-<!--                        <form class="layui-form" action="" style="position: relative;top: -200px;">-->
-<!--                            <div class="layui-form-item">-->
-<!--                                <label class="layui-form-label">邮箱</label>-->
-<!--                                <div class="layui-input-block">-->
-<!--                                    <input type="email" name="邮箱" required  lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="layui-form-item">-->
-<!--                                <label class="layui-form-label">名称</label>-->
-<!--                                <div class="layui-input-block">-->
-<!--                                    <input type="text" name="name" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="layui-form-item">-->
-<!--                                <label class="layui-form-label">密码</label>-->
-<!--                                <div class="layui-input-block">-->
-<!--                                    <input type="password" name="password" required  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <input type="button" name="" value="保存" id="essential-information" class="btn-default-main btn-current-small mt-30 right">-->
-<!--                        </form>-->
-                        <div class="passcon account-wrap">
+                        <div class="passcon account-wrap" style="height: 500px;">
                             <div class="account-number-tab">
                                 <span class="current-status">帐号安全</span> <span>第三方帐号绑定</span>
                             </div>
                             <div class="account-num-box" style="clear: both;position: relative;top: -200px;">
                                 <div class="account-num-tabcon">
                                     <p class="first-line">
-                                        <span class="account-title">用户名</span><span class="account-tips-text"><span>xiashiwole</span>
+                                        <span class="account-title">登录账号</span><span class="account-tips-text"><span th:text="${session.userInfo.getAccount()}">xiashiwole</span>
 								</span>
 
-                                        <a href="#" onclick="modifyUname()" class="btn-default-main">修改</a>
+                                        <a href="javascript:;" onclick="modifyUname()" class="btn-default-main">修改</a>
 
                                     </p>
                                     <p>
-                                        <span class="account-title">邮箱帐号</span>
+                                        <span class="account-title">登录邮箱</span>
 
-                                        <span class="account-tips-text">未绑定邮箱，绑定后可使用该邮箱直接登录</span>
+                                        <span class="account-tips-text" th:text="${session.userInfo.getEmail()}"></span>
 
 
-                                        <a href="#" onclick="modifyemail(1)" class="btn-default-main">绑定</a>
-
-                                    </p>
-                                    <p>
-                                        <span class="account-title">手机帐号</span>
-                                        <span class="account-tips-text">
-
-									可以使用手机<b>17*******99</b>马上登录
-
-							</span>
-
-                                        <a href="#" onclick="modifyphoneView(2)" class="btn-default-main">更换</a>
-                                        <a href="#" id="unbindphone" class="btn-default-secondary">解绑</a>
+                                        <a href="javascript:;" onclick="modifyemail(1)" class="btn-default-main">绑定</a>
 
                                     </p>
                                     <p>
                                         <span class="account-title">登录密码</span><span class="account-tips-text two-line-txt">密码要求至少包含字母，符号或数字中的两项且长度超过8位，建议您经常修改密码，以保证帐号更加安全。</span>
-                                        <a href="#" id="modifysafepwd" class="btn-default-main">修改</a>
+                                        <a href="javascript:;" id="modifysafepwd" class="btn-default-main">修改</a>
                                     </p>
 
-                                </div>
-                                <div class="account-binding-box hide">
-                                    <p class="icon-box qqicon">
-                                        <span><span class="qq-login"></span>QQ</span>
-
-                                        <span class="bindtxt">未绑定</span>
-                                        <input id="qqbind" type="button" class="btn-default-main binding-btn" value="绑定">
-
-                                    </p>
-                                    <p class="icon-box sinaicon">
-                                        <span><span class="weibo-login"></span>微博</span>
-
-                                        <span class="bindtxt">未绑定</span>
-                                        <input id="wbbind" type="button" class="btn-default-main binding-btn" value="绑定">
-
-                                    </p>
-                                    <p class="icon-box">
-                                        <span><span class="wechat-login"></span>微信</span>
-
-                                        <span class="bindtxt">未绑定</span>
-                                        <input id="weixinbind" type="button" class="btn-default-main binding-btn" value="绑定">
-
-                                    </p>
                                 </div>
                             </div>
                         </div>
-
-<!--                        <div class="table-wrap">-->
-
-
-
-
-<!--                        </div>-->
                     </div>
                 </div>
             </div>
         </div>
     </main>
-    <footer id="footer">
+    <footer id="footer" >
 
     </footer>
 </div>
@@ -307,7 +230,7 @@
                 //首次不执行
                 if (!first) {
                     //do something
-                    var href = '/?state=';
+                    var href = '[[@{/page/center(state=)}]]';
                     href += '&pageNum=' + obj.curr;
                     href += '&pageSize=' + obj.limit;
                     console.log(href)
@@ -316,7 +239,49 @@
 
             }
         });
+        $("#form-data-cover").click(function () {
+            $("#headimg").click();
+        });
     });
+    function upload(){
+        var animateimg = $("#headimg").val(); //获取上传的图片名 带//
+        var imgarr=animateimg.split('\\'); //分割
+        var myimg=imgarr[imgarr.length-1]; //去掉 // 获取图片名
+        var houzui = myimg.lastIndexOf('.'); //获取 . 出现的位置
+        var ext = myimg.substring(houzui, myimg.length).toUpperCase();  //切割 . 获取文件后缀
+
+        var file = $('#headimg').get(0).files[0]; //获取上传的文件
+        var fileSize = file.size;           //获取上传的文件大小
+        var maxSize = 1048576*10;              //最大1MB
+        if(ext !='.PNG' && ext !='.GIF' && ext !='.JPG' && ext !='.JPEG' && ext !='.BMP'){
+            parent.layer.msg('文件类型错误,请上传图片类型');
+            return false;
+        }else if(parseInt(fileSize) >= parseInt(maxSize)){
+            parent.layer.msg('上传的文件不能超过10MB');
+            return false;
+        }else{
+            var formData=new FormData();
+            formData.append('file',document.getElementById("headimg").files[0]);
+            // var data = new FormData($('#form1')[0]);
+            $.ajax({
+                url: "[[@{/page/modifyHeadImg}]]",
+                type: 'POST',
+                data: formData,
+                dataType: 'JSON',
+                cache: false,
+                processData: false,
+                contentType: false,
+                success:function (data) {
+                    if (data.type=="success"){
+                        layer.msg(data.msg,{icon:1,time:1000*3});
+                        window.location.reload();
+                    } else {
+                        layer.msg(data.msg,{icon:5,time:1000*3});
+                    }
+                }
+            });
+            return false;
+        }}
 </script>
 </body>
 <html>
