@@ -61,7 +61,8 @@
                 <div class="card-media personal-menu">
                     <ul class="menu-list">
                         <li class="menu-list-default current">
-                            <i></i><a href="javascript:;" id="Collection">我的收藏</a></li>
+                            <i></i><a href="javascript:;" id="Collection">我的收藏</a>
+                        </li>
                     </ul>
                     <ul class="menu-list">
                         <li class="menu-list-default">
@@ -78,7 +79,7 @@
                     <h2 class="middle-title">我的收藏</h2>
                 </div>
                 <div class="work-list-box mt-20">
-                    <section class="container">
+                    <section class="container" style="height: 500px;">
                         <div class="card-box">
                             <div class="card-img">
                                 <a href="" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
@@ -129,6 +130,7 @@
                                 <span class="time" title="#">5天前</span>
                             </div>
                         </div>
+                        <div id="page"></div>
                     </section>
                 </div>
             </div>
@@ -277,6 +279,43 @@
            $("#"+id+"Box").removeClass("hide");
         })
         var state='[[${state}]]';
+        $(".menu-list-default").removeClass("current");
+        if (state=="1"){
+            //state等于1表示默认打开收藏页面
+            $("#Collection").parent().addClass("current");
+            $(".container-area-right").addClass("hide");
+            $("#CollectionBox").removeClass("hide");
+        }else {
+            //state等于2表示打开账号与资料页面
+            $("#left-data-account-focus").parent().addClass("current");
+            $(".container-area-right").addClass("hide");
+            $("#left-data-account-focusBox").removeClass("hide");
+        };
+        laypage.render({
+            elem: 'page'
+            , count: '[[${total}]]' //数据总数，从服务端得到
+            , limit: '[[${pageSize}]]'
+            , curr:  '[[${pageNum}]]'
+            // , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+            ,theme: '#ffe300'
+            ,prev: '<'
+            ,next: '>'
+            , jump: function (obj, first) {
+                //obj包含了当前分页的所有参数，比如：
+                // console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                // console.log(obj.limit); //得到每页显示的条数
+                //首次不执行
+                if (!first) {
+                    //do something
+                    var href = '/?state=';
+                    href += '&pageNum=' + obj.curr;
+                    href += '&pageSize=' + obj.limit;
+                    console.log(href)
+                    location.href = href;
+                }
+
+            }
+        });
     });
 </script>
 </body>
