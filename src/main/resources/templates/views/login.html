@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>登录-量子科技</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<script th:src="@{/static/js/jquery-1.10.2.min.js}"></script>
+		<script th:src="@{/static/js/jquery-migrate-1.2.1.min.js}"></script>
+		<script th:src="@{/static/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" async="" th:src="@{/static/js/vds.js}"></script>
+		<link rel="stylesheet" type="text/css" th:href="@{/static/css/common.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/static/css/jquery.mCustomScrollbar.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/static/css/passnumberbind.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/static/css/passlogin.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/static/css/wxCode.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/static/layuiadmin/layui/css/layui.css}" />
+		<script th:src="@{/static/layuiadmin/layui/layui.all.js}"></script>
+		<style>
+			.login-switch .static-l{background: url([[@{/static/}]]img/wx_l.svg) no-repeat !important;}
+			.auto-login .auto-login-c{background: url([[@{/static/}]]img/checkbox.svg) no-repeat 0 2px !important;}
+			.account-login .wechat-login{background-image: url([[@{/static/}]]img/wechat.png) !important;}
+			.auto-login .auto-login-cd{background: url([[@{/static/}]]img/checkboxed.svg) no-repeat 0 2px !important;}
+			.account-login .weibo-login{background-image: url([[@{/static/}]]img/weibo.png) !important;}
+			.account-login .qq-login{    background-image: url([[@{/static/}]]img/qq.png) !important;;}
+			.ipt-tips-default, .email, .password{margin-bottom: 10px;!important;}
+		</style>
+	</head>
+	<body>
+		<form th:action="@{/viewLogin}" method="post">
+		<div class="pass-main-body">
+
+			<input type="hidden" id="thirdLogin" name="thirdLogin" value="">
+			<div class="pass-header-wrap">
+				<div class="login-passcard-nav">
+					<a th:href="@{/}" class="login-zcool-logo"></a>
+					通行证
+				</div>
+			</div>
+			<div class="login-logo">
+				<a href="#" class="zcool-logo"><img src="http://placehold.it/190x30/dde330/ffffff"></a>
+				<br>
+				登录量子科技，与100万+ 名新手一起交流经验、分享快乐吧！
+			</div>
+			<!-- 通行证默认登录页面 -->
+			<div class="login-div-box">
+				<div class="login-box module-l-static" id="login-box">
+					<div class="login-switch">
+						<div class="icon-l static-l"></div>
+						<div class="icon-l quick-l"></div>
+					</div>
+					<div class="l-static">
+						<div class="l-tab-covers">
+							<div class="l-tab-list current">密码登录</div>
+							<div class="l-tab-list">短信登录</div>
+						</div>
+						<div class="static-module-covers">
+							<div class="pass-login-covers">
+								<div class="error-tips hide" id="pass-error-tips">
+									<span class="ipt-tips-default ipt-default-current js-err-l"></span>
+								</div>
+								<div class="email">
+									<!-- <input type="text" style="display:none;"> -->
+									<input type="text" name="workername" id="account" placeholder="账号/邮箱" class="text-style ipt-default-current" value="">
+                                    <span class="form-tip red-color" style="font-size: 12px;color: red;display: block;height: 10px;" id="accountTip"></span>
+								</div>
+
+								<div class="password">
+									<!-- <input type="password" style="display:none;"> -->
+									<input type="password" name="passwd" id="password" placeholder="密码" maxlength="40" autocomplete="off" class="text-style ipt-default-current"value="">
+									<span class="form-tip red-color" style="font-size: 12px;color: red;display: block;height: 10px;" id="passwordTip"></span>
+								</div>
+<!--								<div class="code hide" id="l-image-code">-->
+<!--									<input type="text" id="ipt-code" class="text-style ipt-code" value=""><img src="" id="randomCodeImg" width="180"-->
+<!--									 height="44" onclick="loadRandomCodeImg()" alt=""><i class="js-image-code-tips code-wrong"></i>-->
+<!--								</div>-->
+								<!-- <div class="forget-password">
+											<a href="javascript:;">忘记密码</a>
+										</div> -->
+
+								<div class="login">
+									<!--  btn-disabled  btn-default-main -->
+									<input type="submit" id="loginbtn" class="btn-current-big" value="登录" style="background: #ffe300;color: #444444;">
+									<input type="button" id="" class="btn-current-big btn-default-main loadding-btn hide" value="登录中...">
+								</div>
+								<div class="auto-login">
+									<label class="auto-login-cd">
+										<input type="checkbox" name="autolog" id="autolog" checked="" class="auto-login-cd">下次自动登录</label>
+									<div class="login-links">
+										<a href="" class="">忘记密码</a>
+										&nbsp; | &nbsp;<a th:href="@{/page/register}" target="_blank" class="">注册</a>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="third-login-box">
+							<p class="third-account">第三方账号登录</p>
+							<div class="account-login">
+								<a data-href="#" class="wechat-login"></a>
+								<a data-href="#" class="weibo-login"></a>
+								<a data-href="#" class="qq-login"></a>
+							</div>
+						</div>
+					</div>
+					<div class="l-quick">
+						<div class="l-title-covers">
+							<div class="l-title-h2">微信二维码登录</div>
+						</div>
+						<div class="er-cd-covers">
+							<div class="" id="login_container">
+
+							</div>
+						</div>
+						<div class="wx_login_links">
+							<a href="javascript:;" target="_blank" class="pass-login-tab">密码登录</a> &nbsp;|&nbsp; <a href=""
+							 target="_blank">注册新账号</a>
+						</div>
+					</div>
+					<!-- <p class="member-login">会员登录</p> -->
+				</div>
+			</div>
+
+			<!-- iframe方式引用通行证登录框页面 -->
+			<div class="login-imgsource">
+				<a href="#" target="_blank">图片来自站酷海洛 </a>
+			</div>
+
+
+			<div class="footer login-footer">
+				<p>沪ICP备11017866号-4 / 沪ICP证130166号 上海市公安局静安分局备案编号:110106000601</p>
+				<p>Copyright © 2006-2020 QCOOL  <a href="javascript:;" onclick="doChangeLang('zh')">中文</a> <a href="javascript:;"
+					 onclick="doChangeLang('en')">English</a></p>
+			</div>
+			<script>
+				$(function () {
+
+				});
+				layui.use(['layer'], function() {
+					var layer = layui.layer,$=layui.$;
+					$("#loginbtn").click(function () {
+						var account=$("#account").val();
+						var password=$("#password").val();
+						if (account==""){
+							$("#accountTip").text("账号不能为空");
+							return;
+						}
+						if (password==""){
+							$("#passwordTip").text("密码不能为空");
+							return;
+						}
+						$(this).addClass("hide");
+						$(this).next().removeClass("hide");
+
+					})
+					$("#autolog").click(function () {
+						if ($(this).is(":checked")){
+							$(this).parent().removeClass("auto-login-c");
+							$(this).parent().addClass("auto-login-cd")
+						}else {
+							$(this).parent().addClass("auto-login-c");
+							$(this).parent().removeClass("auto-login-cd")
+						}
+					});
+				});
+			</script>
+		</div>
+
+		</form>
+	</body>
+</html>
