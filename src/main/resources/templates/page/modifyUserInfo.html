@@ -26,7 +26,7 @@
         <!-- 登录导航以下内容 -->
         <div class="passcon" >
             <h2 class="passmail-title main-bg-color">帐号安全</h2>
-            <form name="modifyUnameForm">
+            <form name="modifyUnameForm" id="modifyUnameForm">
                 <input type="hidden" id="appId" name="appId" value="1006">
                 <div class="retrieve-pass-box">
                     <div class="retrie-center" th:if="${modifyName eq 'workername'}">
@@ -76,15 +76,13 @@
                         <p><input type="password" name="password" id="password" placeholder="原请输入原密码" class="text-style input-normal-style">
                             <span class="form-tip user-name-tip gray-color"></span>
                         </p>
-                        <p><input type="text" name="password" id="password1" placeholder="请输入现在的密码" class="text-style input-normal-style">
+                        <p><input type="password" name="password1" id="password1" placeholder="请输入现在的密码" class="text-style input-normal-style">
                             <span class="form-tip user-name-tip gray-color"></span>
                         </p>
                         <p class="verifica-code"><input type="text" name="randomCode" placeholder="验证码" id="vercodes" class="text-style img-vericode">
-                            <img src="//passport.zcool.com.cn/loginRandomImg.jpg?t=1587028091189" id="randomCodeImg" width="201" height="48" alt="">
-                            <i onclick="loadRandomCode();" title="换一张" class="code-tips code-wrong"></i>
-                            <span class="form-tip"></span>
-                        </p>
-                        <p class="passcard-btns"><input type="button" value="确定" id="Modifyname" class="btn-default-main deter-mine-btn"><input type="button" value="返回" class="btn-default-secondary return-btn"></p>
+                        <div id="v_container" style="width: 165px;height: 48px;position: absolute;margin-top: -48px;margin-left: 140px;"></div>
+                        <span class="form-tip gray-color"></span>
+                        <p class="passcard-btns"><input type="button" value="确定" id="ModifyPassword" class="btn-default-main deter-mine-btn"><input type="button" value="返回" class="btn-default-secondary return-btn"></p>
                     </div>
                 </div>
             </form>
@@ -134,29 +132,45 @@
             }
             ajaxForm('modifyUnameForm');
         });
-        $("#password").blur(function () {
-          var password=$(this).val();
-          if (password!=null && password!=''){
-              $.post("[[@{/page/checkPassword}]]",{password:password},function (res) {
-                   if (!res){
-                       $("#password").next().text("原密码错误");
-                   }
-              })
-          } 
-        })
-        $("#ModifyEmail").click(function () {
-            var email=$("#email").val();
-            var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+        $("#ModifyPassword").click(function () {
+            var password=$("#password").val();
+            var password1=$("#password1").val();
             var res=verifyCode.validate($("#vercodes").val());
-            if (email=="" || !reg.test(email)){
-                $("#account").next().text("账号必须为3-15个字符");
-                return;
+            var b=true;
+            if (password!=null && password!=''){
+                $.ajaxSettings.async = false;
+                $.post("[[@{/page/checkPassword}]]",{password:password},function (res) {
+                    if (!res){
+                        $("#password").next().text("原密码错误");
+                        b=false;
+                    }else {
+                        b=true;
+
+                    }
+                })
+            }else {
+                $("#password").next().text("密码不能为空");
+                b=false;
+            }
+            if (password1==null && password1==''){
+                $("#password1").next().text("新密码不能为空");
+                b=false;
+            }
+            if (password1==password){
+                $("#password1").next().text("两个密码不能一样");
+                b=false;
             }
             if (!res){
                 $("#vercodes").parent().next().next().text("验证码错误");
-                return;
+                b=false;
             }
-            ajaxForm('modifyUnameForm');
+
+           if (b){
+               $("#vercodes").parent().next().next().text("");
+               $("#password1").next().text("");
+               $("#password").next().text("");
+               ajaxForm('modifyUnameForm');
+           }
         });
     });
 </script>
@@ -168,6 +182,7 @@
     function ajaxForm(formName) {
         $.ajax({
             type: "POST",   //提交的方法
+            dataType:'json',
             url:"[[@{/page/updateUserInfo}]]", //提交的地址
             data:$('#'+formName).serialize(),// 序列化表单值
             success: function(data) {  //成功

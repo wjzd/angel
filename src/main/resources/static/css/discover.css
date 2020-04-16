@@ -1,0 +1,177 @@
+@charset "UTF-8";
+/*-- 页面辅助文字 --*/
+/*-- 页面辅助文字 --*/
+/* -- 按钮 -- */
+/*-- 文本截取，超出一行行加省略号 --*/
+/*-- 文本截取，超出两行加省略号 --*/
+/*-- 圆角 --*/
+/*-- inline-block --*/
+/*-- 透明度 --*/
+/*-- 一级下拉菜单样式 --*/
+/*-- 导航下拉菜单原始样式 --*/
+/*-- 导航下拉菜单hover样式 --*/
+/*-- new标记 --*/
+/*-- 分隔符 --*/
+/*-- 按钮通用 --*/
+/*-- 卡片透明度 --*/
+/*-- 小三角朝下投影效果 --*/
+.editor-choiceness i { display: inline-block; background: url("../images/selectarrow.png") no-repeat; width: 12px; height: 7px; position: absolute; top: 50%; margin-top: -3px; right: 10px; margin-left: 6px; }
+
+.editor-choiceness:hover .menu-list { display: block; }
+
+.subnav-content-wrap .subnav-wrap .menu-list { position: absolute; width: 115px; z-index: 1; background: #fff; border-radius: 4px; -webkit-box-shadow: 0px 1px 12px 0px rgba(0, 0, 0, 0.2); box-shadow: 0px 1px 12px 0px rgba(0, 0, 0, 0.2); filter: alpha(opacity=100); -moz-opacity: 1; -khtml-opacity: 1; opacity: 1; padding: 10px 0; left: 10px; top: 52px; }
+
+.subnav-content-wrap .subnav-wrap .menu-list p { height: 40px; line-height: 40px; color: #444444; text-align: center; font-size: 14px; font-weight: normal; }
+
+.subnav-content-wrap .subnav-wrap .menu-list p a { display: inline-block; width: 100%; }
+
+.subnav-content-wrap .subnav-wrap .menu-list p a:hover { background: #f2f2f2; }
+
+.subnav-content-wrap .classify { max-width: 250px; font-size: 12px; color: #bbbbbb; position: absolute; left: 0; top: 50%; margin-top: -9px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+
+.subnav-content-wrap .select-selected-box:hover .select-shixin-arrow { background: url(../images/common/shixinjiantouhover.svg?v=1) no-repeat; }
+
+.subnav-content-wrap .filtrate { display: inline-block; width: 100px; height: 100%; position: absolute; top: 18px; right: 0; cursor: pointer; text-align: right; }
+
+.subnav-content-wrap .filtrate i { display: inline-block; margin: 0 0px 1px 6px; }
+
+.subnav-content-wrap .filtrate .filtrate-info { width: 297px; background: #ffffff; position: absolute; top: 28px; right: 0; border-radius: 4px; z-index: 1; text-align: left; box-shadow: -1px -1px 15px rgba(160, 160, 160, 0.65); }
+
+.subnav-content-wrap .filtrate .filtrate-info .type-select { padding: 15px 30px; }
+
+.subnav-content-wrap .filtrate .filtrate-info .type-select label { vertical-align: middle; margin-right: 15px; cursor: pointer; }
+
+.subnav-content-wrap .filtrate .filtrate-info .info-fill { padding: 20px 30px; }
+
+.subnav-content-wrap .filtrate .filtrate-info .info-fill label:not(:last-child) { margin-bottom: 20px; }
+
+.subnav-content-wrap .filtrate .filtrate-info .info-fill label { display: block; }
+
+.subnav-content-wrap .filtrate .filtrate-info .info-fill label input { width: 192px; height: 36px; margin-left: 16px; }
+
+.subnav-content-wrap .filtrate .filtrate-info .submit-button { padding: 20px 30px; }
+
+.subnav-content-wrap .filtrate .filtrate-info .submit-button .btn-current { width: 108px; height: 36px; font-size: 14px; }
+
+.subnav-content-wrap .filtrate .filtrate-info .submit-button .add-style { margin-right: 16px; }
+
+.main-wrapper { /*-- 导航置顶效果样式 --*/ }
+
+.main-wrapper .classify-select { background: #ffffff; padding-bottom: 12px; position: relative; }
+
+.main-wrapper .classify-select .classify-box { margin: 0 auto; }
+
+.main-wrapper .classify-select .classify-select-list { margin-left: -28px; margin-right: -28px; *zoom: 1; }
+
+.main-wrapper .classify-select .classify-select-list:after { content: ""; display: table; }
+
+.main-wrapper .classify-select .classify-select-list:after { clear: both; }
+
+.main-wrapper .classify-select .classify-select-list .classify-item, .main-wrapper .classify-select .classify-select-list .self-defined { height: 60px; line-height: 60px; }
+
+.main-wrapper .classify-select .classify-select-list .classify-item .classify-default:hover, .main-wrapper .classify-select .classify-select-list .self-defined .classify-default:hover { background: #f2f2f2; border-radius: 4px; }
+
+.main-wrapper .classify-select .classify-select-list .classify-item.current .classify-default, .main-wrapper .classify-select .classify-select-list .self-defined.current .classify-default { background: #f2f2f2; border-radius: 4px; }
+
+.main-wrapper .classify-select .classify-select-list .classify-item .classify-current, .main-wrapper .classify-select .classify-select-list .self-defined .classify-current { background: #f2f2f2; border-radius: 4px; }
+
+.main-wrapper .classify-select .classify-select-list .classify-item .classify-item-type a.current, .main-wrapper .classify-select .classify-select-list .self-defined .classify-item-type a.current { color: #d36f16; }
+
+.main-wrapper .classify-select .classify-select-list li { padding: 0 16px; display: inline-block; cursor: pointer; float: left; }
+
+.main-wrapper .classify-select .combobox-box { position: relative; }
+
+.main-wrapper .type-combobox, .main-wrapper .self-type-combobox { float: left; width: 100%; min-height: 78px; position: absolute; z-index: 3; left: 0; background: #ffffff; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1); }
+
+.main-wrapper .type-combobox ul li, .main-wrapper .self-type-combobox ul li { display: inline; }
+
+.main-wrapper .type-combobox .type-combobox-box, .main-wrapper .self-type-combobox .type-combobox-box { background: #ffffff; padding: 16px 0; width: 100%; border-top: 1px solid #eeeeee; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content { margin: 0 auto; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content span, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content span { float: left; color: #bbbbbb; font-size: 14px; height: 42px; line-height: 42px; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item { overflow: hidden; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item1 ul, .main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item2 ul, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item1 ul, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item2 ul { margin-left: 52px; overflow: hidden; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item1 ul li, .main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item2 ul li, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item1 ul li, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item2 ul li { float: left; height: 42px; line-height: 42px; position: relative; font-size: 14px; text-align: center; padding: 0; margin-right: 10px; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item1 ul li .separator, .main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item2 ul li .separator, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item1 ul li .separator, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item2 ul li .separator { display: inline-block; width: 1px; height: 10px; line-height: 10px; background: #dddddd; position: absolute; top: 10px; right: 0; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item1 ul li a, .main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item2 ul li a, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item1 ul li a, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item2 ul li a { color: #666666; padding: 4px 10px; border-radius: 4px; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item1 ul li a:hover, .main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item2 ul li a:hover, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item1 ul li a:hover, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item2 ul li a:hover { background: #f4f4f4; padding: 4px 10px; border-radius: 4px; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item1 ul li a.current, .main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item2 ul li a.current, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item1 ul li a.current, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item2 ul li a.current { color: #d36f16; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item3 a, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item3 a { display: inline-block; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item3 span, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item3 span { margin-top: 0; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item3 ul, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item3 ul { margin-left: 63px; overflow: hidden; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item3 ul li, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item3 ul li { float: left; margin: 10px 20px 0 0; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item3 ul li a, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item3 ul li a { position: relative; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item3 ul li a .mark-layer-note, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item3 ul li a .mark-layer-note { position: absolute; top: 0; left: 0; width: 152px; height: 114px; line-height: 112px; color: #ffffff; font-size: 12px; text-align: center; background: rgba(0, 0, 0, 0.5); z-index: 1; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item3 ul li a:hover .mark-layer-note, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item3 ul li a:hover .mark-layer-note { display: inline-block; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item3 ul li a img, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item3 ul li a img { vertical-align: middle; -webkit-transition: 0.6s; transition: 0.6s; display: block; border: none; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item3 ul li a img:hover, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item3 ul li a img:hover { background: #000000; filter: alpha(opacity=80); -moz-opacity: 0.8; -khtml-opacity: 0.8; opacity: 0.8; transition: all 0.6s linear; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item3 ul li .view-more, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item3 ul li .view-more { width: 152px; height: 114px; background: #eee; display: inline-block; text-align: center; line-height: 112px; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item3 ul li .view-more .more-icon, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item3 ul li .view-more .more-icon { display: inline-block; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item3 ul li .view-more .more-icon span, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item3 ul li .view-more .more-icon span { width: 10px; height: 10px; margin: 0 3px; background: #ffffff; border-radius: 50%; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item4, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item4 { font-size: 14px; color: #666666; margin-top: -10px; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item4 .submit-button, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item4 .submit-button { margin-bottom: 4px; text-align: center; height: 36px; line-height: 36px; }
+
+.main-wrapper .type-combobox .type-combobox-box .type-combobox-content .item4 .submit-button .btn-current, .main-wrapper .self-type-combobox .type-combobox-box .type-combobox-content .item4 .submit-button .btn-current { width: 108px; height: 34px; }
+
+.main-wrapper .slider-adv-box { background: #ffffff; padding-top: 20px; height: 100%; }
+
+.main-wrapper .slider-adv { margin-bottom: 20px; overflow: hidden; }
+
+.main-wrapper .slider-adv li img { border-radius: 4px; }
+
+.main-wrapper .advtop { margin: 0px auto; height: 180px; }
+
+.main-wrapper .advtop ul { margin-right: -20px; height: 180px; }
+
+.main-wrapper .advtop ul li { float: left; margin-right: 20px; width: 100%; }
+
+.main-wrapper .advtop ul li img { width: 100%; border-radius: 4px; }
+
+.filtrate-condition { line-height: 30px; margin-bottom: 10px; }
+
+.filtrate-condition .filtrate-condition-tag { display: inline-block; min-width: 50px; border: 1px solid #bbbbbb; font-size: 12px; border-radius: 4px; margin: 0 10px 10px 0; padding: 0px 10px; }
+
+.filtrate-condition .filtrate-condition-tag a { display: inline-block; background: url("../images/filtrate-condition-tag-close.png") no-repeat; width: 8px; height: 8px; margin-left: 20px; }
+
+.filtrate-condition .tips-info { margin-left: 10px; }
+
+@media screen and (max-width: 1600px) { .classify-select .classify-item:last-child { padding-right: 0; }
+  .classify-select .submit-button { width: 1130px; }
+  .self-type-combobox .item4 label { margin-right: 20px; }
+  .classify-default { padding: 4px 12px; }
+  .type-combobox-content { width: 1130px; }
+  .type-combobox-content .item { margin-right: -20px; }
+  .type-combobox-content .item1 ul li a.current, .type-combobox-content .item2 ul li a.current { color: #d36f16; }
+  .type-combobox-content .item3 ul { width: 1068px; }
+  .main-wrapper .classify-select .classify-select-list { margin-left: -19px; }
+  .main-wrapper .classify-select .classify-select-list li { padding: 0 8px; } }
+
+@media screen and (min-width: 1601px) { .classify-select .classify-item:last-child { padding-right: 0; }
+  .classify-select .submit-button { width: 1380px; }
+  .self-type-combobox .item4 label { margin-right: 41px; }
+  .classify-default { padding: 4px 12px; }
+  .type-combobox-content { width: 1380px; }
+  .type-combobox-content .item { margin-right: -41px; }
+  .type-combobox-content .item3 ul { width: 1316px; } }

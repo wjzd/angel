@@ -50,6 +50,8 @@ public class PageController {
         if (category.equals("开通会员")){
             return "/page/vipPage";
         }
+
+
         return "/page/commodity";
     }
     @RequestMapping("login")
@@ -79,6 +81,7 @@ public class PageController {
             model.addAttribute("pageNum",commodityPageInfo.getPageNum());
             model.addAttribute("state",state);
             model.addAttribute("userInfo",userInfo);
+            categoryName1="";
         }
         return "/page/userCenter";
     }
@@ -136,7 +139,7 @@ public class PageController {
     }
     @RequestMapping("/updateUserInfo")
     @ResponseBody
-    public Map<String,String> updateUserInfo(@RequestParam(value = "password",required = false)String password,
+    public Map<String,String> updateUserInfo(@RequestParam(value = "password1",required = false)String password,
                                              @RequestParam(value = "account",required = false)String account,
                                              @RequestParam(value = "workername",required = false)String workername,
                                              @RequestParam(value = "email",required = false)String email,
