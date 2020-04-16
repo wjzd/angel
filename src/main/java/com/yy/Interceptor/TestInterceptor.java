@@ -13,16 +13,17 @@ public class TestInterceptor implements HandlerInterceptor {
         //获取session
         HttpSession session = request.getSession(true);
         //判断用户ID是否存在，不存在就跳转到登录界面
-//        if(session.getAttribute("userInfo") == null){
-//            response.sendRedirect(request.getContextPath()+"/");
-//            return false;
-//        }else{
-//            session.setAttribute("userInfo", session.getAttribute("userInfo"));
-//            return true;
-//        }
+
         String url=request.getRequestURI();
         if (url.contains("/LoginCon/")){
 
+            if(session.getAttribute("adminUserInfo") == null){
+                response.sendRedirect(request.getContextPath()+"/viewLoginInit");
+                return false;
+            }else{
+                session.setAttribute("adminUserInfo", session.getAttribute("adminUserInfo"));
+                return true;
+            }
         }else {
 
         }

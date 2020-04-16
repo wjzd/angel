@@ -38,7 +38,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     public void addInterceptors(InterceptorRegistry registry) {
         //拦截规则：除了login，其他都拦截判断
         registry.addInterceptor(new TestInterceptor()).addPathPatterns("/**").excludePathPatterns("/viewLoginInit",
-                "/viewLogin","/ueditor","/logout","/","/LoginCon/login")
+                "/viewLogin","/ueditor","/logout","/")
                 .excludePathPatterns("/static/**");;
         super.addInterceptors(registry);
     }

@@ -265,12 +265,12 @@
 
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
-
+                    $(this).next().next().val(11111);
                     $(".uploandImg").attr('src', result); //图片链接（base64）
                 });
             }
             ,done: function(res){
-                $(this).next().next().val(res.fileUrl);
+
                 //alert($(this).next().next().text());
                //$(".imgurl").val(res.fileUrl);
                 //如果上传失败

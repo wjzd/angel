@@ -209,7 +209,7 @@ public class IndexController {
 
             if(adminUserInfos.size()>0){
                 adminUserInfo=adminUserInfos.get(0);
-                session.setAttribute("userInfo", adminUserInfo);
+                session.setAttribute("adminUserInfo", adminUserInfo);
                 return "redirect:/LoginCon/login";
             }else{
                 return "redirect:/viewLoginInit";
