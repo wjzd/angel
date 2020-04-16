@@ -5,6 +5,7 @@ import com.yy.pojo.Collect;
 import com.yy.pojo.Commodity;
 import com.yy.pojo.UserInfo;
 import com.yy.service.PageService;
+import com.yy.utils.MD5Util;
 import jdk.nashorn.internal.ir.IfNode;
 import lombok.SneakyThrows;
 import org.springframework.http.HttpRequest;
@@ -133,14 +134,55 @@ public class PageController {
         pageService.updateUserInfo(userInfo);
         return ret;
     }
-    @RequestMapping("/updateUserinfo")
-    public Map<String,String> updateUserInfo(UserInfo userInfo){
+    @RequestMapping("/updateUserInfo")
+    @ResponseBody
+    public Map<String,String> updateUserInfo(@RequestParam(value = "password",required = false)String password,
+                                             @RequestParam(value = "account",required = false)String account,
+                                             @RequestParam(value = "workername",required = false)String workername,
+                                             @RequestParam(value = "email",required = false)String email,
+                                             HttpServletRequest request){
         Map<String, String> ret = new HashMap<String, String>();
-        int state=pageService.updateUserInfo(userInfo);
+        HttpSession session=request.getSession();
+        UserInfo user= (UserInfo) session.getAttribute("userInfo");
+        if (password!=null && !password.equals("")){
+            String passwd= MD5Util.string2MD5(password);
+            user.setPasswd(passwd);
+        }
+        if (account!=null && !account.equals("")){
+            user.setAccount(account);
+        }
+        if (workername!=null && !workername.equals("")){
+            user.setWorkername(workername);
+        }
+        if (email!=null && !email.equals("")){
+            user.setEmail(email);
+        }
+        int state=pageService.updateUserInfo(user);
+        if (state!=1){
+            ret.put("msg","修改信息失败");
+            ret.put("type","error");
+        }else {
+            ret.put("msg","修改信息成功");
+            ret.put("type","success");
+        }
         return ret;
     }
     @RequestMapping("/tomodifyUserInfo")
-    public String tomodifyUserInfo(@RequestParam(value = "modifyName",required = false)String modifyName){
+    public String tomodifyUserInfo(@RequestParam(value = "modifyName",required = false)String modifyName,Model model){
+        model.addAttribute("modifyName",modifyName);
         return "/page/modifyUserInfo";
     }
+    @RequestMapping("/checkPassword")
+    @ResponseBody
+    public Boolean check(@RequestParam("password")String password,HttpServletRequest request){
+        String md5=MD5Util.string2MD5(password);
+        HttpSession session=request.getSession();
+        UserInfo userInfo= (UserInfo) session.getAttribute("userInfo");
+        if (userInfo.getPasswd().equals(md5)){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
+

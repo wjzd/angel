@@ -1,6 +1,6 @@
 package com.yy.config;
 
-import com.yy.utils.TestInterceptor;
+import com.yy.Interceptor.TestInterceptor;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

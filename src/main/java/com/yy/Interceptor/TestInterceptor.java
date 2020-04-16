@@ -1,4 +1,4 @@
-package com.yy.utils;
+package com.yy.Interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,13 +13,24 @@ public class TestInterceptor implements HandlerInterceptor {
         //获取session
         HttpSession session = request.getSession(true);
         //判断用户ID是否存在，不存在就跳转到登录界面
-        if(session.getAttribute("userInfo") == null){
-            response.sendRedirect(request.getContextPath()+"/");
-            return false;
-        }else{
-            session.setAttribute("userInfo", session.getAttribute("userInfo"));
-            return true;
+//        if(session.getAttribute("userInfo") == null){
+//            response.sendRedirect(request.getContextPath()+"/");
+//            return false;
+//        }else{
+//            session.setAttribute("userInfo", session.getAttribute("userInfo"));
+//            return true;
+//        }
+        String url=request.getRequestURI();
+        if (url.contains("/LoginCon/")){
+
+        }else {
+
         }
+        if (url.contains("/center/")){
+        }else {
+
+        }
+        return true;
     }
 
     @Override  // 执行目标方法之后执行

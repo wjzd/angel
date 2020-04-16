@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script th:src="@{/static/js/jquery-1.10.2.min.js}"></script>
     <script th:src="@{/static/js/jquery-migrate-1.2.1.min.js}"></script>
+    <script th:src="@{/static/js/gVerify.js}"></script>
     <link rel="stylesheet" th:href="@{/static/css/main.min.css}">
     <link rel="stylesheet" th:href="@{/static/css/passnumberbind.css}">
     <link rel="stylesheet" th:href="@{/static/css/personalProfile.css}">
@@ -21,18 +22,61 @@
 </head>
 <body>
 <div id="body">
-    <div class="passcard-box">
+    <div class="passcard-box" style="width: 100%">
         <!-- 登录导航以下内容 -->
-        <div class="passcon">
+        <div class="passcon" >
             <h2 class="passmail-title main-bg-color">帐号安全</h2>
             <form name="modifyUnameForm">
                 <input type="hidden" id="appId" name="appId" value="1006">
                 <div class="retrieve-pass-box">
-                    <div class="retrie-center">
+                    <div class="retrie-center" th:if="${modifyName eq 'workername'}">
                         <p class="retrieve-password">修改用户名
                         </p>
                         <p style="color:red;"></p>
-                        <p><input type="text" name="username" id="username" placeholder="用户名，2~8个汉字/4~16个字符" class="text-style input-normal-style">
+                        <p><input type="text" name="workername" id="workername" placeholder="请输入你要修改的用户名" class="text-style input-normal-style">
+                            <span class="form-tip user-name-tip gray-color"></span>
+                        </p>
+                        <p class="verifica-code">
+                            <input type="text" name="randomCode" placeholder="验证码" id="vercodes" class="text-style img-vericode">
+                        <div id="v_container" style="width: 165px;height: 48px;position: absolute;margin-top: -48px;margin-left: 140px;"></div>
+                        <span class="form-tip gray-color"></span>
+                        </p>
+                        <p class="passcard-btns"><input type="button" value="确定" id="ModifyworkerName" class="btn-default-main deter-mine-btn"><input type="button" value="返回" class="btn-default-secondary return-btn"></p>
+                    </div>
+                    <div class="retrie-center" th:if="${modifyName eq 'account'}">
+                        <p class="retrieve-password">修改账号
+                        </p>
+                        <p style="color:red;"></p>
+                        <p><input type="text" name="account" id="account" placeholder="账号，2~8个汉字/4~16个字符" class="text-style input-normal-style">
+                            <span class="form-tip user-name-tip gray-color"></span>
+                        </p>
+                        <p class="verifica-code"><input type="text" name="randomCode" placeholder="验证码" id="vercodes" class="text-style img-vericode">
+                        <div id="v_container" style="width: 165px;height: 48px;position: absolute;margin-top: -48px;margin-left: 140px;"></div>
+                        <span class="form-tip gray-color"></span>
+                        </p>
+                        <p class="passcard-btns"><input type="button" value="确定" id="ModifyAccount" class="btn-default-main deter-mine-btn"><input type="button" value="返回" class="btn-default-secondary return-btn"></p>
+                    </div>
+                    <div class="retrie-center" th:if="${modifyName eq 'email'}">
+                        <p class="retrieve-password">修改邮箱
+                        </p>
+                        <p style="color:red;"></p>
+                        <p><input type="text" name="email" id="email" placeholder="用户名，2~8个汉字/4~16个字符" class="text-style input-normal-style">
+                            <span class="form-tip user-name-tip gray-color"></span>
+                        </p>
+                        <p class="verifica-code"><input type="text" name="randomCode" placeholder="验证码" id="vercodes" class="text-style img-vericode">
+                        <div id="v_container" style="width: 165px;height: 48px;position: absolute;margin-top: -48px;margin-left: 140px;"></div>
+                        <span class="form-tip gray-color"></span>
+                        </p>
+                        <p class="passcard-btns"><input type="button" value="确定" id="ModifyEmail" class="btn-default-main deter-mine-btn"><input type="button" value="返回" class="btn-default-secondary return-btn"></p>
+                    </div>
+                    <div class="retrie-center" th:if="${modifyName eq 'password'}">
+                        <p class="retrieve-password">修改密码
+                        </p>
+                        <p style="color:red;"></p>
+                        <p><input type="password" name="password" id="password" placeholder="原请输入原密码" class="text-style input-normal-style">
+                            <span class="form-tip user-name-tip gray-color"></span>
+                        </p>
+                        <p><input type="text" name="password" id="password1" placeholder="请输入现在的密码" class="text-style input-normal-style">
                             <span class="form-tip user-name-tip gray-color"></span>
                         </p>
                         <p class="verifica-code"><input type="text" name="randomCode" placeholder="验证码" id="vercodes" class="text-style img-vericode">
@@ -50,8 +94,94 @@
 <script>
     layui.use(['form'], function() {
         var $=layui.$,form=layui.form;
-
+        $("#ModifyworkerName").click(function () {
+            var workername=$("#workername").val();
+            var res=verifyCode.validate($("#vercodes").val());
+            if (workername=="" || workername==null){
+                $("#workername").next().text("用户名称不用为空");
+                return;
+            }
+            if (!res){
+                $("#vercodes").parent().next().next().text("验证码错误");
+                return;
+            }
+            ajaxForm('modifyUnameForm');
+        });
+        $("#ModifyAccount").click(function () {
+            var account=$("#account").val();
+            var res=verifyCode.validate($("#vercodes").val());
+            if (account=="" || account.length<3 || account.length>15){
+                $("#account").next().text("账号必须为3-15个字符");
+                return;
+            }
+            if (!res){
+                $("#vercodes").parent().next().next().text("验证码错误");
+                return;
+            }
+            ajaxForm('modifyUnameForm');
+        });
+        $("#ModifyEmail").click(function () {
+            var email=$("#email").val();
+            var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+            var res=verifyCode.validate($("#vercodes").val());
+            if (email=="" || !reg.test(email)){
+                $("#account").next().text("账号必须为3-15个字符");
+                return;
+            }
+            if (!res){
+                $("#vercodes").parent().next().next().text("验证码错误");
+                return;
+            }
+            ajaxForm('modifyUnameForm');
+        });
+        $("#password").blur(function () {
+          var password=$(this).val();
+          if (password!=null && password!=''){
+              $.post("[[@{/page/checkPassword}]]",{password:password},function (res) {
+                   if (!res){
+                       $("#password").next().text("原密码错误");
+                   }
+              })
+          } 
+        })
+        $("#ModifyEmail").click(function () {
+            var email=$("#email").val();
+            var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+            var res=verifyCode.validate($("#vercodes").val());
+            if (email=="" || !reg.test(email)){
+                $("#account").next().text("账号必须为3-15个字符");
+                return;
+            }
+            if (!res){
+                $("#vercodes").parent().next().next().text("验证码错误");
+                return;
+            }
+            ajaxForm('modifyUnameForm');
+        });
     });
+</script>
+<script>
+    var verifyCode = new GVerify({
+        id:'v_container',
+        type:'blend'
+    });
+    function ajaxForm(formName) {
+        $.ajax({
+            type: "POST",   //提交的方法
+            url:"[[@{/page/updateUserInfo}]]", //提交的地址
+            data:$('#'+formName).serialize(),// 序列化表单值
+            success: function(data) {  //成功
+                if (data.type == 'success') {
+                    layer.msg(data.msg,{time:1000*3,icon:6},function () {
+                        parent.window.location.href="[[@{/page/center(state=2)}]]";
+                    });
+                }else {
+                    layer.msg(data.msg,{time:1000*3,icon:5});
+                    parent.location.href="[[@{/page/center(state=2)}]]";
+                }
+            }
+        });
+    }
 </script>
 </body>
 <html>
