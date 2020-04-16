@@ -150,7 +150,7 @@
                                         <span class="account-title">登录账号</span><span class="account-tips-text"><span th:text="${session.userInfo.getAccount()}">xiashiwole</span>
 								</span>
 
-                                        <a href="javascript:;" onclick="modifyUname()" class="btn-default-main">修改</a>
+                                        <a href="javascript:;" onclick="modifyUserInfo('account')" class="btn-default-main ">修改</a>
 
                                     </p>
                                     <p>
@@ -159,12 +159,12 @@
                                         <span class="account-tips-text" th:text="${session.userInfo.getEmail()}"></span>
 
 
-                                        <a href="javascript:;" onclick="modifyemail(1)" class="btn-default-main">绑定</a>
+                                        <a href="javascript:;" onclick="modifyUserInfo('email')" class="btn-default-main ">修改</a>
 
                                     </p>
                                     <p>
                                         <span class="account-title">登录密码</span><span class="account-tips-text two-line-txt">密码要求至少包含字母，符号或数字中的两项且长度超过8位，建议您经常修改密码，以保证帐号更加安全。</span>
-                                        <a href="javascript:;" id="modifysafepwd" class="btn-default-main">修改</a>
+                                        <a href="javascript:;" id="modifysafepwd" class="btn-default-main " onclick="modifyUserInfo('password')">修改</a>
                                     </p>
 
                                 </div>
@@ -242,7 +242,15 @@
         $("#form-data-cover").click(function () {
             $("#headimg").click();
         });
+
     });
+    function modifyUserInfo(modifyName) {
+        layer.open({
+            type:2,
+            content:['[[@{/page/tomodifyUserInfo}]]'+'?modifyName='+modifyName,'no'],
+            area:['900px','400px']
+        })
+    }
     function upload(){
         var animateimg = $("#headimg").val(); //获取上传的图片名 带//
         var imgarr=animateimg.split('\\'); //分割

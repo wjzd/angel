@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>量子科技 (QCOOL) - 新手互动平台 - 打开量子科技，发现更好的源码！</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script th:src="@{/static/js/jquery-1.10.2.min.js}"></script>
+    <script th:src="@{/static/js/jquery-migrate-1.2.1.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/static/css/main.min.css}">
+    <link rel="stylesheet" th:href="@{/static/css/passnumberbind.css}">
+    <link rel="stylesheet" th:href="@{/static/css/personalProfile.css}">
+    <link rel="stylesheet" th:href="@{/static/css/common.css}">
+    <link rel="stylesheet" th:href="@{/static/css/jquery.mCustomScrollbar.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/layuiadmin/layui/css/layui.css}" />
+    <script th:src="@{/static/layuiadmin/layui/layui.all.js}"></script>
+</head>
+<body>
+<div id="body">
+    <div class="passcard-box">
+        <!-- 登录导航以下内容 -->
+        <div class="passcon">
+            <h2 class="passmail-title main-bg-color">帐号安全</h2>
+            <form name="modifyUnameForm">
+                <input type="hidden" id="appId" name="appId" value="1006">
+                <div class="retrieve-pass-box">
+                    <div class="retrie-center">
+                        <p class="retrieve-password">修改用户名
+                        </p>
+                        <p style="color:red;"></p>
+                        <p><input type="text" name="username" id="username" placeholder="用户名，2~8个汉字/4~16个字符" class="text-style input-normal-style">
+                            <span class="form-tip user-name-tip gray-color"></span>
+                        </p>
+                        <p class="verifica-code"><input type="text" name="randomCode" placeholder="验证码" id="vercodes" class="text-style img-vericode">
+                            <img src="//passport.zcool.com.cn/loginRandomImg.jpg?t=1587028091189" id="randomCodeImg" width="201" height="48" alt="">
+                            <i onclick="loadRandomCode();" title="换一张" class="code-tips code-wrong"></i>
+                            <span class="form-tip"></span>
+                        </p>
+                        <p class="passcard-btns"><input type="button" value="确定" id="Modifyname" class="btn-default-main deter-mine-btn"><input type="button" value="返回" class="btn-default-secondary return-btn"></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['form'], function() {
+        var $=layui.$,form=layui.form;
+
+    });
+</script>
+</body>
+<html>

@@ -139,4 +139,8 @@ public class PageController {
         int state=pageService.updateUserInfo(userInfo);
         return ret;
     }
+    @RequestMapping("/tomodifyUserInfo")
+    public String tomodifyUserInfo(@RequestParam(value = "modifyName",required = false)String modifyName){
+        return "/page/modifyUserInfo";
+    }
 }
