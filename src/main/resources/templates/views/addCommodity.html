@@ -251,7 +251,7 @@
     }).use('jquery', function(){
         var $= layui.jquery
         function test() {
-            alert(1234);
+
         }
     }).use('upload', function() {
         var $ = layui.jquery
@@ -270,10 +270,9 @@
                 });
             }
             ,done: function(res){
-
-                alert($(this).next().next().text());
-                $(this).next().val("测试");
-               // $(".imgurl").val(res.fileUrl);
+                $(this).next().next().val(res.fileUrl);
+                //alert($(this).next().next().text());
+               //$(".imgurl").val(res.fileUrl);
                 //如果上传失败
                 if(res.code > 0){
                     return layer.msg('上传失败');
