@@ -2,9 +2,12 @@ package com.yy.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
+import com.yy.pojo.AdminUserInfo;
 import com.yy.pojo.Commodity;
+import com.yy.service.AdminUserInfoService;
 import com.yy.service.IndexService;
 import com.yy.service.PageService;
+import com.yy.service.UserService;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -28,6 +33,8 @@ public class IndexController {
     private IndexService indexService;
     @Resource
     private PageService pageService;
+    @Resource
+    private AdminUserInfoService adminUserInfoService;
 
     public static String categoryName1="首页";
 
@@ -185,5 +192,34 @@ public class IndexController {
             }
         }
 
+    @RequestMapping("/viewLoginInit")
+    public String viewLoginInit(){
+
+
+        return "/views/login";
+    }
+
+    @RequestMapping("/viewLogin")
+    public String viewLogin(Model mdoel, AdminUserInfo adminUserInfo,HttpServletResponse resp, HttpServletRequest request){
+
+        try {
+
+            List<AdminUserInfo> adminUserInfos=adminUserInfoService.selectByAdmin(adminUserInfo);
+            HttpSession session = request.getSession();
+
+            if(adminUserInfos.size()>0){
+                adminUserInfo=adminUserInfos.get(0);
+                session.setAttribute("userInfo", adminUserInfo);
+                return "redirect:/LoginCon/login";
+            }else{
+                return "redirect:/viewLoginInit";
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return "redirect:/viewLoginInit";
+        }
+
+    }
 
 }
