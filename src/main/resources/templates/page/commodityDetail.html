@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-
+        <input type="hidden" th:value="${session.userInfo}" class="userId">
 
         <div class="content-wrap">
             <!--作品头部区域-->
@@ -329,7 +329,8 @@
                         <div class="big-zan-icon">
                             <!-- <i class="one"></i><i class="two"></i><i class="three"></i> -->
                         </div>
-                        <i class="recommend-number">下载</i>
+                        <i class="recommend-number download">下载</i>
+
                     </div>
                 </div>
             </div>
@@ -337,7 +338,7 @@
             <div class="details-con-other border-top">
                 <div class="work-details-box-wrap">
                     <div class="three-link">
-                        <input type="button" z-st="favorite" class="btn-default-secondary details-collection-btn collection js-not-fav js-project-fav" value="收藏" data-on="1" title="收藏">
+                        <input type="button" z-st="favorite" class="btn-default-secondary details-collection-btn collection js-not-fav js-project-fav collect" value="收藏" data-on="1" title="收藏">
                         <input type="button" class="btn-default-secondary details-share" id="share" value="分享">
                     </div>
                 </div>
@@ -398,6 +399,64 @@
     </footer>
 </div>
 <script>
+
+    $(".collect").click(function () {
+        var userId=$(".userId").val();
+        userId=1;
+        var comId=1;
+        $.ajax({
+            url:"/collectCon/updateCollect",
+            data:{'userid':userId,"comid":comId},
+            type:"Post",
+            dataType:"json",
+            success:function(data){
+
+                if(data.type==0){
+                    alert("已取消收藏");
+                }else{
+                    alert("已收藏");
+                }
+
+
+            },
+            error:function(data){
+                $.messager.alert('错误',data.msg);
+            }
+        });
+    })
+    $(".download").click(function () {
+        alert(111);
+        var userInfo = '<%= session.getAttribute("userInfo")%>';
+        if(userInfo==null){
+            location.href="/page/login.html";
+        }else if(userInfo.isvip==1){
+
+        }else{
+            layer.alert("您不是会员");
+        }
+        var userId=$(".userId").val();
+        userId=1;
+        var comId=1;
+        $.ajax({
+            url:"/collectCon/updateCollect",
+            data:{'userid':userId,"comid":comId},
+            type:"Post",
+            dataType:"json",
+            success:function(data){
+
+                if(data.type==0){
+                    alert("已取消收藏");
+                }else{
+                    alert("已收藏");
+                }
+
+
+            },
+            error:function(data){
+                $.messager.alert('错误',data.msg);
+            }
+        });
+    });
     layui.config({
         base: '[[@{/static/js/}]]' //设定扩展的 layui 模块的所在目录，一般用于外部模块扩展
     });
