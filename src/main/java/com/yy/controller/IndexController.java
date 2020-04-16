@@ -73,7 +73,7 @@ public class IndexController {
         categoryName1="首页";
         model.addAttribute("categoryName",categoryName1);
 
-        return "/page/commodityDetail";
+        return "index";
     }
 
     @RequestMapping("/getHeader")

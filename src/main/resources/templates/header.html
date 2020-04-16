@@ -85,7 +85,7 @@
 						<li class="current"><a class="menu-list-box" th:href="@{/}" z-st="nav_tab_home">首页</a></li>
 						<input type="text" th:value="${name}" class="hide" id="categoryName"/>
 						<li class="discover header-menu-withmore" th:each="menu,stat:${menus}">
-							<a class="menu-list-box" target="_blank" z-st="nav_tab_discover" th:href="@{/page/getCommodity(category=${menu.getCategoryname()})}" th:text="${menu.getCategoryname()}"></a>
+							<a class="menu-list-box" target="_blank" z-st="nav_tab_discover" th:href="@{/page/getCommodity(categoryName=${menu.getCategoryname()})}" th:text="${menu.getCategoryname()}"></a>
 						</li>
 						<li class="more-menu header-menu-withmore ">
 							<span class="menu-tit-box" id="header-more" z-st="nav_tab_more"><i></i><sup class="subnav-dot-sup"></sup></span>

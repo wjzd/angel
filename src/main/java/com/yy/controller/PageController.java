@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.yy.pojo.Collect;
 import com.yy.pojo.Commodity;
 import com.yy.pojo.UserInfo;
+import com.yy.service.IndexService;
 import com.yy.service.PageService;
 import com.yy.utils.MD5Util;
 import jdk.nashorn.internal.ir.IfNode;
@@ -37,21 +38,46 @@ public class PageController {
 
     @Resource
     private PageService pageService;
+    @Resource
+    private IndexService indexService;
 
     @RequestMapping("getCommodity")
-    public String getCommodity(String  category, Model model,@RequestParam(value="pn",defaultValue="1") Integer pn){
-        //根据分类查询出编辑精选的商品
-       List<Commodity> jinxuan=pageService.getListbyCategoryIdAndreecom(category);
-        //根据分类查询出最新的商品
-       List<Commodity> zuixin=pageService.getListByTime(category);
-       model.addAttribute("jinxuans",jinxuan);
-       model.addAttribute("zuixins",zuixin);
-        categoryName1=category;
-        if (category.equals("开通会员")){
-            return "/page/vipPage";
+    public String getCommodity(@RequestParam(value = "categoryName",defaultValue = "",required = false)String categoryName,
+                               @RequestParam(value = "reecom",defaultValue = "",required = false) String reecom,Model model, @RequestParam(value = "pageNum", defaultValue = "1",required = false) Integer pageNum,
+                               @RequestParam(value = "pageSize", defaultValue = "40", required = false) Integer pageSize,@RequestParam(value = "state",defaultValue = "",required = false)String state){
+        PageInfo<Commodity> commodityPageInfo=null;
+        PageInfo<Commodity> timeCommodity=null;
+        if (reecom!="") {
+            //首页推荐
+            commodityPageInfo= indexService.getCommodityList(categoryName, 2, pageNum, pageSize);
+            //首页时间排序
+            timeCommodity = indexService.getCommodityList(categoryName, 0, pageNum, pageSize);
+
+        }else if (reecom.equals("2")){
+            //首页推荐
+            commodityPageInfo = indexService.getCommodityList(categoryName, 2, pageNum, pageSize);
+
+        }else if (reecom.equals("0")){
+            timeCommodity = indexService.getCommodityList(categoryName, 0, pageNum, pageSize);
         }
 
-
+        model.addAttribute("tuijian", commodityPageInfo.getList());
+        model.addAttribute("tuijiantotal", commodityPageInfo.getTotal());
+        model.addAttribute("tuijianpageNum", commodityPageInfo.getPageNum());
+        model.addAttribute("tuijianpageSize", commodityPageInfo.getPageSize());
+        model.addAttribute("tuijianreecom", 2);
+        model.addAttribute("tuijianCategoryName", categoryName);
+        model.addAttribute("times", timeCommodity.getList());
+        model.addAttribute("timetotal", timeCommodity.getTotal());
+        model.addAttribute("timepageNum", timeCommodity.getPageNum());
+        model.addAttribute("timepageSize", timeCommodity.getPageSize());
+        model.addAttribute("timereecom", 0);
+        model.addAttribute("timeCategoryName", categoryName);
+        model.addAttribute("state",state);
+        categoryName1=categoryName;
+        if (categoryName.equals("开通会员")){
+            return "/page/vipPage";
+        }
         return "/page/commodity";
     }
     @RequestMapping("login")

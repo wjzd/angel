@@ -49,7 +49,11 @@ public class IndexServiceImpl implements IndexService {
         if (reecom!=0){
             commodities=commodityMapper.selectByCom(commodity);
         }else {
-            commodity.setCategory(null);
+            if (!categoryName.equals("")){
+                commodity.setCategory(categoryName);
+            }else {
+                commodity.setCategory(null);
+            }
             commodity.setReecom(null);
             commodities=commodityMapper.selectByCom(commodity);
         }
