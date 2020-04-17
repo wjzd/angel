@@ -15,7 +15,7 @@ public class TestInterceptor implements HandlerInterceptor {
         //判断用户ID是否存在，不存在就跳转到登录界面
 
         String url=request.getRequestURI();
-        if (url.contains("/LoginCon/")){
+        if (url.contains("/LoginCon/login") || url.contains("/views/") || url.contains("/collectCon/") || url.contains("/orderCon/") || url.contains("/ueditor")){
 
             if(session.getAttribute("adminUserInfo") == null){
                 response.sendRedirect(request.getContextPath()+"/viewLoginInit");
@@ -24,12 +24,15 @@ public class TestInterceptor implements HandlerInterceptor {
                 session.setAttribute("adminUserInfo", session.getAttribute("adminUserInfo"));
                 return true;
             }
-        }else {
-
         }
-        if (url.contains("/center/")){
-        }else {
-
+        if (url.contains("/page/center") || url.contains("/page/modifyHeadImg") || url.contains("/page/updateUserInfo") || url.contains("/page/tomodifyUserInfo") || url.contains("/page/checkPassword") ){
+            if(session.getAttribute("userInfo") == null){
+                response.sendRedirect(request.getContextPath()+"/page/login");
+                return false;
+            }else{
+                session.setAttribute("userInfo", session.getAttribute("userInfo"));
+                return true;
+            }
         }
         return true;
     }
