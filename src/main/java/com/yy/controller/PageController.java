@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.yy.pojo.Collect;
 import com.yy.pojo.Commodity;
 import com.yy.pojo.UserInfo;
+import com.yy.service.CommodityService;
 import com.yy.service.IndexService;
 import com.yy.service.PageService;
 import com.yy.utils.MD5Util;
@@ -40,6 +41,8 @@ public class PageController {
     private PageService pageService;
     @Resource
     private IndexService indexService;
+    @Resource
+    private CommodityService commodityService;
 
     @RequestMapping("getCommodity")
     public String getCommodity(@RequestParam(value = "categoryName",defaultValue = "",required = false)String categoryName,
@@ -213,5 +216,13 @@ public class PageController {
             return false;
         }
     }
+
+    @RequestMapping("/commodityDetail")
+    public String commodityDetail(Model model,Commodity commodity){
+        commodity=commodityService.selectByCom(commodity).get(0);
+        model.addAttribute("commodity",commodity);
+        return "/page/commodityDetail";
+    }
+
 }
 

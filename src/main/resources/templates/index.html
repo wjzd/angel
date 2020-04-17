@@ -140,7 +140,7 @@
 
 							<div class="card-box" th:each="commodity,stat:${tuijian}">
 								<div class="card-img">
-									<a href="" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
+									<a th:href="@{/page/commodityDetail(id=${commodity.id})}" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
 										<img th:src="${commodity.getImgurl()}" title="" alt="" th:title="${commodity.getComname()}">
 									</a>
 								</div>

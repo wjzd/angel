@@ -24,4 +24,9 @@ public class DownloanServiceImpl implements DownloanService {
     public int insertSelective(DownloanInfo downloanInfo) {
         return downloanInfoMapper.insertSelective(downloanInfo);
     }
+
+    @Override
+    public int updateByPrimaryKeySelective(DownloanInfo downloanInfo) {
+        return downloanInfoMapper.updateByPrimaryKeySelective(downloanInfo);
+    }
 }

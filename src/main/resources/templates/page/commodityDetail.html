@@ -324,14 +324,28 @@
                 </div>
                 <!--推荐区域-->
                 <div class="recommend-box">
-                    <div class="recommend-works normal js-details-common-recommend" id="detail-recommend-div"
+                    <div class="recommend-works normal js-details-common-recommend download" id="detail-recommend-div"
                          z-st="recommend">
                         <div class="big-zan-icon">
                             <!-- <i class="one"></i><i class="two"></i><i class="three"></i> -->
                         </div>
-                        <i class="recommend-number download">下载</i>
+                        <i class="recommend-number">下载</i>
 
                     </div>
+
+                    <div  class="" z-st="recommend">
+                        <table class="comTable" style="margin:0 auto;display: none;">
+                            <tr>
+                                <td>网盘地址：</td>
+                                <td class="comUrl"></td>
+                            </tr>
+                            <tr>
+                                <td>提取码</td>
+                                <td class="comCode"></td>
+                            </tr>
+                        </table>
+                    </div>
+
                 </div>
             </div>
             <!--举报,分享,附件,收藏数-->
@@ -416,41 +430,31 @@
                 }else{
                     alert("已收藏");
                 }
-
-
             },
             error:function(data){
                 $.messager.alert('错误',data.msg);
             }
         });
-    })
+    });
     $(".download").click(function () {
-        alert(111);
-        var userInfo = '<%= session.getAttribute("userInfo")%>';
-        if(userInfo==null){
-            location.href="/page/login.html";
-        }else if(userInfo.isvip==1){
 
-        }else{
-            layer.alert("您不是会员");
-        }
         var userId=$(".userId").val();
         userId=1;
         var comId=1;
         $.ajax({
-            url:"/collectCon/updateCollect",
-            data:{'userid':userId,"comid":comId},
+            url:"/views/download",
+            data:{"id":comId},
             type:"Post",
             dataType:"json",
             success:function(data){
 
-                if(data.type==0){
-                    alert("已取消收藏");
+                if(data.type==1){
+                    $(".comUrl").text(data.commodity.comUrl);
+                    $(".comCode").text(data.commodity.comCode);
+                    $(".comTable").show();
                 }else{
-                    alert("已收藏");
+                    layui.alert("不是会员");
                 }
-
-
             },
             error:function(data){
                 $.messager.alert('错误',data.msg);

@@ -12,4 +12,5 @@ public interface DownloanService {
 
     public List<DownloanInfo> selectByDown(DownloanInfo downloanInfo);
     public int insertSelective(DownloanInfo downloanInfo);//新增
+    public int updateByPrimaryKeySelective(DownloanInfo downloanInfo);
 }

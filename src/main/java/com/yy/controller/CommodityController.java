@@ -4,11 +4,12 @@ package com.yy.controller;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.yy.pojo.CategoryMenu;
-import com.yy.pojo.Commodity;
-import com.yy.pojo.ResultTable;
+import com.yy.pojo.*;
 import com.yy.service.CategoryMennService;
 import com.yy.service.CommodityService;
+import com.yy.service.DownloanService;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -27,6 +34,8 @@ public class CommodityController {
     private CommodityService commodityService;
     @Resource
     private CategoryMennService categoryMennService;
+    @Resource
+    private DownloanService downloanService;
 
     @RequestMapping("/toCommodity")
     public String toCommodity(){
@@ -98,5 +107,49 @@ public class CommodityController {
 
         model.addAttribute("commodity",commodity);
         return "/views/commodityView";
+    }
+
+
+    //用户点击下载
+    @RequestMapping("/download")
+    @ResponseBody
+    public void updateCollect(HttpServletResponse resp, HttpServletRequest request, Commodity commodity) throws JSONException {
+
+        HttpSession session = request.getSession();
+
+        List<Commodity> comList=commodityService.selectByCom(commodity);
+        UserInfo userInfo= (UserInfo) session.getAttribute("userInfo");
+        JSONObject json=new JSONObject();
+        int type=0;
+        if(userInfo.getIsvip()==1){//是VIp
+            //判断用户是否下载过
+            DownloanInfo dw=new DownloanInfo();
+            dw.setComid(commodity.getId());
+            dw.setUserid(userInfo.getId());
+            List<DownloanInfo> downloanInfos=downloanService.selectByDown(dw);
+            if(downloanInfos.size()>0){//已下载过修改
+                dw.setDownnum(downloanInfos.get(0).getDownnum()+1);
+                dw.setDowntime(new Date());
+                downloanService.updateByPrimaryKeySelective(dw);
+            }else{
+                dw.setDownnum(1);
+                dw.setDowntime(new Date());
+                downloanService.insertSelective(dw);
+            }
+            json.put("commodity",comList.get(0));
+            json.put("type",type);
+        }else{
+            type=0;
+            json.put("type",type);
+        }
+        PrintWriter out=null;
+        try {
+            out=resp.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        out.print(json);
+        out.flush();
+        out.close();
     }
 }
