@@ -94,10 +94,6 @@ public class IndexController {
         return "redirect:/";
     }
 
-    @RequestMapping("/ueditor")
-    public String euditor(){
-        return "ueditor/ueditor";
-    }
 
     @RequestMapping("/viewLoginInit")
     public String viewLoginInit(){
