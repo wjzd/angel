@@ -55,19 +55,23 @@
                                 <img class="sc-17u5avv-0 euoqHf img" src="http://placehold.it/420x336/7799ed/ffffff" />
                             </div>
                             <div class="info">
-                                <span class="mkwns5-3 jAcCiK" color="black3" size="16" style="line-height: 5!important;">永久VIP会员</span>
+                                <span class="mkwns5-3 jAcCiK" color="black3" size="16" style="line-height: 5!important;"><select name="vipType" id="vipType">
+                                    <option value="永久VIP会员">永久VIP会员</option>
+                                    <option value="超级VIP会员">超级VIP会员</option>
+                                    <option value="自尊VIP会员">尊贵VIP会员</option>
+                                </select></span>
 <!--                                <span class="mkwns5-3 bwvQgo" color="pewter" size="14"></span>-->
                             </div>
                         </div>
                         <div class="sc-bdVaJa iRGJkS price_info" direction="column" style="width:230px" wrap="initial">
-									<span class="mkwns5-3 cYpwtS" color="#333333" size="16">¥
-                                        <!-- -->399.00</span>
+									<span class="mkwns5-3 cYpwtS textMoney" color="#333333" size="16">¥
+                                        <!-- -->388.00</span>
                             <div class="sc-bdVaJa dRXRaK" direction="row" wrap="initial">
                             </div>
                         </div>
                         <span class="mkwns5-3 yOJVr in_date" color="#333333" size="16" width="190">永久有效</span>
-                        <section class="sc-1sm0qqc-3 brVsQt actual_pay"><span class="mkwns5-3 cfpSHp" color="red" size="16">¥
-                            <!-- -->349.00</span></section>
+                        <section class="sc-1sm0qqc-3 brVsQt actual_pay"><span class="mkwns5-3 cfpSHp textMoney" color="red" size="16">¥
+                            <!-- -->388.00</span></section>
                     </div>
                 </section>
             </section>
@@ -75,9 +79,12 @@
         <section class="mkwns5-2 bvmPMQ"><span class="mkwns5-3 dWLhIZ" color="black3" size="18">支付方式</span>
             <section class="mkwns5-2 bNFXpS">
                 <div class="sc-bdVaJa jKzBeP" direction="row" wrap="wrap">
-                    <div class="sc-bdVaJa h0zrjv-0 hKpohB" direction="row" width="362" wrap="initial">
-                        <!--<i class="sc-6ypqvg-0 ewoRWJ" size="20"></i>-->
-                        <i class="sc-6ypqvg-0 fFVbFB" size="20"></i>
+                                    <!--           显示边框laPgvV 不显示边框hKpohB        -->
+                    <div class="sc-bdVaJa h0zrjv-0 laPgvV" direction="row" width="362" wrap="initial">
+
+                        <!--<i class="sc-6ypqvg-0 ewoRWJ" size="20"></i>勾选-->
+                        <!--<i class="sc-6ypqvg-0 fFVbFB" size="20"></i>不勾选-->
+                        <i class="sc-6ypqvg-0 ewoRWJ" size="20"></i>
                         <svg class="xuvw34-0 jnNSns" color="#333333" cursor="pointer" height="40" width="40">
                             <use xlink:href="#icon-alipay">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" id="icon-alipay" width="100%" height="100%">
@@ -93,13 +100,16 @@
                         <span class="mkwns5-3 hyikvo tip" color="red" size="14">支持花呗分期</span>
                         <span class="mkwns5-3 fjjkah message" color="pewter" size="14">有可能会消费限制无法使用花呗</span>
                     </div>
+                    <input type="radio" name="payType" value="支付宝" checked class="hide">
                     <div class="sc-bdVaJa h0zrjv-0 hKpohB" direction="row" width="362" wrap="initial">
+
                         <i class="sc-6ypqvg-0 fFVbFB" size="20"></i>
                         <svg class="xuvw34-0 jnNSns" color="#333333" cursor="pointer" height="40" width="40">
                             <use xlink:href="#icon-wechat"></use>
                         </svg>
                         <span class="mkwns5-3 yaHBR" color="black3" size="18">微信支付</span>
                     </div>
+                    <input type="radio" name="payType" value="微信" class="hide">
                 </div>
                 <div class="sc-35388k-0 jMyRcT">
 <!--                    <span class="mkwns5-3 chbdki" color="black3">优惠券</span>-->
@@ -133,13 +143,13 @@
         <div class="mkwns5-2 kyJfiJ">
             <div class="sc-bdVaJa kyxBVH" direction="column" wrap="initial">
                 <div class="sc-bdVaJa sc-1kpismd-0 iOhRWR" direction="row" wrap="initial">
-                    <span class="mkwns5-3 gLdvqf" color="spruce" size="16">总价：</span><span class="mkwns5-3 fOovtj" color="black3" size="16">￥<span id="totalMoney">349.00</span></span></div>
+                    <span class="mkwns5-3 gLdvqf" color="spruce" size="16">总价：</span><span class="mkwns5-3 fOovtj" color="black3" size="16">￥<span id="totalMoney">388.00</span></span></div>
                 <div class="sc-1kpismd-1 bwJCtO">
                     <div class="sc-bdVaJa sc-1kpismd-0 iOhRWR" direction="row" wrap="initial">
                         <span class="mkwns5-3 gLdvqf" color="spruce" size="16" style="white-space:nowrap">需付金额：</span>
                         <span style="white-space:nowrap">
                             <span class="mkwns5-3 iilvsC" color="red" size="22">￥</span>
-                            <span class="mkwns5-3 jSYHru" color="red" size="32">349.00</span>
+                            <span class="mkwns5-3 jSYHru" color="red" size="32" id="payMoney">388.00</span>
                         </span>
                     </div>
                 </div>
@@ -170,6 +180,36 @@
         var carousel = layui.carousel;
         var laypage = layui.laypage,
             layer = layui.layer,$=layui.$;
+        $("#vipType").change(function () {
+            var money='0.00';
+            if ($(this).val()=="永久VIP会员"){
+                money='388.00';
+            } else if ($(this).val()=="超级VIP会员") {
+                money='588.00';
+            }else {
+                money='888.00';
+            }
+            changeText(money);
+        })
+        function changeText(money) {
+            $(".textMoney").text("¥ "+money+"");
+            $("#totalMoney").text(money);
+            $("#payMoney").text(money);
+        }
+        $(".h0zrjv-0").click(function () {
+            <!--显示边框laPgvV 不显示边框hKpohB        -->
+            <!--ewoRWJ勾选           fFVbFB不勾选-->
+            $(".h0zrjv-0").removeClass("laPgvV");//
+            $(".h0zrjv-0").removeClass("hKpohB");
+            $(".h0zrjv-0").children("i").removeClass("ewoRWJ");
+            $(".h0zrjv-0").children("i").removeClass("fFVbFB");
+            $("input:radio[name=payType]").attr("checked",false);
+            $(this).addClass("laPgvV");
+            $(this).next().attr("checked",true);
+            $(this).children("i").addClass("ewoRWJ")
+            $(".h0zrjv-0").not(this).addClass("hKpohB");
+            $(".h0zrjv-0").not(this).children("i").addClass("fFVbFB");
+        })
     });
 </script>
 </body>
