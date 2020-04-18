@@ -1,6 +1,7 @@
 package com.yy.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.yy.pojo.AdminUserInfo;
 import com.yy.pojo.Commodity;
@@ -11,8 +12,10 @@ import com.yy.service.UserService;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -21,10 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 public class IndexController {
@@ -119,6 +120,46 @@ public class IndexController {
             return "redirect:/viewLoginInit";
         }
 
+    }
+
+    @RequestMapping(value = "uploadimage")
+    @ResponseBody
+    public String uploadimage(@RequestParam("upfile") MultipartFile file) {
+
+        System.out.println("文件上传");
+        // 项目在容器中实际发布运行的根路径
+        String realPath = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+        String fileUrl="";
+        realPath=realPath+ "static/ueditorImg/";
+        System.out.println(realPath);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHMMSS");
+        String dateString=simpleDateFormat.format(new Date());
+        if (!file.isEmpty()) {
+            Map<String, String> resObj = new HashMap<>();
+            String name=file.getOriginalFilename();//文件上传的真实名称
+            String suffixName=name.substring(name.lastIndexOf("."));
+            String hash= Integer.toHexString(new Random().nextInt());
+            String fileName=dateString+hash+suffixName;
+            fileUrl="/static/upload/"+fileName;
+            try {
+                BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(new File(realPath, fileName)));
+                out.write(file.getBytes());
+                out.flush();
+                out.close();
+            } catch (IOException e) {
+                resObj.put("msg", "error");
+                resObj.put("code", "1");
+                e.printStackTrace();
+                return JSONObject.toJSONString(resObj);
+            }
+            resObj.put("msg", "ok");
+            resObj.put("code", "0");
+            resObj.put("fileUrl", fileUrl);
+            return JSONObject.toJSONString(resObj);
+        } else {
+            return null;
+        }
     }
 
 }
