@@ -33,7 +33,7 @@
 		}
 	
 		.album-card-box .card-info .card-info-item span.statistics-view:before, .card-box .card-info .card-info-item span.statistics-view:before{
-			background: url("../img/card-liulan.svg") no-repeat 0 4px   !important;
+			background: url("[[@{/static}]]/img/card-liulan.svg") no-repeat 0 1px   !important;
 			background-size: 16px auto !important;    display: inline-block;
 			width: 16px;
 			height: 16px;
@@ -1300,7 +1300,7 @@
 						</section>
 					</div>
 					<div class="pageturning ">
-						<div class="clear layui-row" style="margin-left: 41%;">
+						<div class="clear layui-row" style="margin-left: 45%;">
 							<div name="" class="laypage_main laypageskin_default" id="demopage">
 							</div>
 						</div>
@@ -1342,7 +1342,7 @@
 						</section>
 					</div>
 					<div class="pageturning ">
-						<div class="clear layui-row" style="margin-left: 41%;">
+						<div class="clear layui-row" style="margin-left: 45%;">
 							<div name="" class="laypage_main laypageskin_default" id="demopage1">
 							</div>
 						</div>
@@ -1380,7 +1380,8 @@
 						if (!first) {
 							//do something
 							var tuijianreecom = $('#tuijianreecom').val();
-							var href = '/?reecom=' + tuijianreecom+'&state=0';
+							var categoryName=$("#tuijianCategoryName").val();
+							var href = '[[@{/page/getCommodity}]]?reecom=2&state=0&categoryName='+categoryName;
 							href += '&pageNum=' + obj.curr;
 							href += '&pageSize=' + obj.limit;
 							console.log(href)
@@ -1392,8 +1393,8 @@
 				laypage.render({
 					elem: 'demopage1'
 					, count: '[[${timetotal}]]' //数据总数，从服务端得到
-					, limit: '[[${timepageSize}]]'
-					, curr: '[[${timepageNum}]]'
+					, limit: '[[${timepageSize1}]]'
+					, curr: '[[${timepageNum1}]]'
 					// , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
 					,theme: '#ffe300'
 					,prev: '<'
@@ -1407,15 +1408,17 @@
 						if (!first) {
 							//do something
 							var timereecom = $('#timereecom').val();
-							var href = '/?reecom=' + timereecom+'&state=1';
-							href += '&pageNum=' + obj.curr;
-							href += '&pageSize=' + obj.limit;
+							var categoryName=$("#timeCategoryName").val();
+							var href = '[[@{/page/getCommodity}]]?reecom=0&state=1&categoryName='+categoryName;
+							href += '&pageNum1=' + obj.curr;
+							href += '&pageSize1=' + obj.limit;
 							console.log(href)
 							location.href = href;
 						}
 
 					}
 				});
+
 				var state='[[${state}]]';
 				if (state=="" || state==0){
 					//等于0显示首页推荐
@@ -1429,6 +1432,13 @@
 					$("#newNavBox").removeClass("layui-hide");
 					$("#tuijianNavBox").addClass("layui-hide");
 				}
+				$("#IndexNav li").click(function(){
+					$(this).parent().children().removeClass("current");
+					$(this).addClass("current");
+					var box=$(this).children().attr("id")+'Box';
+					$(".all-work-list").addClass("layui-hide");
+					$("#"+box).removeClass("layui-hide");
+				})
 			});
 		</script>
 	</body>

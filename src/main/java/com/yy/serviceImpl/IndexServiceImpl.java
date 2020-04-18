@@ -38,25 +38,12 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public PageInfo<Commodity> getCommodityList(String categoryName, Integer reecom, Integer pageNum, Integer pageSize) {
         Commodity commodity=new Commodity();
-        if (!categoryName.equals("")){
-            commodity.setCategory(categoryName);
-        }
+        commodity.setCategory(categoryName);
         commodity.setReecom(reecom);
         //按照时间排序
         String orderBy="insertTime desc";
         PageHelper.startPage(pageNum,pageSize,orderBy);
-        List<Commodity> commodities=null;
-        if (reecom!=0){
-            commodities=commodityMapper.selectByCom(commodity);
-        }else {
-            if (!categoryName.equals("")){
-                commodity.setCategory(categoryName);
-            }else {
-                commodity.setCategory(null);
-            }
-            commodity.setReecom(null);
-            commodities=commodityMapper.selectByCom(commodity);
-        }
+        List<Commodity> commodities=commodityMapper.selectByCom(commodity);
         return new PageInfo(commodities);
     }
 

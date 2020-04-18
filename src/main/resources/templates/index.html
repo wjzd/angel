@@ -137,7 +137,6 @@
 				<div class="all-work-list" id="tuijianNavBox">
 					<div class="work-list-box">
 						<section class="container">
-
 							<div class="card-box" th:each="commodity,stat:${tuijian}">
 								<div class="card-img">
 									<a th:href="@{/page/commodityDetail(id=${commodity.id})}" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
@@ -179,7 +178,7 @@
 				<!-- 最新发布 -->
 				<div class="all-work-list layui-hide" id="newNavBox">
 					<div class="work-list-box">
-						<section class="container">
+						<section class="containerTime">
 
 							<div class="card-box" th:each="time,stat:${times}">
 								<div class="card-img">
@@ -244,6 +243,7 @@
 					,
 					indicator: 'none'
 				});
+				
 				laypage.render({
 					elem: 'demopage'
 					, count: '[[${tuijiantotal}]]' //数据总数，从服务端得到
@@ -273,8 +273,8 @@
 				laypage.render({
 					elem: 'demopage1'
 					, count: '[[${timetotal}]]' //数据总数，从服务端得到
-					, limit: '[[${timepageSize}]]'
-					, curr: '[[${timepageNum}]]'
+					, limit: '[[${timepageSize1}]]'
+					, curr: '[[${timepageNum1}]]'
 					// , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
 					,theme: '#ffe300'
 					,prev: '<'
@@ -289,14 +289,15 @@
 							//do something
 							var timereecom = $('#timereecom').val();
 							var href = '/?reecom=0&state=1';
-							href += '&pageNum=' + obj.curr;
-							href += '&pageSize=' + obj.limit;
+							href += '&pageNum1=' + obj.curr;
+							href += '&pageSize1=' + obj.limit;
 							console.log(href)
 							location.href = href;
 						}
 
 					}
 				});
+
 				var state='[[${state}]]';
 				if (state=="" || state==0){
 					//等于0显示首页推荐
@@ -319,6 +320,41 @@
 				})
 
 			});
+			function showView(pageNum,pageSize,elemBox,state,reecom) {
+				$.get('[[@{/}]]',{state:state,pageNum:pageNum,pageSize:pageSize,reecom:reecom},function (data) {
+					var list=data.list;
+					for (var i=0;i<list.length;i++){
+						var html="<div class=\"card-box\">\n" +
+								"\t\t\t\t\t\t\t\t<div class=\"card-img\">\n" +
+								"\t\t\t\t\t\t\t\t\t<a href=\"\" class=\"card-img-hover\" title=\"#\" target=\"_blank\" z-st=\"home_main_card_cover\">\n" +
+								"\t\t\t\t\t\t\t\t\t\t<img th:src=\"${time.getImgurl()}\" title=\"\" alt=\"\" th:title=\"${time.getComname()}\">\n" +
+								"\t\t\t\t\t\t\t\t\t</a>\n" +
+								"\t\t\t\t\t\t\t\t</div>\n" +
+								"\t\t\t\t\t\t\t\t<div class=\"card-info\">\n" +
+								"\t\t\t\t\t\t\t\t\t<p class=\"card-info-title\">\n" +
+								"\t\t\t\t\t\t\t\t\t\t<a href=\"#\" th:title=\"${time.getComname()}\" th:text=\"${time.getComname()}\" class=\"title-content\" target=\"_blank\" z-st=\"home_main_card_title\" style=\"width: 178px;\"></a>\n" +
+								"\t\t\t\t\t\t\t\t\t</p>\n" +
+								"\t\t\t\t\t\t\t\t\t<p class=\"card-info-type\" title=\"#\" th:text=\"${time.getCategory()}\">\n" +
+								"\t\t\t\t\t\t\t\t\t</p>\n" +
+								"\t\t\t\t\t\t\t\t\t<p class=\"card-info-item\">\n" +
+								"\t\t\t\t\t\t\t\t\t\t<span class=\"statistics-view\" th:title=\"${time.getBrowsenum()}\" th:text=\"${time.getBrowsenum()}\"></span>\n" +
+								"\t\t\t\t\t\t\t\t\t</p>\n" +
+								"\t\t\t\t\t\t\t\t</div>\n" +
+								"\t\t\t\t\t\t\t\t<div class=\"card-item\">\n" +
+								"\t\t\t\t\t\t\t\t\t<span class=\"user-avatar showMemberCard\">\n" +
+								"\t\t\t\t\t\t\t\t\t\t<a href=\"#\" th:title=\"${time.getComUser()}\" target=\"_blank\" z-st=\"home_main_card_user\">\n" +
+								"\n" +
+								"\t\t\t\t\t\t\t\t\t\t\t<img th:src=\"${time.getUserImg()}\" th:srcset=\"${time.getUserImg()}\" width=\"30\" height=\"30\" alt=\"\"/>\n" +
+								"\t\t\t\t\t\t\t\t\t\t\t<span th:text=\"${time.getComUser()}\"></span>\n" +
+								"\t\t\t\t\t\t\t\t\t\t</a>\n" +
+								"\t\t\t\t\t\t\t\t\t</span>\n" +
+								"\t\t\t\t\t\t\t\t\t<span class=\"time\" title=\"发布时间\" th:text=\"${#dates.format(time.insertTime, 'yyyy-MM-dd')}\">5天前</span>\n" +
+								"\t\t\t\t\t\t\t\t</div>\n" +
+								"\t\t\t\t\t\t\t</div>";
+						$("."+elemBox).html(html);
+					}
+				})
+			}
 		</script>
 	</body>
 	<html>
