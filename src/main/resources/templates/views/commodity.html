@@ -82,7 +82,7 @@
             if(obj.event === 'detail'){
                 var id=JSON.stringify(data.id);
                 /*layer.msg('ID：'+ data.id + ' 的查看操作');*/
-                $("#realJump").attr("lay-href","[[@{/views/commodityView?id=}]]"+id);
+                $("#realJump").attr("lay-href","[[@{/views/comDetailsInit?id=}]]"+id);
                 $("#realJump").attr("lay-tips","编辑商品")
                 $("#realJump").click();
             } else if(obj.event === 'del'){

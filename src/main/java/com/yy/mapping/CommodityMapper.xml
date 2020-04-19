@@ -446,7 +446,6 @@
       This element was generated on Thu Mar 26 14:09:35 CST 2020.
     -->
     update commodity
-    updateTime=now(),
     <set>
       <if test="comname != null">
         comName = #{comname,jdbcType=VARCHAR},

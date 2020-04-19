@@ -152,4 +152,17 @@ public class CommodityController {
         out.flush();
         out.close();
     }
+
+
+    @RequestMapping("/comDetailsInit")
+    public String comDetailsInit(Model model,Commodity commodity){
+
+        if(commodity.getId()!=null){
+            commodity=commodityService.selectByCom(commodity).get(0);
+        }
+
+        model.addAttribute("commodity",commodity);
+        return "/views/commodityView";
+    }
+
 }
