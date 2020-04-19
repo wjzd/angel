@@ -55,7 +55,7 @@ public class DownloanController {
 
     @RequestMapping(value = "uploadFile")
     @ResponseBody
-    public Map<String,String> uploadImage(@RequestParam("upfile") MultipartFile upfile) {
+    public String uploadImage(@RequestParam("file") MultipartFile file) {
 
         System.out.println("文件上传");
         // 项目在容器中实际发布运行的根路径
@@ -65,9 +65,9 @@ public class DownloanController {
         System.out.println(realPath);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHMMSS");
         String dateString=simpleDateFormat.format(new Date());
-        if (!upfile.isEmpty()) {
+        if (!file.isEmpty()) {
             Map<String, String> resObj = new HashMap<>();
-            String name=upfile.getOriginalFilename();//文件上传的真实名称
+            String name=file.getOriginalFilename();//文件上传的真实名称
             String suffixName=name.substring(name.lastIndexOf("."));
             String hash= Integer.toHexString(new Random().nextInt());
             String fileName=dateString+hash+suffixName;
@@ -75,18 +75,19 @@ public class DownloanController {
             try {
                 BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(new File(realPath, fileName)));
-                out.write(upfile.getBytes());
+                out.write(file.getBytes());
                 out.flush();
                 out.close();
             } catch (IOException e) {
-               e.printStackTrace();
+                resObj.put("msg", "error");
+                resObj.put("code", "1");
+                e.printStackTrace();
+                return JSONObject.toJSONString(resObj);
             }
-            Map<String,String> map=new HashMap<>();
-            map.put("state","SUCCESS");
-            map.put("url",fileUrl);
-            map.put("title",fileName);
-            map.put("original","fileName");
-            return map;
+            resObj.put("msg", "ok");
+            resObj.put("code", "0");
+            resObj.put("fileUrl", fileUrl);
+            return JSONObject.toJSONString(resObj);
         } else {
             return null;
         }
