@@ -23,6 +23,7 @@ public class TestInterceptor implements HandlerInterceptor {
             }else{
                 session.setAttribute("adminUserInfo", session.getAttribute("adminUserInfo"));
                 return true;
+
             }
         }
         if (url.contains("/page/center") || url.contains("/page/modifyHeadImg") || url.contains("/page/updateUserInfo") || url.contains("/page/tomodifyUserInfo") || url.contains("/page/checkPassword") ||url.contains("/collectCon/updateCollect")||url.contains("/views/download")){
