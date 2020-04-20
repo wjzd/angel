@@ -17,7 +17,7 @@
     <result column="browseNum" jdbcType="INTEGER" property="browsenum" />
     <result column="isout" jdbcType="INTEGER" property="isout" />
     <result column="reecom" jdbcType="INTEGER" property="reecom" />
-    <result column="adminId" jdbcType="INTEGER" property="adminid" />
+    <result column="userName" jdbcType="INTEGER" property="userName" />
     <result column="comUrl" jdbcType="VARCHAR" property="comurl" />
     <result column="category" jdbcType="VARCHAR" property="category" />
     <result column="insertTime" jdbcType="TIMESTAMP" property="insertTime"/>
@@ -198,12 +198,12 @@
     insert into commodity (id, comName, comOriPrice, 
       comPrice, imgUrl, saleNum, 
       collectNum, browseNum, isout, 
-      reecom, adminId, comUrl, 
+      reecom, userName, comUrl,
       category, details)
     values (#{id,jdbcType=INTEGER}, #{comname,jdbcType=VARCHAR}, #{comoriprice,jdbcType=DOUBLE}, 
       #{comprice,jdbcType=DOUBLE}, #{imgurl,jdbcType=VARCHAR}, #{salenum,jdbcType=INTEGER}, 
       #{collectnum,jdbcType=INTEGER}, #{browsenum,jdbcType=INTEGER}, #{isout,jdbcType=INTEGER}, 
-      #{reecom,jdbcType=INTEGER}, #{adminid,jdbcType=INTEGER}, #{comurl,jdbcType=VARCHAR}, 
+      #{reecom,jdbcType=INTEGER}, #{userName,jdbcType=INTEGER}, #{comurl,jdbcType=VARCHAR},
       #{category,jdbcType=VARCHAR}, #{details,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yy.pojo.Commodity">
@@ -246,8 +246,8 @@
       <if test="reecom != null">
         reecom,
       </if>
-      <if test="adminid != null">
-        adminId,
+      <if test="userName != null">
+        userName,
       </if>
       <if test="comurl != null">
         comUrl,
@@ -301,8 +301,8 @@
       <if test="reecom != null">
         #{reecom,jdbcType=INTEGER},
       </if>
-      <if test="adminid != null">
-        #{adminid,jdbcType=INTEGER},
+      <if test="userName != null">
+        #{userName,jdbcType=INTEGER},
       </if>
       <if test="comurl != null">
         #{comurl,jdbcType=VARCHAR},
@@ -373,8 +373,8 @@
       <if test="record.reecom != null">
         reecom = #{record.reecom,jdbcType=INTEGER},
       </if>
-      <if test="record.adminid != null">
-        adminId = #{record.adminid,jdbcType=INTEGER},
+      <if test="record.userName != null">
+        userName = #{record.userName,jdbcType=INTEGER},
       </if>
       <if test="record.comurl != null">
         comUrl = #{record.comurl,jdbcType=VARCHAR},
@@ -407,7 +407,7 @@
       browseNum = #{record.browsenum,jdbcType=INTEGER},
       isout = #{record.isout,jdbcType=INTEGER},
       reecom = #{record.reecom,jdbcType=INTEGER},
-      adminId = #{record.adminid,jdbcType=INTEGER},
+    userName = #{record.userName,jdbcType=INTEGER},
       comUrl = #{record.comurl,jdbcType=VARCHAR},
       category = #{record.category,jdbcType=VARCHAR},
       details = #{record.details,jdbcType=LONGVARCHAR}
@@ -432,7 +432,7 @@
       browseNum = #{record.browsenum,jdbcType=INTEGER},
       isout = #{record.isout,jdbcType=INTEGER},
       reecom = #{record.reecom,jdbcType=INTEGER},
-      adminId = #{record.adminid,jdbcType=INTEGER},
+    userName = #{record.userName,jdbcType=INTEGER},
       comUrl = #{record.comurl,jdbcType=VARCHAR},
       category = #{record.category,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -474,8 +474,8 @@
       <if test="reecom != null">
         reecom = #{reecom,jdbcType=INTEGER},
       </if>
-      <if test="adminid != null">
-        adminId = #{adminid,jdbcType=INTEGER},
+      <if test="userName != null">
+        userName = #{userName,jdbcType=INTEGER},
       </if>
       <if test="comurl != null">
         comUrl = #{comurl,jdbcType=VARCHAR},
@@ -515,7 +515,7 @@
       browseNum = #{browsenum,jdbcType=INTEGER},
       isout = #{isout,jdbcType=INTEGER},
       reecom = #{reecom,jdbcType=INTEGER},
-      adminId = #{adminid,jdbcType=INTEGER},
+    userName = #{userName,jdbcType=INTEGER},
       comUrl = #{comurl,jdbcType=VARCHAR},
       category = #{category,jdbcType=VARCHAR},
       details = #{details,jdbcType=LONGVARCHAR}
@@ -537,7 +537,7 @@
       browseNum = #{browsenum,jdbcType=INTEGER},
       isout = #{isout,jdbcType=INTEGER},
       reecom = #{reecom,jdbcType=INTEGER},
-      adminId = #{adminid,jdbcType=INTEGER},
+      userName = #{userName,jdbcType=INTEGER},
       comUrl = #{comurl,jdbcType=VARCHAR},
       category = #{category,jdbcType=VARCHAR},
       comUser = #{comUser,jdbcType=VARCHAR},
@@ -578,8 +578,8 @@
       <if test="reecom != null">
         and reecom = #{reecom,jdbcType=INTEGER}
       </if>
-      <if test="adminid != null">
-        and  adminId = #{adminid,jdbcType=INTEGER}
+      <if test="userName != null">
+        and  userName = #{userName,jdbcType=INTEGER}
       </if>
       <if test="comurl != null">
         and comUrl = #{comurl,jdbcType=VARCHAR}

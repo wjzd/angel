@@ -46,7 +46,7 @@
     <result column="browseNum" jdbcType="INTEGER" property="browsenum" />
     <result column="isout" jdbcType="INTEGER" property="isout" />
     <result column="reecom" jdbcType="INTEGER" property="reecom" />
-    <result column="adminId" jdbcType="INTEGER" property="adminid" />
+    <result column="userName" jdbcType="INTEGER" property="userName" />
     <result column="comUrl" jdbcType="VARCHAR" property="comurl" />
     <result column="category" jdbcType="VARCHAR" property="category" />
     <result column="insertTime" jdbcType="TIMESTAMP" property="insertTime"/>

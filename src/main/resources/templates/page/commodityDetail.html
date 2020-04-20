@@ -75,12 +75,12 @@
                                                 <span><a href="https://www.zcool.com.cn/discover/0!3!0!0!0!!!!2!-1!1"
                                                          target="_blank">原创作品</a></span>
                                                 <i>/</i>
-                                                <span><a href="https://www.zcool.com.cn/discover/33!3!0!0!0!!!!2!-1!1"
-                                                         target="_blank">摄影</a></span>
+                                                <span><a th:text="${commodity.category}" href="https://www.zcool.com.cn/discover/33!3!0!0!0!!!!2!-1!1"
+                                                         target="_blank"></a></span>
                                                 <i>/</i>
-                                                <span><a href="https://www.zcool.com.cn/discover/33!3!34!0!0!!!!2!-1!1"
+                                                <!--<span><a href="https://www.zcool.com.cn/discover/33!3!34!0!0!!!!2!-1!1"
                                                          target="_blank">人像</a></span>
-                                            </span>
+                                            </span>-->
                                     <div class="copy-con">
                                                 <span class="copy-icon">
                                                     <i class="copy-tips">作品版权由渠程摄影 解释，
@@ -91,13 +91,13 @@
                                 <div class="head-right">
                                             <span class="head-data-show">
                                             <a class="see vertical-line" href="javascript:" title="共237人气">
-                                                <i></i>237
+                                                <i></i><span th:text="${commodity.browsenum}"></span>
                                             </a>
                                             <a class="news vertical-line" href="javascript:" title="共0评论">
-                                                <i></i>0
+                                                <i></i><span th:text="${commodity.collectnum}"></span>
                                             </a>
                                             <a class="recommend-show" href="javascript:" title="共4推荐">
-                                                <i></i>4
+                                                <i></i><span th:text="${commodity.salenum}"></span>
                                             </a>
                                             </span>
                                 </div>
@@ -114,15 +114,15 @@
                                 <a class="avatar" href="https://www.zcool.com.cn/u/18408957" target="_blank" title="渠程摄影">
                                     <img alt=""
                                          height="80"
-                                         src="https://img.zcool.cn/community/031d5305c114555a80121ab5d0e75d7.jpg@80w_80h_1c_1e_1o_100sh.jpg"
+                                         th:src="${commodity.userImg}"
                                          width="80">
                                 </a>
 
                             </div>
                             <div class="author-info" style="margin-top: 30px;">
                                 <p class="author-info-title">
-                                    <a class="title-content" href="https://www.zcool.com.cn/u/18408957" target="_blank"
-                                       title="渠程摄影">渠程摄影
+                                    <a th:text="${commodity.userName}" class="title-content" href="https://www.zcool.com.cn/u/18408957" target="_blank"
+                                       title="渠程摄影">
                                     </a>
                                 </p>
                                 <div class="position-info">
@@ -423,7 +423,7 @@
         var carousel = layui.carousel;
         var laypage = layui.laypage,
             layer = layui.layer, $ = layui.$;
-        $(".collection").click(function () {
+        $(".collect").click(function () {
             var userInfo=$(".userId").val();
             if(userInfo=null||userInfo==""){
                 layer.msg("请登录！");
@@ -439,9 +439,10 @@
                 success:function(data){
 
                     if(data.type==0){
-                        layer.msg("已取消收藏");
+                        $(".collect").val("收藏");
                     }else{
-                        layer.msg("已收藏");
+                        $(".collect").val("已收藏");
+                        //layer.msg("已收藏");
                     }
                 },
                 error:function(data){
@@ -459,7 +460,7 @@
             }
             var comId=$(".comId").val();
             $.ajax({
-                url:"/views/download",
+                url:"/collectCon/updateCollect",
                 data:{"id":comId},
                 type:"Post",
                 dataType:"json",
