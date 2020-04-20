@@ -54,9 +54,14 @@ public class CollectCOntroller {
     //用户点击收藏
     @RequestMapping("/updateCollect")
     @ResponseBody
-    public void updateCollect(HttpServletResponse resp, HttpServletRequest request, Collect collect) throws JSONException {
+    public void updateCollect(HttpServletResponse resp, HttpServletRequest request, Collect collect) {
+
+        try {
+
 
         HttpSession session = request.getSession();
+        UserInfo userInfo= (UserInfo) session.getAttribute("userInfo");
+        collect.setUserid(userInfo.getId());
 
         List<Collect> collectList=collectService.selectCollect(collect);
         int type=0;
@@ -80,6 +85,9 @@ public class CollectCOntroller {
         out.print(json);
         out.flush();
         out.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

@@ -25,7 +25,7 @@ public class TestInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
-        if (url.contains("/page/center") || url.contains("/page/modifyHeadImg") || url.contains("/page/updateUserInfo") || url.contains("/page/tomodifyUserInfo") || url.contains("/page/checkPassword") ){
+        if (url.contains("/page/center") || url.contains("/page/modifyHeadImg") || url.contains("/page/updateUserInfo") || url.contains("/page/tomodifyUserInfo") || url.contains("/page/checkPassword") ||url.contains("/collectCon/updateCollect")||url.contains("/views/download")){
             if(session.getAttribute("userInfo") == null){
                 response.sendRedirect(request.getContextPath()+"/page/login");
                 return false;
