@@ -48,9 +48,12 @@ public class IndexServiceImpl implements IndexService {
     }
 
     @Override
-    public PageInfo<Commodity> getSearch(String categoryName, Integer pageNum, Integer pageSize) {
-
-        return null;
+    public PageInfo<Commodity> getSearch(String name, Integer pageNum, Integer pageSize) {
+        Commodity commodity=new Commodity();
+        commodity.setComname(name);
+        String orderBy="insertTime desc";
+        PageHelper.startPage(pageNum,pageSize,orderBy);
+        return new PageInfo(commodityMapper.search(commodity));
     }
 
 //    @Override

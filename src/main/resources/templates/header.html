@@ -142,12 +142,16 @@
 	<script>
 		$(function () {
 			$(".search-unlogin").click(function () {
-				if ($(".search-input-hull").is(":hidden")){
+
+				if ($(".search-input-hull").hasClass("hide")==false){
 					$(".search-input-hull").addClass("hide");
 					$(".menu-box").removeClass("hide");
-				}else {
+					return;
+				}
+				if ($(".search-input-hull").hasClass("hide")==true) {
 					$(".search-input-hull").removeClass("hide");
 					$(".menu-box").addClass("hide");
+					return;
 				}
 			});
 			$(".search-cancel").click(function () {
@@ -164,10 +168,24 @@
 			});
 			$("#nav-search-ipt").on('keypress',function (event) {
 				if (event.keyCode==13){
-					console.log($(this).val());
+					var value=$(this).val();
+					if (value!='' && value!=null){
+						console.log(value);
+						search(value);
+					}
+				}
+			})
+			$(".search-ipt").click(function () {
+				var value=$("#nav-search-ipt").val();
+				if (value!='' && value!=null){
+					console.log(value);
+					search(value);
 				}
 			})
 		});
+		function search(value) {
+			window.open("[[@{/page/search}]]?name="+value);
+		}
 		function logout() {
 			window.location.href='[[@{/logout}]]'
 		}

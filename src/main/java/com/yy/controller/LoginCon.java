@@ -121,7 +121,7 @@ public class LoginCon {
         return error;
     }
     //登录
-    @RequestMapping("/loginUser")
+    @RequestMapping("/UserLogin")
     @ResponseBody
     public void loginUser(HttpServletResponse resp, HttpServletRequest request,UserInfo userInfo) throws JSONException {
 

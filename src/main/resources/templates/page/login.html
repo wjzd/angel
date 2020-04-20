@@ -183,7 +183,7 @@
 						}
 						$(this).addClass("hide");
 						$(this).next().removeClass("hide");
-						$.post('[[@{/LoginCon/loginUser}]]',{account:account,passwd:password},function (res) {
+						$.post('[[@{/LoginCon/UserLogin}]]',{account:account,passwd:password},function (res) {
 							res=JSON.parse(res);
 							if (res.error==1){
 								layer.msg("登录失败，账号密码错误",{time:1000*3,icon:5});

@@ -603,4 +603,12 @@
   <select id="getCommodityByuserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select c.* from userInfo a LEFT JOIN collect b ON a.id=b.userId LEFT JOIN commodity c ON b.comId=c.id WHERE a.id=#{userId} ORDER BY b.collectTime DESC
   </select>
+  <select id="search" parameterType="com.yy.pojo.Commodity" resultMap="BaseResultMap">
+    select * from commodity
+    <where>
+      <if test="comname != null">
+        and comName like CONCAT('%',#{comname,jdbcType=VARCHAR},'%')
+      </if>
+    </where>
+  </select>
 </mapper>

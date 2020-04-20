@@ -14,5 +14,5 @@ public interface IndexService {
 
     PageInfo<Commodity> getCommodityList(String categoryName, Integer reecom, Integer pageNum, Integer pageSize);
 
-    PageInfo<Commodity> getSearch(String categoryName, Integer pageNum, Integer pageSize);
+    PageInfo<Commodity> getSearch(String name, Integer pageNum, Integer pageSize);
 }

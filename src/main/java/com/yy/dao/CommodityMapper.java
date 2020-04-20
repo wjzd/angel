@@ -1,5 +1,6 @@
 package com.yy.dao;
 
+import com.yy.controller.CommodityController;
 import com.yy.pojo.Commodity;
 import com.yy.pojo.CommodityExample;
 
@@ -125,4 +126,6 @@ public interface CommodityMapper{
     List<Commodity> selectByCom(Commodity commodity);
 
     List<Commodity> getCommodityByuserId(int userId);
+
+    List<Commodity> search(Commodity commodity);
 }

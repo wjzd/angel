@@ -115,7 +115,8 @@
                                 <span class="time" title="发布时间" th:text="${#dates.format(commodity.insertTime, 'yyyy-MM-dd')}">5天前</span>
                             </div>
                         </div>
-                        <div id="page" class="layui-row" style="margin-left: 40%;padding-bottom: 50px;"></div>
+                        <div id="page" class="layui-row" style="margin-left: 40%;padding-bottom: 50px;" th:if="${not #lists.isEmpty(list)}"></div>
+                        <div id="page" class="layui-row hide" style="margin-left: 40%;padding-bottom: 50px;" th:if="${#lists.isEmpty(list)}"></div>
                     </section>
                 </div>
             </div>
