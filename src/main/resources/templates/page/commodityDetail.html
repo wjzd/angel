@@ -49,6 +49,7 @@
             </div>
         </div>
         <input type="hidden" th:value="${session.userInfo}" class="userId">
+        <input type="hidden" th:value="${commodity.getId()}" class="comId">
 
         <div class="content-wrap">
             <!--作品头部区域-->
@@ -352,7 +353,7 @@
             <div class="details-con-other border-top">
                 <div class="work-details-box-wrap">
                     <div class="three-link">
-                        <input type="button" z-st="favorite" class="btn-default-secondary details-collection-btn collection js-not-fav js-project-fav collect" value="收藏" data-on="1" title="收藏">
+                        <input type="button" z-st="favorite" class="btn-default-secondary details-collection-btn js-not-fav js-project-fav collect" value="收藏" data-on="1" title="收藏">
                         <input type="button" class="btn-default-secondary details-share" id="share" value="分享">
                     </div>
                 </div>
@@ -401,7 +402,7 @@
                     </div>
                 </div>
                  <div class="fixed-right-box">
-                    <input type="button" class="btn-default-secondary fixed-collection collection js-not-fav js-project-fav" value="收藏"id="collection" />
+                    <input type="button" class="btn-default-secondary fixed-collection collection js-not-fav js-project-fav" value="收藏" id="collection" />
                     <input type="button" class="btn-default-secondary fixed-comments" value="评论">
                 </div>
             </div>
@@ -422,13 +423,17 @@
         var carousel = layui.carousel;
         var laypage = layui.laypage,
             layer = layui.layer, $ = layui.$;
-        $("#collection").click(function () {
-            var userId=$(".userId").val();
-            userId=1;
-            var comId=1;
+        $(".collection").click(function () {
+            var userInfo=$(".userId").val();
+            if(userInfo=null||userInfo==""){
+                layer.msg("请登录！");
+                return;
+            }
+
+            var comId=$(".comId").val();
             $.ajax({
                 url:"/collectCon/updateCollect",
-                data:{'userid':userId,"comid":comId},
+                data:{"comid":comId},
                 type:"Post",
                 dataType:"json",
                 success:function(data){
@@ -440,15 +445,19 @@
                     }
                 },
                 error:function(data){
-                    $.messager.alert('错误',data.msg);
+                    layer.msg('错误',data.msg);
+                    //$.messager.alert('错误',data.msg);
                 }
             });
         });
         $("#detail-recommend-div").click(function () {
 
-            var userId=$(".userId").val();
-            userId=1;
-            var comId=1;
+            var userInfo=$(".userId").val();
+            if(userInfo=null||userInfo==""){
+                layer.msg("请登录！");
+                return;
+            }
+            var comId=$(".comId").val();
             $.ajax({
                 url:"/views/download",
                 data:{"id":comId},
@@ -461,12 +470,12 @@
                         $(".comCode").text(data.commodity.comCode);
                         $(".comTable").show();
                     }else{
-                        layui.msg("不是会员");
+                        layer.msg("不是会员");
                     }
 
                 },
                 error:function(data){
-                    $.messager.alert('错误',data.msg);
+                    layer.msg('错误',data.msg);
                 }
             });
         });
