@@ -401,7 +401,7 @@
                     </div>
                 </div>
                  <div class="fixed-right-box">
-                    <input type="button" class="btn-default-secondary fixed-collection collection js-not-fav js-project-fav" value="收藏" />
+                    <input type="button" class="btn-default-secondary fixed-collection collection js-not-fav js-project-fav" value="收藏"id="collection" />
                     <input type="button" class="btn-default-secondary fixed-comments" value="评论">
                 </div>
             </div>
@@ -414,53 +414,7 @@
 </div>
 <script>
 
-    $(".collect").click(function () {
-        var userId=$(".userId").val();
-        userId=1;
-        var comId=1;
-        $.ajax({
-            url:"/collectCon/updateCollect",
-            data:{'userid':userId,"comid":comId},
-            type:"Post",
-            dataType:"json",
-            success:function(data){
 
-                if(data.type==0){
-                    alert("已取消收藏");
-                }else{
-                    alert("已收藏");
-                }
-            },
-            error:function(data){
-                $.messager.alert('错误',data.msg);
-            }
-        });
-    });
-    $(".download").click(function () {
-
-        var userId=$(".userId").val();
-        userId=1;
-        var comId=1;
-        $.ajax({
-            url:"/views/download",
-            data:{"id":comId},
-            type:"Post",
-            dataType:"json",
-            success:function(data){
-
-                if(data.type==1){
-                    $(".comUrl").text(data.commodity.comUrl);
-                    $(".comCode").text(data.commodity.comCode);
-                    $(".comTable").show();
-                }else{
-                    layui.alert("不是会员");
-                }
-            },
-            error:function(data){
-                $.messager.alert('错误',data.msg);
-            }
-        });
-    });
     layui.config({
         base: '[[@{/static/js/}]]' //设定扩展的 layui 模块的所在目录，一般用于外部模块扩展
     });
@@ -468,7 +422,53 @@
         var carousel = layui.carousel;
         var laypage = layui.laypage,
             layer = layui.layer, $ = layui.$;
+        $("#collection").click(function () {
+            var userId=$(".userId").val();
+            userId=1;
+            var comId=1;
+            $.ajax({
+                url:"/collectCon/updateCollect",
+                data:{'userid':userId,"comid":comId},
+                type:"Post",
+                dataType:"json",
+                success:function(data){
 
+                    if(data.type==0){
+                        layer.msg("已取消收藏");
+                    }else{
+                        layer.msg("已收藏");
+                    }
+                },
+                error:function(data){
+                    $.messager.alert('错误',data.msg);
+                }
+            });
+        });
+        $("#detail-recommend-div").click(function () {
+
+            var userId=$(".userId").val();
+            userId=1;
+            var comId=1;
+            $.ajax({
+                url:"/views/download",
+                data:{"id":comId},
+                type:"Post",
+                dataType:"json",
+                success:function(data){
+
+                    if(data.type==1){
+                        $(".comUrl").text(data.commodity.comUrl);
+                        $(".comCode").text(data.commodity.comCode);
+                        $(".comTable").show();
+                    }else{
+                        layui.msg("不是会员");
+                    }
+                },
+                error:function(data){
+                    $.messager.alert('错误',data.msg);
+                }
+            });
+        });
     });
 </script>
 </body>

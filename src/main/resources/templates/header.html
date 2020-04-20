@@ -135,9 +135,6 @@
 							</div>
 						</div></li>
 				</ul>
-				<ul class="unlogin hide">
-					<li><a href="javascript:;" data-href="https://passport.zcool.com.cn/loginApp.do?appId=1006" class="nav-unlogin">登录<i></i></a><a href="https://passport.zcool.com.cn/regPhone.do?appId=1006&amp;cback=https://my.zcool.com.cn/focus/activity">注册</a></li>
-				</ul>
 			</div>
 		</nav>
 	<script>
@@ -153,8 +150,7 @@
 			$(".menu-list-box").each(function () {
 				var name=$("#categoryName").val();
 				if ($(this).text()==name){
-						$(this).parent("li").addClass("current")
-						$(this).attr("href", "#");
+						$(this).parent("li").addClass("current");
 				}else {
 					$(this).parent("li").removeClass("current");
 				}

@@ -88,6 +88,12 @@ public class PageController {
         }
         return "/page/commodity";
     }
+    @RequestMapping("/search")
+    public String search(@RequestParam("name")String name,@RequestParam(value = "pageNum", defaultValue = "1",required = false) Integer pageNum,
+                         @RequestParam(value = "pageSize", defaultValue = "40", required = false) Integer pageSize){
+
+        return "/page/search";
+    }
     @RequestMapping("login")
     public String login(){
         return "/page/login";

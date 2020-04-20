@@ -47,6 +47,12 @@ public class IndexServiceImpl implements IndexService {
         return new PageInfo(commodities);
     }
 
+    @Override
+    public PageInfo<Commodity> getSearch(String categoryName, Integer pageNum, Integer pageSize) {
+
+        return null;
+    }
+
 //    @Override
 //    public List<Commodity> getCommodityList(String categoryName, Integer reecom) {
 //        Commodity commodity=new Commodity();
