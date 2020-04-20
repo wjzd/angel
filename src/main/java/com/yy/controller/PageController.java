@@ -1,5 +1,6 @@
 package com.yy.controller;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.yy.pojo.Collect;
 import com.yy.pojo.Commodity;
@@ -90,8 +91,14 @@ public class PageController {
     }
     @RequestMapping("/search")
     public String search(@RequestParam("name")String name,@RequestParam(value = "pageNum", defaultValue = "1",required = false) Integer pageNum,
-                         @RequestParam(value = "pageSize", defaultValue = "40", required = false) Integer pageSize){
-
+                         @RequestParam(value = "pageSize", defaultValue = "40", required = false) Integer pageSize,Model model){
+        PageInfo<Commodity> commodityPage=indexService.getSearch(name,pageNum,pageSize);
+        model.addAttribute("search",commodityPage.getList());
+        model.addAttribute("total",commodityPage.getTotal());
+        model.addAttribute("pageNum",commodityPage.getPageNum());
+        model.addAttribute("pageSize",commodityPage.getPageSize());
+        model.addAttribute("name",name);
+        categoryName1="首页";
         return "/page/search";
     }
     @RequestMapping("login")

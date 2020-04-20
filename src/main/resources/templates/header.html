@@ -68,7 +68,6 @@
 		<nav>
 			<input type="hidden" id="lanage" value="zh">
 			<div class="logo"><a href="#" z-st="nav_logo"><img th:src="@{/static/index_files/logo.svg}" width="160" alt=""></a>
-						
 			</div>
 			<div class="header-menu-bar">
 				<div class="search-input-hull hide">
@@ -135,13 +134,21 @@
 							</div>
 						</div></li>
 				</ul>
+				<ul class="unlogin hide">
+					<li><a href="javascript:;" data-href="https://passport.zcool.com.cn/loginApp.do?appId=1006" class="nav-unlogin">登录<i></i></a><a href="https://passport.zcool.com.cn/regPhone.do?appId=1006&amp;cback=https://my.zcool.com.cn/focus/activity">注册</a></li>
+				</ul>
 			</div>
 		</nav>
 	<script>
 		$(function () {
 			$(".search-unlogin").click(function () {
-				$(".search-input-hull").removeClass("hide");
-				$(".menu-box").addClass("hide");
+				if ($(".search-input-hull").is(":hidden")){
+					$(".search-input-hull").addClass("hide");
+					$(".menu-box").removeClass("hide");
+				}else {
+					$(".search-input-hull").removeClass("hide");
+					$(".menu-box").addClass("hide");
+				}
 			});
 			$(".search-cancel").click(function () {
 				$(".search-input-hull").addClass("hide");
@@ -155,8 +162,12 @@
 					$(this).parent("li").removeClass("current");
 				}
 			});
-
-		})
+			$("#nav-search-ipt").on('keypress',function (event) {
+				if (event.keyCode==13){
+					console.log($(this).val());
+				}
+			})
+		});
 		function logout() {
 			window.location.href='[[@{/logout}]]'
 		}
