@@ -15,7 +15,7 @@ public class TestInterceptor implements HandlerInterceptor {
         //判断用户ID是否存在，不存在就跳转到登录界面
 
         String url=request.getRequestURI();
-        if (url.contains("/LoginCon/login") || url.contains("/views/") || url.contains("/collectCon/") || url.contains("/orderCon/") || url.contains("/ueditor")){
+        if (url.contains("/LoginCon/login")){
 
             if(session.getAttribute("adminUserInfo") == null){
                 response.sendRedirect(request.getContextPath()+"/viewLoginInit");

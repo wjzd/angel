@@ -136,10 +136,10 @@
 
                 </div>
             </div>
-
-            <div class="work-details-content">
-                <!--作品内容区域, 文字,图片和视频-->
-                <!--作品内容区域, 文字,图片和视频-->
+            <div th:utext="${commodity.getDetails()}" class="work-details-content"></div>
+            <!--<div class="work-details-content">
+                &lt;!&ndash;作品内容区域, 文字,图片和视频&ndash;&gt;
+                &lt;!&ndash;作品内容区域, 文字,图片和视频&ndash;&gt;
                 <div class="work-content-wrap ">
                     <div class="work-center-con">
                         <div class="atricle-text">
@@ -158,7 +158,7 @@
                                          src="https://img.zcool.cn/community/01652a5e7f1887a801216518d51f6f.jpg@1280w_1l_2o_100sh.jpg">
                                     <div class="photo-info hi-de" exif="{orientation:'1'}" id="exif_50683478">
                                     </div>
-                                    <!-- 存证图标 -->
+                                    &lt;!&ndash; 存证图标 &ndash;&gt;
 
                                 </div>
                                 <p class="packaging-competition"></p>
@@ -179,7 +179,7 @@
                                     </div>
 
 
-                                    <!-- 存证图标 -->
+                                    &lt;!&ndash; 存证图标 &ndash;&gt;
 
                                 </div>
                                 <p class="packaging-competition"></p>
@@ -199,7 +199,7 @@
                                     </div>
 
 
-                                    <!-- 存证图标 -->
+                                    &lt;!&ndash; 存证图标 &ndash;&gt;
 
                                 </div>
                                 <p class="packaging-competition"></p>
@@ -224,7 +224,7 @@
                                     </div>
 
 
-                                    <!-- 存证图标 -->
+                                    &lt;!&ndash; 存证图标 &ndash;&gt;
 
                                 </div>
                                 <p class="packaging-competition"></p>
@@ -246,7 +246,7 @@
                                     </div>
 
 
-                                    <!-- 存证图标 -->
+                                    &lt;!&ndash; 存证图标 &ndash;&gt;
 
                                 </div>
                                 <p class="packaging-competition"></p>
@@ -266,7 +266,7 @@
                                     </div>
 
 
-                                    <!-- 存证图标 -->
+                                    &lt;!&ndash; 存证图标 &ndash;&gt;
 
                                 </div>
                                 <p class="packaging-competition"></p>
@@ -288,7 +288,7 @@
                                     </div>
 
 
-                                    <!-- 存证图标 -->
+                                    &lt;!&ndash; 存证图标 &ndash;&gt;
 
                                 </div>
                                 <p class="packaging-competition"></p>
@@ -312,7 +312,7 @@
                                     </div>
 
 
-                                    <!-- 存证图标 -->
+                                    &lt;!&ndash; 存证图标 &ndash;&gt;
 
                                 </div>
                                 <p class="packaging-competition"></p>
@@ -322,7 +322,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div>-->
                 <!--推荐区域-->
                 <div class="recommend-box">
                     <div class="recommend-works normal js-details-common-recommend download" id="detail-recommend-div"
@@ -341,7 +341,7 @@
                                 <td class="comUrl"></td>
                             </tr>
                             <tr>
-                                <td>提取码</td>
+                                <td>提取码:</td>
                                 <td class="comCode"></td>
                             </tr>
                         </table>
@@ -466,8 +466,8 @@
                 success:function(data){
 
                     if(data.type==1){
-                        $(".comUrl").text(data.commodity.comUrl);
-                        $(".comCode").text(data.commodity.comCode);
+                        $(".comUrl").text(data.comUrl);
+                        $(".comCode").text(data.comCode);
                         $(".comTable").show();
                     }else{
                         layer.msg("不是会员");

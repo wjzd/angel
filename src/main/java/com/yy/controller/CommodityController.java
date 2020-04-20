@@ -122,6 +122,7 @@ public class CommodityController {
         JSONObject json=new JSONObject();
         int type=0;
         if(userInfo.getIsvip()==1){//是VIp
+           type=1;
             //判断用户是否下载过
             DownloanInfo dw=new DownloanInfo();
             dw.setComid(commodity.getId());
@@ -136,7 +137,8 @@ public class CommodityController {
                 dw.setDowntime(new Date());
                 downloanService.insertSelective(dw);
             }
-            json.put("commodity",comList.get(0));
+            json.put("comUrl",comList.get(0).getComurl());
+            json.put("comCode",comList.get(0).getComCode());
             json.put("type",type);
         }else{
             type=0;
