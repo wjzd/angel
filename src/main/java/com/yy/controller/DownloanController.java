@@ -38,7 +38,7 @@ public class DownloanController {
         return "/views/downList";
     }
 
-    @RequestMapping("/downList")
+    @RequestMapping(value="/downList",produces = "application/json; charset=utf-8")
     @ResponseBody
     public String downList(ResultTable resultTable, @RequestParam("limit")int limit, @RequestParam("page")int page, DownloanInfo downloanInfo){
 

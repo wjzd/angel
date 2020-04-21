@@ -37,7 +37,7 @@ public class CollectController {
         return "/views/collectList";
     }
 
-    @RequestMapping("/collectList")
+    @RequestMapping(value = "/collectList",produces = "application/json; charset=utf-8")
     @ResponseBody
     public String collectList(ResultTable resultTable, @RequestParam("limit")int limit, @RequestParam("page")int page ,Collect collect){
 

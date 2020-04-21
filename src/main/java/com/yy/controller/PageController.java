@@ -193,7 +193,7 @@ public class PageController {
         pageService.updateUserInfo(userInfo);
         return ret;
     }
-    @RequestMapping("/getCommodityList")
+    @RequestMapping(value = "/getCommodityList",produces = "application/json; charset=utf-8")
     @ResponseBody
     public String getList(String type){
         if (type.equals("1")){

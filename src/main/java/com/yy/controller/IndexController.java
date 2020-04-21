@@ -105,7 +105,7 @@ public class IndexController {
 
     @RequestMapping("/viewLoginInit")
     public String viewLoginInit(){
-        return "/views/login";
+        return "/views/user/login";
     }
 
     @RequestMapping("/viewLogin")

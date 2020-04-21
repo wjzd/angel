@@ -29,7 +29,7 @@ public class OrderInfoController {
         return "/views/orderList";
     }
 
-    @RequestMapping("/getOrderList")
+    @RequestMapping(value = "/getOrderList",produces = "application/json; charset=utf-8")
     @ResponseBody
     public String getOrderList(ResultTable resultTable, @RequestParam(value="pn",defaultValue="1") Integer pn, OrderInfo orderInfo){
         //获取第1页，5条内容，默认查询总数count
