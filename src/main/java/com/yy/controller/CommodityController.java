@@ -4,6 +4,7 @@ package com.yy.controller;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yy.pojo.*;
 import com.yy.service.CategoryMennService;
 import com.yy.service.CommodityService;
@@ -44,14 +45,11 @@ public class CommodityController {
 
     @RequestMapping(value = "/getCommodityList",produces = "application/json; charset=utf-8")
     @ResponseBody
-    public String getList(ResultTable resultTable,@RequestParam(value="pn",defaultValue="1") Integer pn,Commodity commodity){
-        //获取第1页，5条内容，默认查询总数count
-        /* 第一个参数是第几页；第二个参数是每页显示条数 */
-        PageHelper.startPage(pn, 4);
-        List<Commodity> commodityList=commodityService.selectByCom(null);
+    public String getList(ResultTable resultTable,Commodity commodity,@RequestParam("limit")int limit, @RequestParam("page")int page){
+        PageInfo<Commodity> pageInfo=commodityService.selectCom(null,page,limit);
         resultTable.setCode(0);
-        resultTable.setData(commodityList);
-        resultTable.setCount(commodityList.size());
+        resultTable.setData(pageInfo.getList());
+        resultTable.setCount((int)pageInfo.getTotal());
         return JSON.toJSONString(resultTable);
     }
     @RequestMapping("/addCommodityInit")

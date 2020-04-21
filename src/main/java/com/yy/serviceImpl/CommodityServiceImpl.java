@@ -1,5 +1,7 @@
 package com.yy.serviceImpl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yy.dao.AdminUserInfoMapper;
 import com.yy.dao.CommodityMapper;
 import com.yy.pojo.Commodity;
@@ -17,6 +19,14 @@ public class CommodityServiceImpl implements CommodityService {
     @Override
     public List<Commodity> selectByCom(Commodity commodity) {
         return commodityMapper.selectByCom(commodity);
+    }
+
+    @Override
+    public PageInfo<Commodity> selectCom(Commodity commodity,int pageNum,int pageSize) {
+        String orderBy="insertTime desc";
+        PageHelper.startPage(pageNum,pageSize,orderBy);
+        List<Commodity> commodities=commodityMapper.selectByCom(commodity);
+        return new PageInfo(commodities);
     }
 
     @Override

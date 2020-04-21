@@ -90,13 +90,13 @@
                     <section class="container" style="height: auto;">
                         <div class="card-box" th:each="commodity,stat:${list}">
                             <div class="card-img">
-                                <a th:href="@{/page/getCommodityDetail(id=${commodity.getId()})}" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
+                                <a th:href="@{/page/commodityDetail(id=${commodity.id})}" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
                                     <img th:src="${commodity.getImgurl()}" title="" alt="" th:title="${commodity.getComname()}">
                                 </a>
                             </div>
                             <div class="card-info">
                                 <p class="card-info-title">
-                                    <a th:href="@{/page/getCommodityDetail(id=${commodity.getId()})}" th:title="${commodity.getComname()}" th:text="${commodity.getComname()}" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;"></a>
+                                    <a th:href="@{/page/commodityDetail(id=${commodity.id})}" th:title="${commodity.getComname()}" th:text="${commodity.getComname()}" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;"></a>
                                 </p>
                                 <p class="card-info-type" title="#" th:text="${commodity.getCategory()}">
                                 </p>

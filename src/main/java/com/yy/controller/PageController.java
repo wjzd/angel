@@ -238,6 +238,8 @@ public class PageController {
     @RequestMapping("/commodityDetail")
     public String commodityDetail(Model model,Commodity commodity){
         commodity=commodityService.selectByCom(commodity).get(0);
+        commodity.setBrowsenum(commodity.getBrowsenum()+1);
+        commodityService.updateByPrimaryKeySelective(commodity);
         model.addAttribute("commodity",commodity);
         return "/page/commodityDetail";
     }

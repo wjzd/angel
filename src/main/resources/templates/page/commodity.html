@@ -1272,13 +1272,13 @@
 
 							<div class="card-box" th:each="commodity,stat:${tuijian}">
 								<div class="card-img">
-									<a href="" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
+									<a th:href="@{/page/commodityDetail(id=${commodity.id})}" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
 										<img th:src="${commodity.getImgurl()}" title="" alt="" th:title="${commodity.getComname()}">
 									</a>
 								</div>
 								<div class="card-info">
 									<p class="card-info-title">
-										<a href="#" th:title="${commodity.getComname()}" th:text="${commodity.getComname()}" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;"></a>
+										<a th:href="@{/page/commodityDetail(id=${commodity.id})}" th:title="${commodity.getComname()}" th:text="${commodity.getComname()}" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;"></a>
 									</p>
 									<p class="card-info-type" title="#" th:text="${commodity.getCategory()}">
 									</p>
@@ -1288,7 +1288,7 @@
 								</div>
 								<div class="card-item">
 									<span class="user-avatar showMemberCard">
-										<a href="#" th:title="${commodity.getComUser()}" target="_blank" z-st="home_main_card_user">
+										<a href="javascript:;" th:title="${commodity.getComUser()}" target="_blank" z-st="home_main_card_user">
 
 											<img th:src="${commodity.getUserImg()}" th:srcset="${commodity.getUserImg()}" width="30" height="30" alt=""/>
 											<span th:text="${commodity.getComUser()}"></span>
@@ -1314,13 +1314,13 @@
 
 							<div class="card-box" th:each="time,stat:${times}">
 								<div class="card-img">
-									<a href="" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
+									<a th:href="@{/page/commodityDetail(id=${time.id})}" class="card-img-hover" title="#" target="_blank" z-st="home_main_card_cover">
 										<img th:src="${time.getImgurl()}" title="" alt="" th:title="${time.getComname()}">
 									</a>
 								</div>
 								<div class="card-info">
 									<p class="card-info-title">
-										<a href="#" th:title="${time.getComname()}" th:text="${time.getComname()}" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;"></a>
+										<a th:href="@{/page/commodityDetail(id=${time.id})}" th:title="${time.getComname()}" th:text="${time.getComname()}" class="title-content" target="_blank" z-st="home_main_card_title" style="width: 178px;"></a>
 									</p>
 									<p class="card-info-type" title="#" th:text="${time.getCategory()}">
 									</p>
@@ -1330,7 +1330,7 @@
 								</div>
 								<div class="card-item">
 									<span class="user-avatar showMemberCard">
-										<a href="#" th:title="${time.getComUser()}" target="_blank" z-st="home_main_card_user">
+										<a href="javascript:;" th:title="${time.getComUser()}" target="_blank" z-st="home_main_card_user">
 
 											<img th:src="${time.getUserImg()}" th:srcset="${time.getUserImg()}" width="30" height="30" alt=""/>
 											<span th:text="${time.getComUser()}"></span>
