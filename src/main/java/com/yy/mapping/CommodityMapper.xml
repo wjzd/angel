@@ -18,7 +18,7 @@
     <result column="isout" jdbcType="INTEGER" property="isout" />
     <result column="reecom" jdbcType="INTEGER" property="reecom" />
     <result column="userName" jdbcType="INTEGER" property="userName" />
-    <result column="comUrl" jdbcType="VARCHAR" property="comurl" />
+    <result column="comurl" jdbcType="VARCHAR" property="comurl" />
     <result column="category" jdbcType="VARCHAR" property="category" />
     <result column="insertTime" jdbcType="TIMESTAMP" property="insertTime"/>
     <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
@@ -106,7 +106,7 @@
       This element was generated on Thu Mar 26 14:09:35 CST 2020.
     -->
     id, comName, comOriPrice, comPrice, imgUrl, saleNum, collectNum, browseNum, isout, 
-    reecom, adminId, comUrl, category,insertTime,updateTime
+    reecom, adminId, comurl, category,insertTime,updateTime
   </sql>
   <sql id="Blob_Column_List">
     <!--
@@ -198,7 +198,7 @@
     insert into commodity (id, comName, comOriPrice, 
       comPrice, imgUrl, saleNum, 
       collectNum, browseNum, isout, 
-      reecom, userName, comUrl,
+      reecom, userName, comurl,
       category, details)
     values (#{id,jdbcType=INTEGER}, #{comname,jdbcType=VARCHAR}, #{comoriprice,jdbcType=DOUBLE}, 
       #{comprice,jdbcType=DOUBLE}, #{imgurl,jdbcType=VARCHAR}, #{salenum,jdbcType=INTEGER}, 
@@ -250,7 +250,7 @@
         userName,
       </if>
       <if test="comurl != null">
-        comUrl,
+        comurl,
       </if>
       <if test="category != null">
         category,
@@ -377,7 +377,7 @@
         userName = #{record.userName,jdbcType=INTEGER},
       </if>
       <if test="record.comurl != null">
-        comUrl = #{record.comurl,jdbcType=VARCHAR},
+        comurl = #{record.comurl,jdbcType=VARCHAR},
       </if>
       <if test="record.category != null">
         category = #{record.category,jdbcType=VARCHAR},
@@ -408,7 +408,7 @@
       isout = #{record.isout,jdbcType=INTEGER},
       reecom = #{record.reecom,jdbcType=INTEGER},
     userName = #{record.userName,jdbcType=INTEGER},
-      comUrl = #{record.comurl,jdbcType=VARCHAR},
+    comurl = #{record.comurl,jdbcType=VARCHAR},
       category = #{record.category,jdbcType=VARCHAR},
       details = #{record.details,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
@@ -433,7 +433,7 @@
       isout = #{record.isout,jdbcType=INTEGER},
       reecom = #{record.reecom,jdbcType=INTEGER},
     userName = #{record.userName,jdbcType=INTEGER},
-      comUrl = #{record.comurl,jdbcType=VARCHAR},
+    comurl = #{record.comurl,jdbcType=VARCHAR},
       category = #{record.category,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -478,7 +478,7 @@
         userName = #{userName,jdbcType=INTEGER},
       </if>
       <if test="comurl != null">
-        comUrl = #{comurl,jdbcType=VARCHAR},
+        comurl = #{comurl,jdbcType=VARCHAR},
       </if>
       <if test="category != null">
         category = #{category,jdbcType=VARCHAR},
@@ -516,7 +516,7 @@
       isout = #{isout,jdbcType=INTEGER},
       reecom = #{reecom,jdbcType=INTEGER},
     userName = #{userName,jdbcType=INTEGER},
-      comUrl = #{comurl,jdbcType=VARCHAR},
+    comurl = #{comurl,jdbcType=VARCHAR},
       category = #{category,jdbcType=VARCHAR},
       details = #{details,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
@@ -538,7 +538,7 @@
       isout = #{isout,jdbcType=INTEGER},
       reecom = #{reecom,jdbcType=INTEGER},
       userName = #{userName,jdbcType=INTEGER},
-      comUrl = #{comurl,jdbcType=VARCHAR},
+    comurl = #{comurl,jdbcType=VARCHAR},
       category = #{category,jdbcType=VARCHAR},
       comUser = #{comUser,jdbcType=VARCHAR},
     comCode = #{comCode,jdbcType=VARCHAR}
@@ -582,7 +582,7 @@
         and  userName = #{userName,jdbcType=INTEGER}
       </if>
       <if test="comurl != null">
-        and comUrl = #{comurl,jdbcType=VARCHAR}
+        and comurl = #{comurl,jdbcType=VARCHAR}
       </if>
       <if test="category != null">
         and category = #{category,jdbcType=VARCHAR}

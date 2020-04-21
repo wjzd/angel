@@ -335,8 +335,8 @@
 <!--                        <td class="comCode">111111</td>-->
 <!--                    </tr>-->
 <!--                </table>-->
-                <p style="text-align: center;font-size: 15px" >网盘地址:<span><a href="http://www.baidu.com" target="_blank" class="comUrl" style="color: red"></a></span></p>
-                <p style="text-align: center;font-size: 15px" class="comCode">提取码:<span class="comCode"></span></p>
+                <p style="text-align: center;font-size: 15px" >网盘地址:<span id="comUrl"></span></p>
+                <p style="text-align: center;font-size: 15px" class="comCode">提取码:<span id="comCode" class="comCode"></span></p>
             </div>
 
         </div>
@@ -428,15 +428,16 @@
             }
             var comId=$(".comId").val();
             $.ajax({
-                url:"[[@{/page/updateCollect}]]",
+                url:"[[@{/page/download}]]",
                 data:{"id":comId},
                 type:"Post",
                 dataType:"json",
                 success:function(data){
 
                     if(data.type==1){
-                        $(".comUrl").text(data.comUrl);
-                        $(".comCode").text(data.comCode);
+
+                        $("#comUrl").text(data.comUrl);
+                        $("#comCode").text(data.comCode);
                         $("#xiazai").removeClass("hide");
                     }else{
                         layer.msg("不是会员");
