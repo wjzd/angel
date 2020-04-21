@@ -1282,10 +1282,10 @@
 								</div>
 								<div class="card-item">
 									<span class="user-avatar showMemberCard">
-										<a href="javascript:;" th:title="${commodity.getComUser()}" target="_blank" z-st="home_main_card_user">
+										<a href="javascript:;" th:title="${commodity.getUserName()}" target="_blank" z-st="home_main_card_user">
 
 											<img th:src="${commodity.getUserImg()}" th:srcset="${commodity.getUserImg()}" width="30" height="30" alt=""/>
-											<span th:text="${commodity.getComUser()}"></span>
+											<span th:text="${commodity.getUserName()}"></span>
 										</a>
 									</span>
 									<span class="time" title="发布时间" th:text="${#dates.format(commodity.insertTime, 'yyyy-MM-dd')}">5天前</span>
