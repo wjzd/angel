@@ -1,5 +1,6 @@
 package com.yy.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.yy.pojo.Collect;
@@ -191,6 +192,17 @@ public class PageController {
         userInfo.setHeadimg("/static/upload/"+filename);
         pageService.updateUserInfo(userInfo);
         return ret;
+    }
+    @RequestMapping("/getCommodityList")
+    @ResponseBody
+    public String getList(String type){
+        if (type.equals("1")){
+            List<Commodity> commodities=commodityService.selectByCom(null);
+            return JSON.toJSONString(commodities);
+        }else {
+            return "/error";
+        }
+
     }
     @RequestMapping("/updateUserInfo")
     @ResponseBody
