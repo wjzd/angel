@@ -4,6 +4,7 @@ package com.yy.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yy.pojo.Collect;
 import com.yy.pojo.DownloanInfo;
 import com.yy.pojo.ResultTable;
@@ -39,16 +40,15 @@ public class DownloanController {
 
     @RequestMapping("/downList")
     @ResponseBody
-    public String downList(ResultTable resultTable, @RequestParam(value="pn",defaultValue="1") Integer pn, DownloanInfo downloanInfo){
+    public String downList(ResultTable resultTable, @RequestParam("limit")int limit, @RequestParam("page")int page, DownloanInfo downloanInfo){
 
-        //获取第1页，5条内容，默认查询总数count
-        /* 第一个参数是第几页；第二个参数是每页显示条数 */
-        PageHelper.startPage(pn, 8);
-
+        String orderBy="downTime desc";
+        PageHelper.startPage(page,limit,orderBy);
         List<DownloanInfo> downList=downloanService.selectByDown(downloanInfo);
+        PageInfo<Collect> pageInfo=new PageInfo(downList);
         resultTable.setCode(0);
-        resultTable.setData(downList);
-        resultTable.setCount(downList.size());
+        resultTable.setData(pageInfo.getList());
+        resultTable.setCount((int)pageInfo.getTotal());
         return JSON.toJSONString(resultTable);
     }
 

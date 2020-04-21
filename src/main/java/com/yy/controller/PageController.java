@@ -4,13 +4,14 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.yy.pojo.Collect;
 import com.yy.pojo.Commodity;
+import com.yy.pojo.DownloanInfo;
 import com.yy.pojo.UserInfo;
-import com.yy.service.CommodityService;
-import com.yy.service.IndexService;
-import com.yy.service.PageService;
+import com.yy.service.*;
 import com.yy.utils.MD5Util;
 import jdk.nashorn.internal.ir.IfNode;
 import lombok.SneakyThrows;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +23,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +48,10 @@ public class PageController {
     private IndexService indexService;
     @Resource
     private CommodityService commodityService;
+    @Resource
+    private DownloanService downloanService;
+    @Resource
+    private CollectService collectService;
 
     @RequestMapping("getCommodity")
     public String getCommodity(@RequestParam(value = "categoryName",defaultValue = "",required = false)String categoryName,
@@ -243,6 +251,87 @@ public class PageController {
         model.addAttribute("commodity",commodity);
         return "/page/commodityDetail";
     }
+    //用户点击下载
+    @RequestMapping("/download")
+    @ResponseBody
+    public void updateCollect(HttpServletResponse resp, HttpServletRequest request, Commodity commodity) throws JSONException {
 
+        HttpSession session = request.getSession();
+
+        List<Commodity> comList=commodityService.selectByCom(commodity);
+        UserInfo userInfo= (UserInfo) session.getAttribute("userInfo");
+        JSONObject json=new JSONObject();
+        int type=0;
+        if(userInfo.getIsvip()==1){//是VIp
+            type=1;
+            //判断用户是否下载过
+            DownloanInfo dw=new DownloanInfo();
+            dw.setComid(commodity.getId());
+            dw.setUserid(userInfo.getId());
+            List<DownloanInfo> downloanInfos=downloanService.selectByDown(dw);
+            if(downloanInfos.size()>0){//已下载过修改
+                dw.setDownnum(downloanInfos.get(0).getDownnum()+1);
+                dw.setDowntime(new Date());
+                downloanService.updateByPrimaryKeySelective(dw);
+            }else{
+                dw.setDownnum(1);
+                dw.setDowntime(new Date());
+                downloanService.insertSelective(dw);
+            }
+            json.put("comUrl",comList.get(0).getComurl());
+            json.put("comCode",comList.get(0).getComCode());
+            json.put("type",type);
+        }else{
+            type=0;
+            json.put("type",type);
+        }
+        PrintWriter out=null;
+        try {
+            out=resp.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        out.print(json);
+        out.flush();
+        out.close();
+    }
+    //用户点击收藏
+    @RequestMapping("/updateCollect")
+    @ResponseBody
+    public void updateCollect(HttpServletResponse resp, HttpServletRequest request, Collect collect) {
+
+        try {
+
+
+            HttpSession session = request.getSession();
+            UserInfo userInfo= (UserInfo) session.getAttribute("userInfo");
+            collect.setUserid(userInfo.getId());
+
+            List<Collect> collectList=collectService.selectCollect(collect);
+            int type=0;
+            if(collectList.size()>0){//已经收藏则取消收藏
+                collect=collectList.get(0);
+                Integer num=collectService.deleteByPrimaryKey(collect);
+                type=0;//已取消
+            }else{//未收藏新增收藏
+                collectService.insertSelective(collect);
+                type=1;//已收藏
+            }
+            JSONObject json=new JSONObject();
+            json.put("type",type);
+
+            PrintWriter out=null;
+            try {
+                out=resp.getWriter();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            out.print(json);
+            out.flush();
+            out.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
 

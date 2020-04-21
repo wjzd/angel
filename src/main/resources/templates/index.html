@@ -155,10 +155,10 @@
 								</div>
 								<div class="card-item">
 									<span class="user-avatar showMemberCard">
-										<a href="javascript:;" th:title="${commodity.getComUser()}" target="_blank" z-st="home_main_card_user">
+										<a href="javascript:;" th:title="${commodity.getUserName()}" target="_blank" z-st="home_main_card_user">
 
 											<img th:src="${commodity.getUserImg()}" th:srcset="${commodity.getUserImg()}" width="30" height="30" alt=""/>
-											<span th:text="${commodity.getComUser()}"></span>
+											<span th:text="${commodity.getUserName()}"></span>
 										</a>
 									</span>
 									<span class="time" title="发布时间" th:text="${#dates.format(commodity.insertTime, 'yyyy-MM-dd')}">5天前</span>
@@ -166,8 +166,14 @@
 							</div>
 						</section>
 					</div>
-					<div class="pageturning ">
-						<div class="clear layui-row" style="margin-left: 41%;">
+					<div class="pageturning" th:if="${not #lists.isEmpty(tuijian)}">
+						<div class="clear layui-row" style="margin-left: 45%;">
+							<div name="" class="laypage_main laypageskin_default" id="demopage">
+							</div>
+						</div>
+					</div>
+					<div class="pageturning" th:if="${#lists.isEmpty(tuijian)}">
+						<div class="clear layui-row hide" style="margin-left: 45%;">
 							<div name="" class="laypage_main laypageskin_default" id="demopage">
 							</div>
 						</div>
@@ -198,10 +204,10 @@
 								</div>
 								<div class="card-item">
 									<span class="user-avatar showMemberCard">
-										<a href="javascript:;" th:title="${time.getComUser()}" target="_blank" z-st="home_main_card_user">
+										<a href="javascript:;" th:title="${time.getUserName()}" target="_blank" z-st="home_main_card_user">
 
 											<img th:src="${time.getUserImg()}" th:srcset="${time.getUserImg()}" width="30" height="30" alt=""/>
-											<span th:text="${time.getComUser()}"></span>
+											<span th:text="${time.getUserName()}"></span>
 										</a>
 									</span>
 									<span class="time" title="发布时间" th:text="${#dates.format(time.insertTime, 'yyyy-MM-dd')}">5天前</span>
@@ -209,14 +215,14 @@
 							</div>
 						</section>
 					</div>
-					<div class="pageturning" th:if="${not #lists.isEmpty(list)}">
-						<div class="clear layui-row" style="margin-left: 41%;">
+					<div class="pageturning" th:if="${not #lists.isEmpty(times)}">
+						<div class="clear layui-row" style="margin-left: 45%;">
 							<div name="" class="laypage_main laypageskin_default" id="demopage1">
 							</div>
 						</div>
 					</div>
-					<div class="pageturning" th:if="${#lists.isEmpty(list)}">
-						<div class="clear layui-row hide" style="margin-left: 41%;">
+					<div class="pageturning" th:if="${#lists.isEmpty(times)}">
+						<div class="clear layui-row hide" style="margin-left: 45%;">
 							<div name="" class="laypage_main laypageskin_default" id="demopage1">
 							</div>
 						</div>

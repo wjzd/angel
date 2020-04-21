@@ -22,7 +22,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/LoginCon")
-public class LoginCon {
+public class LoginController {
 
     @Resource
     private UserService userService;

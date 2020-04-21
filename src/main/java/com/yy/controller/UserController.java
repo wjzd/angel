@@ -17,7 +17,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/userCon")
-public class UserCon {
+public class UserController {
 
     @Resource
     private UserService userService;

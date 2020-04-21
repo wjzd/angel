@@ -35,8 +35,7 @@ public class CommodityController {
     private CommodityService commodityService;
     @Resource
     private CategoryMennService categoryMennService;
-    @Resource
-    private DownloanService downloanService;
+
 
     @RequestMapping("/toCommodity")
     public String toCommodity(){
@@ -108,50 +107,7 @@ public class CommodityController {
     }
 
 
-    //用户点击下载
-    @RequestMapping("/download")
-    @ResponseBody
-    public void updateCollect(HttpServletResponse resp, HttpServletRequest request, Commodity commodity) throws JSONException {
 
-        HttpSession session = request.getSession();
-
-        List<Commodity> comList=commodityService.selectByCom(commodity);
-        UserInfo userInfo= (UserInfo) session.getAttribute("userInfo");
-        JSONObject json=new JSONObject();
-        int type=0;
-        if(userInfo.getIsvip()==1){//是VIp
-           type=1;
-            //判断用户是否下载过
-            DownloanInfo dw=new DownloanInfo();
-            dw.setComid(commodity.getId());
-            dw.setUserid(userInfo.getId());
-            List<DownloanInfo> downloanInfos=downloanService.selectByDown(dw);
-            if(downloanInfos.size()>0){//已下载过修改
-                dw.setDownnum(downloanInfos.get(0).getDownnum()+1);
-                dw.setDowntime(new Date());
-                downloanService.updateByPrimaryKeySelective(dw);
-            }else{
-                dw.setDownnum(1);
-                dw.setDowntime(new Date());
-                downloanService.insertSelective(dw);
-            }
-            json.put("comUrl",comList.get(0).getComurl());
-            json.put("comCode",comList.get(0).getComCode());
-            json.put("type",type);
-        }else{
-            type=0;
-            json.put("type",type);
-        }
-        PrintWriter out=null;
-        try {
-            out=resp.getWriter();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        out.print(json);
-        out.flush();
-        out.close();
-    }
 
 
     @RequestMapping("/comDetailsInit")

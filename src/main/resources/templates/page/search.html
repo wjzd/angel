@@ -1293,8 +1293,14 @@
 							</div>
 						</section>
 					</div>
-					<div class="pageturning ">
-						<div class="clear layui-row" style="margin-left: 47%;">
+					<div class="pageturning" th:if="${not #lists.isEmpty(search)}">
+						<div class="clear layui-row" style="margin-left: 41%;">
+							<div name="" class="laypage_main laypageskin_default" id="demopage">
+							</div>
+						</div>
+					</div>
+					<div class="pageturning" th:if="${#lists.isEmpty(search)}">
+						<div class="clear layui-row hide" style="margin-left: 41%;">
 							<div name="" class="laypage_main laypageskin_default" id="demopage">
 							</div>
 						</div>

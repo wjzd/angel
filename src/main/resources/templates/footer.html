@@ -238,23 +238,6 @@
 			})
 			windowAddMouseWheel();
 		});
-
-
-
-		// $(document).scroll(function() {
-		// 	var scroH = $(document).scrollTop();  //滚动高度
-		// 	var viewH = $(window).height();  //可见高度
-		// 	var contentH = $(document).height();  //内容高度
-		//
-		// 	if(scroH >500){  //距离顶部大于100px时
-		// 		$(".sidebar-fixed-wrapper").removeClass("hide");
-		// 	}else {
-		// 		$(".sidebar-fixed-wrapper").addClass("hide");
-		// 	}
-		// 	if (contentH = (scroH + viewH)){  //滚动条滑到底部啦
-		// 		$(".sidebar-fixed-wrapper").removeClass("hide");
-		// 	}
-		// });
 		function windowAddMouseWheel() {
 
 			var scrollFunc = function (e) {
@@ -265,31 +248,39 @@
 						// alert("滑轮向上滚动");
 						if (height>500){
 							$(".sidebar-fixed-wrapper").removeClass("hide");
+							$("#top-nav").removeClass("hide");
 						} else {
 							$(".sidebar-fixed-wrapper").addClass("hide");
+							$("#top-nav").addClass("hide");
 						}
 					}
 					if (e.wheelDelta < 0) { //当滑轮向下滚动时
 						// alert("滑轮向下滚动");
 						if (height>500){
 							$(".sidebar-fixed-wrapper").removeClass("hide");
+							$("#top-nav").removeClass("hide");
 						} else {
 							$(".sidebar-fixed-wrapper").addClass("hide");
+							$("#top-nav").addClass("hide");
 						}
 					}
 				} else if (e.detail) {  //Firefox滑轮事件
 					if (e.detail> 0) { //当滑轮向上滚动时
 						if (height>500){
 							$(".sidebar-fixed-wrapper").removeClass("hide");
+							$("#top-nav").removeClass("hide");
 						} else {
 							$(".sidebar-fixed-wrapper").addClass("hide");
+							$("#top-nav").addClass("hide");
 						}
 					}
 					if (e.detail< 0) { //当滑轮向下滚动时
 						if (height>500){
 							$(".sidebar-fixed-wrapper").removeClass("hide");
+							$("#top-nav").removeClass("hide");
 						} else {
 							$(".sidebar-fixed-wrapper").addClass("hide");
+							$("#top-nav").addClass("hide");
 						}
 					}
 				}

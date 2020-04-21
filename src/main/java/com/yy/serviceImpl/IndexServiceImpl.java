@@ -40,6 +40,7 @@ public class IndexServiceImpl implements IndexService {
         Commodity commodity=new Commodity();
         commodity.setCategory(categoryName);
         commodity.setReecom(reecom);
+        commodity.setIsout(1);
         //按照时间排序
         String orderBy="insertTime desc";
         PageHelper.startPage(pageNum,pageSize,orderBy);
@@ -51,6 +52,7 @@ public class IndexServiceImpl implements IndexService {
     public PageInfo<Commodity> getSearch(String name, Integer pageNum, Integer pageSize) {
         Commodity commodity=new Commodity();
         commodity.setComname(name);
+        commodity.setIsout(1);
         String orderBy="insertTime desc";
         PageHelper.startPage(pageNum,pageSize,orderBy);
         return new PageInfo(commodityMapper.search(commodity));
