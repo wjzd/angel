@@ -36,6 +36,11 @@ public class LoginCon {
         System.out.println("8888");
         return "/views/index";
     }
+    @RequestMapping("/getCom")
+    public  String getCom(){
+        System.out.println("8888");
+        return "/views/index";
+    }
     @RequestMapping("/admin")
     @ResponseBody
     public String hello(){
