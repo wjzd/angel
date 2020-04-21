@@ -42,7 +42,7 @@ public class CommodityController {
         return "/views/commodity";
     }
 
-    @RequestMapping("/getCommodityList")
+    @RequestMapping(value = "/getCommodityList",produces = "application/json; charset=utf-8")
     @ResponseBody
     public String getList(ResultTable resultTable,@RequestParam(value="pn",defaultValue="1") Integer pn,Commodity commodity){
         //获取第1页，5条内容，默认查询总数count

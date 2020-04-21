@@ -44,9 +44,10 @@
             elem: '#commodityTable'
             ,toolbar: '#toolbarDemo'
             ,url:'[[@{/views/getCommodityList}]]'
+            ,method:'post'
             ,cols: [ [ //标题栏
                 {field: 'id', title: 'ID', sort: true}
-                ,{field: 'comname', title: '商品名称'}
+                ,{field: 'comname', title: '商品名称',sort: true}
                 ,{field: 'salenum', title: '商品销量'}
                 ,{field: 'collectnum', title: '收藏数量'}
                 ,{field: 'browsenum', title: '浏览数量',sort: true}
