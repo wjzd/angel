@@ -78,7 +78,10 @@ public class IndexController {
 
         return "index";
     }
-
+    @RequestMapping("/errorPage")
+    public String error(){
+        return"/page/404";
+    }
     @RequestMapping("/getHeader")
     public String header(Model model,HttpServletRequest request){
 //        HttpSession session = request.getSession();
